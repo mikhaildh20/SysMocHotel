@@ -20,6 +20,7 @@ int w,h;
 int main() {
 //	getRes(&w,&h);
 //	fullscreen();
+//	getch();
 //    loadingAnimation();
 	ChooseKaryawan();
 //	ChooseBarang();

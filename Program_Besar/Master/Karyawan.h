@@ -42,10 +42,10 @@ void CreateKry(){
 		}
 	}
 	printf("\nTelephone\t: ");getinputmin(kry.no_telp,13,13,3);
-	fflush(stdin);
 	fwrite(&kry,sizeof(kry),1,ArsKry);
-	MessageBox(NULL,"Data berhasil ditambahkan!","NOTIFICATION",MB_OK | MB_DEFAULT_DESKTOP_ONLY);
+	fflush(ArsKry);
 	fclose(ArsKry);
+	MessageBox(NULL,"Data berhasil ditambahkan!","NOTIFICATION",MB_OK | MB_DEFAULT_DESKTOP_ONLY);
 }
 
 void ReadKry(){

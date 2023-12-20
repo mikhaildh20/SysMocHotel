@@ -27,6 +27,7 @@ void CreateBrg(){
 	printf("\nHarga Barang\t: Rp");getRp(&brg.harga, 4, 7,21,2);
 	fwrite(&brg,sizeof(brg),1,ArsBrg);
 	MessageBox(NULL,"Data berhasil ditambahkan!","NOTIFICATION",MB_OK | MB_DEFAULT_DESKTOP_ONLY);
+	fflush(ArsBrg);
 	fclose(ArsBrg);
 }
 
