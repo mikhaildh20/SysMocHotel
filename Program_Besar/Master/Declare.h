@@ -17,9 +17,9 @@ typedef struct{
 	int id_karyawan;
 	char username[10];
 	char password[10];
-	char role[15];
 	char fname[10];
 	char lname[10];
+	char role[15];
 	char no_telp[13];
 }Karyawan;
 Karyawan kry;

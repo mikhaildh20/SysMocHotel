@@ -17,7 +17,8 @@ void DisplayMember(){
 void CreateMbr(){
 	system("cls");
 	ArsMbr = fopen("Dat/Member.dat", "ab");
-	printf("NIK\t: ");getteksnummin(mbr.NIK,16,16);
+	printf("NIK\t: ");getinputmin(mbr.NIK,16,16,3);
+	fflush(stdin);
 	printf("\nFront Name\t: ");getteks(mbr.fname,10);
 	printf("\nLast Name\t: ");getteks(mbr.lname,10);
 	printf("\nTelephone\t: ");getteksnummin(mbr.no_telp,13,13);

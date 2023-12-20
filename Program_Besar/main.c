@@ -21,8 +21,8 @@ int main() {
 //	getRes(&w,&h);
 //	fullscreen();
 //    loadingAnimation();
-//	ChooseKaryawan();
+	ChooseKaryawan();
 //	ChooseBarang();
-	ChooseMember();
+//	ChooseMember();
 //	default_res(w,h);
 }

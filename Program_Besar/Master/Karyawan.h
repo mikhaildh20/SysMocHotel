@@ -9,9 +9,9 @@ void DisplayMKaryawan(){
 void DisplayKaryawan(){
 	printf("[1]Role\n");
 	printf("[2]Front Name\n");
-	printf("[3]Last Name\n");
-	printf("[4]Telephone\n");
-	printf("[5]Back\n");
+	printf("[3]Last Name");
+	printf("[4]Telephone");
+	printf("[5]Back");
 }
 
 void CreateKry(){
@@ -24,105 +24,151 @@ void CreateKry(){
 		}
 	}
 	kry.id_karyawan = id + i;
-	printf("ID KARYAWAN\t: KRY%d\n", kry.id_karyawan);
+	printf("ID Karyawan\t: KRY%d\n", kry.id_karyawan);
 	printf("Username\t: ");getteks(kry.username,10);
 	printf("\nPassword\t: ");getpass(kry.password,10);
+	printf("\nFront Name\t: ");getletter(kry.fname,10);
+	printf("\nLast Name\t: ");getletter(kry.lname,10);
+	printf("\n");
 	while(1){
-		gotoxy(0,2);
-		printf("\nRole\t\t: ");getteks(kry.role,15);
-		cvrUpper(kry.role);
+		gotoxy(0,5);
+		printf("Role\t\t: ");getletter(kry.role,15);
+		cvrUpper(&kry.role);
 		if(strcmp(kry.role, "ADMIN")==0 || strcmp(kry.role, "RECEPTIONIST")==0){
 			break;
 		}else{
-			gotoxy(0,3);
-			printf("                                        ");
+			gotoxy(10,5);
+			printf("                    ");
 		}
 	}
-	printf("\nFront Name\t: ");getletter(kry.fname,10);
-	printf("\nLast Name\t: ");getletter(kry.lname,10);
-	printf("\nTelephone\t: ");getteksnum(kry.no_telp,13);
+	printf("\nTelephone\t: ");getinputmin(kry.no_telp,13,13,3);
+	fflush(stdin);
 	fwrite(&kry,sizeof(kry),1,ArsKry);
-	fclose(ArsKry);
 	MessageBox(NULL,"Data berhasil ditambahkan!","NOTIFICATION",MB_OK | MB_DEFAULT_DESKTOP_ONLY);
+	fclose(ArsKry);
 }
 
 void ReadKry(){
 	system("cls");
 	ArsKry = fopen("Dat/Karyawan.dat", "rb");
-	if(ArsKry != NULL){
+	if(ArsKry == NULL){
+		MessageBoxA(NULL,"Belum ada data!","ATTENTION",MB_OK | MB_DEFAULT_DESKTOP_ONLY);
+	}else{
 		while(fread(&kry,sizeof(kry),1,ArsKry)==1){
 			if(!feof(ArsKry)){
-				printf("KRY%d\t%s %s\t\t\t%s\t%s\n",kry.id_karyawan,kry.fname,kry.lname,kry.role,kry.no_telp);
+				printf("KRY%d\t\t%s %s\t\t%s\t\t%s\n",kry.id_karyawan,kry.fname,kry.lname,kry.role,kry.no_telp);
 			}
 		}
 		getch();
-	}else{
-		MessageBoxA(NULL,"Belum ada data!","ATTENTION",MB_OK | MB_DEFAULT_DESKTOP_ONLY);
 	}
-	fclose(ArsBrg);
-}
-
-void UpdateRKry(){
-	found = false;
-	system("cls");
-	printf("Masukkan ID: KRY");getnummin(&search,1,3);
-	ArsKry = fopen("Dat/Karyawan.dat", "rb");
-	ArsTmp = fopen("Dat/tmp.dat", "wb");
-	while(fread(&kry,sizeof(kry),1,ArsKry)==1){
-		if(search == kry.id_karyawan){
-			found = true;
-			while(1){
-			gotoxy(0,2);
-			printf("\nRole\t\t: ");getteks(kry.role,15);
-			cvrUpper(kry.role);
-				if(strcmp(kry.role, "ADMIN")==0 || strcmp(kry.role, "RECEPTIONIST")==0){
-					break;
-				}else{
-					gotoxy(0,3);
-					printf("                                        ");
-				}	
-			}
-			fwrite(&brg,sizeof(brg),1,ArsTmp);
-		}else{
-			fwrite(&brg,sizeof(brg),1,ArsTmp);
-		}
-	}
-	fclose(ArsTmp);
 	fclose(ArsKry);
-	if(found){
-		remove("Dat/Karyawan.dat");
-		rename("Dat/tmp.dat","Dat/Karyawan.dat");
-		MessageBoxA(NULL,"Berhasil diubah!","ATTENTION",MB_OK | MB_DEFAULT_DESKTOP_ONLY);
-	}else{
-		MessageBoxA(NULL,"ID Tidak ada!","ATTENTION",MB_OK | MB_DEFAULT_DESKTOP_ONLY);
-	}
 }
-
-void UpdateKry(){
-	while(i==1){
-		system("cls");
-		DisplayKaryawan();
-		printf("\nChoose: ");
-		getnummin(&choose,1,1);
-		switch(choose){
-			case 1:
-				UpdateRKry();
-			break;
-			case 2:
-				//UpdateFKry();
-			break;
-			case 3:
-				//UpdateLKry();
-			break;
-			case 4:
-				//UpdateTKry();
-			break;
-			case 5:
-				i=0;
-			break;
-		}
-	}
-}
+//
+//void UpdateNBrg(){
+//	found = false;
+//	system("cls");
+//	printf("Masukkan ID: BRG");getnummin(&search,1,3);
+//	ArsBrg = fopen("Dat/Barang.dat", "rb");
+//	ArsTmp = fopen("Dat/tmp.dat", "wb");
+//	while(fread(&brg,sizeof(brg),1,ArsBrg)==1){
+//		if(search == brg.id_barang){
+//			found = true;
+//			rupiah(brg.harga,cvrRp);
+//			printf("\nID BARANG\t: BRG%d", brg.id_barang);
+//			printf("\nHarga\t\t: Rp%s", cvrRp);
+//			printf("\nNama\t\t: ");getletter(brg.nama,15);
+//			fwrite(&brg,sizeof(brg),1,ArsTmp);
+//		}else{
+//			fwrite(&brg,sizeof(brg),1,ArsTmp);
+//		}
+//	}
+//	fclose(ArsTmp);
+//	fclose(ArsBrg);
+//	if(found){
+//		remove("Dat/Barang.dat");
+//		rename("Dat/tmp.dat","Dat/Barang.dat");
+//		MessageBoxA(NULL,"Berhasil diubah!","ATTENTION",MB_OK | MB_DEFAULT_DESKTOP_ONLY);
+//	}else{
+//		MessageBoxA(NULL,"ID Tidak ada!","ATTENTION",MB_OK | MB_DEFAULT_DESKTOP_ONLY);
+//	}
+//}
+//
+//void UpdateHBrg(){
+//	found = false;
+//	system("cls");
+//	printf("Masukkan ID: BRG");getnummin(&search,1,3);
+//	ArsBrg = fopen("Dat/Barang.dat", "rb");
+//	ArsTmp = fopen("Dat/tmp.dat", "wb");
+//	while(fread(&brg,sizeof(brg),1,ArsBrg)==1){
+//		if(search == brg.id_barang){
+//			found = true;
+//			printf("\nID BARANG\t: BRG%d", brg.id_barang);
+//			printf("\nNama\t\t: %s", brg.nama);
+//			printf("\nHarga\t\t: Rp ");getRp(&brg.harga,4,7,21,3);
+//			fwrite(&brg,sizeof(brg),1,ArsTmp);
+//		}else{
+//			fwrite(&brg,sizeof(brg),1,ArsTmp);
+//		}
+//	}
+//	fclose(ArsTmp);
+//	fclose(ArsBrg);
+//	if(found){
+//		remove("Dat/Barang.dat");
+//		rename("Dat/tmp.dat","Dat/Barang.dat");
+//		MessageBoxA(NULL,"Berhasil diubah!","ATTENTION",MB_OK | MB_DEFAULT_DESKTOP_ONLY);
+//	}else{
+//		MessageBoxA(NULL,"ID Tidak ada!","ATTENTION",MB_OK | MB_DEFAULT_DESKTOP_ONLY);
+//	}
+//}
+//
+//void UpdateBrg(){
+//	i = 1;
+//	while(i==1){
+//		system("cls");
+//		DisplayBarang();
+//		printf("\nChoose: ");
+//		getnummin(&choose,1,1);
+//		switch(choose){
+//			case 1:
+//				UpdateNBrg();
+//			break;
+//			case 2: 
+//				UpdateHBrg();
+//			break;
+//			case 3:
+//				i=0;
+//			break;
+//		}
+//	}
+//	
+//}
+//
+//void DeleteBarang(){
+//	found = false;
+//	system("cls");
+//	printf("Masukkan ID: BRG");getnummin(&search,1,3);
+//	ArsBrg = fopen("Dat/Barang.dat", "rb");
+//	ArsTmp = fopen("Dat/tmp.dat", "wb");
+//	while(fread(&brg,sizeof(brg),1,ArsBrg)==1){
+//		if(search != brg.id_barang){
+//			if(search== brg.id_barang){
+//				found = true;
+//			}else{
+//				fwrite(&brg,sizeof(brg),1,ArsTmp);	
+//			}
+//		}
+//	}
+//	if(!found){
+//		MessageBoxA(NULL,"Berhasil dihapus!","ATTENTION",MB_OK | MB_DEFAULT_DESKTOP_ONLY);
+//	}else{
+//		MessageBoxA(NULL,"ID Tidak ada!","ATTENTION",MB_OK | MB_DEFAULT_DESKTOP_ONLY);
+//	}
+//	
+//	fclose(ArsBrg);
+//	fclose(ArsTmp);
+//	remove("Dat/Barang.dat");
+//	rename("Dat/tmp.dat","Dat/Barang.dat");
+//}
 
 void ChooseKaryawan(){
 	remove("Dat/tmp.dat");
@@ -140,10 +186,10 @@ void ChooseKaryawan(){
 				ReadKry();
 			break;
 			case 3:
-				//UpdateKry();
+//				UpdateBrg();
 			break;
 			case 4:
-				//DeleteKry();
+//				DeleteBarang();
 			break;
 			case 5:
 				j=0;
