@@ -54,6 +54,11 @@ void removeBlinkingCursor() {
     SetConsoleCursorInfo(consoleHandle, &cursorInfo);
 }
 
+void getRes(int *screenWidth, int *screenHeight){
+	*screenWidth = GetSystemMetrics(SM_CXSCREEN);
+    *screenHeight = GetSystemMetrics(SM_CYSCREEN);
+}
+
 void fullscreen()
 {
 	system("color 74");
@@ -66,6 +71,15 @@ void fullscreen()
 	remove_scrollbar();
 	removeBlinkingCursor();
 	setConsoleMode();
+}
+
+void default_res(int width, int height){
+	DEVMODE dm;
+    EnumDisplaySettings(NULL, ENUM_CURRENT_SETTINGS, &dm);
+
+    dm.dmPelsWidth = width;  // Set your desired width
+    dm.dmPelsHeight = height; // Set your desired height
+    LONG result = ChangeDisplaySettings(&dm, 0);
 }
 
 void EnterKey(char *press){

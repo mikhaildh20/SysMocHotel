@@ -15,10 +15,14 @@
 #include "Master/Member.h"
 #include "design.h"
 
+int w,h;
+
 int main() {
+//	getRes(&w,&h);
 //	fullscreen();
 //    loadingAnimation();
 //	ChooseKaryawan();
 //	ChooseBarang();
 	ChooseMember();
+//	default_res(w,h);
 }
