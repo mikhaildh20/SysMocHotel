@@ -21,17 +21,18 @@ void CreateBrg(){
 void ReadBrg(){
 	system("cls");
 	fp = fopen("Dat/Barang.dat", "rb");
-	if(fread(&brg,sizeof(brg),1,fp)==0){
+	if(fp==NULL){
 		printf("Belum ada Data");
 		getch();
 	}else{
-		do{
+		found = false;
+		while(!feof(fp)){
 			fread(&brg,sizeof(brg),1,fp);
 			if(!feof(fp)){
 				rupiah(brg.harga,cvrRp);
 				printf("BRG%d\t\t%s\t\tRp%s\n",brg.id_barang,brg.nama,cvrRp);
 			}
-		}while(!feof(fp));
+		}
 		getch();
 	}
 	fclose(fp);

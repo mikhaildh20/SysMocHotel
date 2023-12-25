@@ -11,12 +11,14 @@
 #include "config.h"
 #include "Master/Declare.h"
 #include "Master/Barang.h"
+#include "Master/Karyawan.h"
 #include "design.h"
 
 int w,h;
 
 int main() {
-	MenuBarang();
+//	MenuBarang();
+	MenuKaryawan();
 //	getRes(&w,&h);
 //	fullscreen();
 //	getch();
