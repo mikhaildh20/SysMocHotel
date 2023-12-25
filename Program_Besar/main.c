@@ -10,9 +10,6 @@
 #include "lib.h"
 #include "config.h"
 #include "Master/Declare.h"
-#include "Master/Barang.h"
-#include "Master/Karyawan.h"
-#include "Master/Member.h"
 #include "design.h"
 
 int w,h;
@@ -22,8 +19,5 @@ int main() {
 //	fullscreen();
 //	getch();
 //    loadingAnimation();
-	ChooseKaryawan();
-//	ChooseBarang();
-//	ChooseMember();
 //	default_res(w,h);
 }

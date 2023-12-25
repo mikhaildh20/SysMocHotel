@@ -3,7 +3,9 @@ int choose,j,i;
 int search;
 char cvrRp[10];
 char UpChar[10];
-FILE *ArsTmp;
+FILE *fp1;
+FILE *fp2
+FILE *tmp;
 
 typedef struct{
 	int id_barang;
@@ -11,7 +13,6 @@ typedef struct{
 	int harga;
 }Barang;
 Barang brg;
-FILE *ArsBrg;
 
 typedef struct{
 	int id_karyawan;
@@ -23,7 +24,6 @@ typedef struct{
 	char no_telp[13];
 }Karyawan;
 Karyawan kry;
-FILE *ArsKry;
 
 typedef struct{
 	char NIK[16];
@@ -33,7 +33,6 @@ typedef struct{
 	int hari, bulan, tahun;
 }Member;
 Member mbr;
-FILE *ArsMbr;
 
 typedef struct{
 	int no_kamar;
@@ -43,7 +42,6 @@ typedef struct{
 	bool status;
 }Kamar;
 Kamar kmr;
-FILE *ArsKmr;
 
 typedef struct{
 	int id_fasilitas;
@@ -51,23 +49,28 @@ typedef struct{
 	int harga;
 }Fasilitas;
 Fasilitas fsl;
-FILE *ArsFsl;
 
 typedef struct{
-	int id_makan;
+	int id_menu;
 	char nama[15];
 	int harga;
-}Makanan;
-Makanan mkn;
-FILE *ArsMkn;
+}Menu;
+Menu mnu;
 
 typedef struct{
-	int id_catering;
-	int id_makan;
+	int id_paket;
+	int id_menu;
 	int jumlah;
-	char nama[15];
+	char nama_paket[15];
 	int harga;
-}Catering;
-Catering ctr;
-FILE *ArsCtr;
+}Paket;
+Paket pkt;
+
+void MainMen(){
+	printf("[1] Create\n");
+	printf("[2] Read\n");
+	printf("[3] Update\n");
+	printf("[4] Delete\n");
+	printf("Choose: ");
+}
 
