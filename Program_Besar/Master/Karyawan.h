@@ -28,7 +28,7 @@ void CreateKry(){
 			break;
 		}
 	}
-	printf("\nTelephone\t: ");getnummin(&kry.no_telp,13,13);
+	printf("\nTelephone\t: ");getteksnummin(&kry.no_telp,13,13);
 	fwrite(&kry,sizeof(kry),1,fp);
 	fclose(fp);
 }

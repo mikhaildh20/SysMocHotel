@@ -252,6 +252,29 @@ void getTime(int *day,int *month, int *year){
     *year = localTime->tm_year + 1900;
 }
 
+int compareDates(pDate,pMonth,pYear,nDate,nMonth,nYear) {
+    if (pYear < nYear)
+        return -1;
+    else if (pYear > nYear)
+        return 1;
+    else {
+        // Years are equal, compare months
+        if (pMonth < nMonth)
+            return -1;
+        else if (pMonth > nMonth)
+            return 1;
+        else {
+            // Months are equal, compare days
+            if (pDate < nDate)
+                return -1;
+            else if (pDate > nDate)
+                return 1;
+            else
+                return 0; // Dates are equal
+        }
+    }
+}
+
 //void LRMenu(){
 //	while (1) {
 //        INPUT_RECORD ir[1];
