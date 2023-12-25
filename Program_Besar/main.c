@@ -10,11 +10,13 @@
 #include "lib.h"
 #include "config.h"
 #include "Master/Declare.h"
+#include "Master/Barang.h"
 #include "design.h"
 
 int w,h;
 
 int main() {
+	MenuBarang();
 //	getRes(&w,&h);
 //	fullscreen();
 //	getch();

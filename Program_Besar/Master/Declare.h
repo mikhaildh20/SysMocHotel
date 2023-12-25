@@ -3,8 +3,8 @@ int choose,j,i;
 int search;
 char cvrRp[10];
 char UpChar[10];
+FILE *fp;
 FILE *fp1;
-FILE *fp2
 FILE *tmp;
 
 typedef struct{
@@ -71,6 +71,7 @@ void MainMen(){
 	printf("[2] Read\n");
 	printf("[3] Update\n");
 	printf("[4] Delete\n");
+	printf("[5] Back\n");
 	printf("Choose: ");
 }
 
