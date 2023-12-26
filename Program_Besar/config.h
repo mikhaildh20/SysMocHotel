@@ -275,6 +275,21 @@ int compareDates(pDate,pMonth,pYear,nDate,nMonth,nYear) {
     }
 }
 
+int NIK_Check(const char *str_num1, const char *str_num2) {
+    // Convert strings to long long
+    long long num1 = atoll(str_num1);
+    long long num2 = atoll(str_num2);
+
+    // Compare numerical values
+    if (num1 == num2) {
+        return 0;  // Numbers are equal
+    } else if (num1 < num2) {
+        return -1; // num1 is less than num2
+    } else {
+        return 1;  // num1 is greater than num2
+    }
+}
+
 //void LRMenu(){
 //	while (1) {
 //        INPUT_RECORD ir[1];

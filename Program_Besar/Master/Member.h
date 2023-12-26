@@ -1,26 +1,11 @@
 void CreateMbr(){
 	system("cls");
-	fp = fopen("Dat/Member.dat", "ab+");
-	while(1){
-		gotoxy(16,0);
-		printf("                 ");
-		gotoxy(0,0);
-		printf("NIK\t\t: ");getteksnummin(mbr.NIK,16,16);
-		found = false;
-		while(!feof(fp)){
-			fread(&mbr,sizeof(mbr),1,fp);
-			if(strcmpi(mbr.NIK,mbr.tmpNIK)==0){
-				found = true;
-			}
-		}
-		if(!found){
-			break;
-		}	
-	}
-	printf("\nFront Name\t: ");getletter(mbr.fname,7);
-	cvrUpper(&mbr.fname);
-	printf("\nLast Name\t: ");getletter(mbr.lname,7);
-	cvrUpper(&mbr.lname);
+	fp = fopen("Dat/Member.dat", "ab");
+	printf("NIK\t\t: ");getteksnummin(mbr.NIK,16,16);
+	printf("\nFront Name\t: ");getletter(mbr.fname,10);
+	strupr(mbr.fname);
+	printf("\nLast Name\t: ");getletter(mbr.lname,10);
+	strupr(mbr.lname);
 	printf("\nTelephone\t: ");getteksnummin(mbr.no_telp,11,13);
 	getTime(&mbr.hari,&mbr.bulan,&mbr.tahun);
 	getTime(&mbr.expd,&mbr.expm,&mbr.expy);

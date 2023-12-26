@@ -14,16 +14,16 @@ void CreateKry(){
 	printf("ID Karyawan\t: KRY%d\n",kry.id_karyawan);
 	printf("Username\t: ");getteks(kry.username,10);
 	printf("\nPassword\t: ");getpass(kry.password,10);
-	printf("\nFront Name\t: ");getletter(kry.fname,7);
-	cvrUpper(&kry.fname);
-	printf("\nLast Name\t: ");getletter(kry.lname,7);
-	cvrUpper(&kry.lname);
+	printf("\nFront Name\t: ");getletter(kry.fname,10);
+	strupr(kry.fname);
+	printf("\nLast Name\t: ");getletter(kry.lname,10);
+	strupr(kry.lname);
 	while(1){
 		gotoxy(18,5);
 		printf("                             ");
 		gotoxy(0,5);
 		printf("ROLE\t\t: ");getletter(kry.role,15);
-		cvrUpper(&kry.role);
+		strupr(kry.role);
 		if(strcmp(kry.role, "RECEPTIONIST")==0 || strcmp(kry.role, "ADMIN")==0 || strcmp(kry.role, "CASHIER")==0){
 			break;
 		}
@@ -41,10 +41,19 @@ void ReadKry(){
 		getch();
 	}else{
 		found = false;
+		i=0;
 		while(!feof(fp)){
 			fread(&kry,sizeof(kry),1,fp);
 			if(!feof(fp)){
-				printf("KRY%d\t\t%s %s\t\t%s\t\t%s\n",kry.id_karyawan,kry.fname,kry.lname,kry.role,kry.no_telp);
+				gotoxy(0,i);
+				printf("KRY%d", kry.id_karyawan);
+				gotoxy(10,i);
+				printf("%s %s",kry.fname,kry.lname);
+				gotoxy(45,i);
+				printf("%s", kry.role);
+				gotoxy(65,i);
+				printf("%s",kry.no_telp);
+				i++;	
 			}
 		}
 		getch();

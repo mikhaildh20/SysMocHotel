@@ -22,6 +22,7 @@ void CreateBrg(){
 	}
 	printf("ID Barang\t: BRG%d\n",brg.id_barang);
 	printf("Nama Barang\t: ");getletter(brg.nama,15);
+	strupr(brg.nama);
 	printf("\nHarga Barang\t: Rp");getRp(&brg.harga,4,8,21,2);
 	fwrite(&brg,sizeof(brg),1,fp);
 	fclose(fp);
@@ -35,11 +36,18 @@ void ReadBrg(){
 		getch();
 	}else{
 		found = false;
+		i=0;
 		while(!feof(fp)){
 			fread(&brg,sizeof(brg),1,fp);
 			if(!feof(fp)){
 				rupiah(brg.harga,cvrRp);
-				printf("BRG%d\t\t%s\t\tRp%s\n",brg.id_barang,brg.nama,cvrRp);
+				gotoxy(0,i);
+				printf("BRG%d",brg.id_barang);
+				gotoxy(10,i);
+				printf("%s",brg.nama);
+				gotoxy(30,i);
+				printf("Rp%s",cvrRp);
+				i++;
 			}
 		}
 		getch();

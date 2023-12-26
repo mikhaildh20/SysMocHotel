@@ -1,8 +1,8 @@
 bool found;
-int choose,j,i;
-int search;
+int choose,j,i,search,ctg;
 char cvrRp[10];
 char UpChar[10];
+char rStat[15];
 FILE *fp;
 FILE *fp1;
 FILE *tmp;
@@ -18,8 +18,8 @@ typedef struct{
 	int id_karyawan;
 	char username[10];
 	char password[10];
-	char fname[7];
-	char lname[7];
+	char fname[10];
+	char lname[10];
 	char role[15];
 	char no_telp[13];
 }Karyawan;
@@ -28,14 +28,14 @@ Karyawan kry;
 typedef struct{
 	int id_member;
 	char NIK[16];
-	char tmpNIK[16];
-	char fname[7];
-	char lname[7];
+	char fname[10];
+	char lname[10];
 	char no_telp[13];
 	int hari, bulan, tahun;
 	int expd, expm, expy;
 	int active_status;
 }Member;
+char tmpNIK[16];
 Member mbr;
 
 typedef struct{
@@ -43,7 +43,7 @@ typedef struct{
 	char tipe_kamar[15];
 	int harga;
 	int lantai;
-	bool status;
+	int status;
 }Kamar;
 Kamar kmr;
 
@@ -51,6 +51,7 @@ typedef struct{
 	int id_fasilitas;
 	char nama[15];
 	int harga;
+	int status;
 }Fasilitas;
 Fasilitas fsl;
 
