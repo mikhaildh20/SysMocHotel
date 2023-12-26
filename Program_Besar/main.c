@@ -12,16 +12,17 @@
 #include "Master/Declare.h"
 #include "Master/Barang.h"
 #include "Master/Karyawan.h"
-#include "Master/Member.h"
 #include "Master/Kamar.h"
 #include "Master/Fasilitas.h"
 #include "Master/Menu.h"
+#include "Master/Paket.h"
 #include "design.h"
 
 int w,h;
 
 int main() {
-	MenuFasilitas();
+//	MenuMenu();
+//	MenuFasilitas();
 //	MenuKamar();
 //	MenuMember();
 //	MenuBarang();
@@ -29,6 +30,6 @@ int main() {
 //	getRes(&w,&h);
 //	fullscreen();
 //	getch();
-//    loadingAnimation();
+//  loadingAnimation();
 //	default_res(w,h);
 }

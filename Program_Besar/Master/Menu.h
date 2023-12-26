@@ -11,20 +11,20 @@ void CreateMnu(){
 			}
 		}
 	}
-	printf("MENU ID\t: MNU%d\n",mnu.id_menu);
+	printf("MENU ID\t\t: MNU%d\n",mnu.id_menu);
 	printf("FOOD NAME\t: ");getletter(mnu.nama,15);
 	strupr(mnu.nama);
 	while(1){
 		gotoxy(18,2);
 		printf("              ");
 		gotoxy(0,2);
-		printf("\nCATEGORY: ");getletter(mnu.category,10);
+		printf("CATEGORY\t: ");getletter(mnu.category,10);
 		strupr(mnu.category);
 		if(strcmp(mnu.category,"FOOD")==0 || strcmp(mnu.category,"DRINK")==0){
 			break;
 		}
 	}
-	printf("\nPRICE\t: Rp");getRp(&mnu.harga,4,8,21,3);
+	printf("\nPRICE\t\t: Rp");getRp(&mnu.harga,4,8,21,3);
 	fwrite(&mnu,sizeof(mnu),1,fp);
 	fclose(fp);
 }
@@ -47,6 +47,9 @@ void ReadMnu(){
 				printf("%s",mnu.nama);
 				gotoxy(30,i);
 				printf("%s",mnu.category);
+				rupiah(mnu.harga,cvrRp);
+				gotoxy(45,i);
+				printf("Rp%s",cvrRp);
 				i++;
 			}
 		}
