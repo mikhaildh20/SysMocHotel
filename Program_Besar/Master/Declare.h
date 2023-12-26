@@ -18,8 +18,8 @@ typedef struct{
 	int id_karyawan;
 	char username[10];
 	char password[10];
-	char fname[10];
-	char lname[10];
+	char fname[7];
+	char lname[7];
 	char role[15];
 	char no_telp[13];
 }Karyawan;
@@ -28,8 +28,9 @@ Karyawan kry;
 typedef struct{
 	int id_member;
 	char NIK[16];
-	char fname[10];
-	char lname[10];
+	char tmpNIK[16];
+	char fname[7];
+	char lname[7];
 	char no_telp[13];
 	int hari, bulan, tahun;
 	int expd, expm, expy;
@@ -68,13 +69,4 @@ typedef struct{
 	int harga;
 }Paket;
 Paket pkt;
-
-void MainMen(){
-	printf("[1] Create\n");
-	printf("[2] Read\n");
-	printf("[3] Update\n");
-	printf("[4] Delete\n");
-	printf("[5] Back\n");
-	printf("Choose: ");
-}
 

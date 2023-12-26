@@ -18,6 +18,7 @@
 int w,h;
 
 int main() {
+	MenuMember();
 //	MenuBarang();
 //	MenuKaryawan();
 //	getRes(&w,&h);

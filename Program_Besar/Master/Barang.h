@@ -1,3 +1,12 @@
+void MainMen(){
+	printf("[1] Create\n");
+	printf("[2] Read\n");
+	printf("[3] Update\n");
+	printf("[4] Delete\n");
+	printf("[5] Back\n");
+	printf("Choose: ");
+}
+
 void CreateBrg(){
 	system("cls");
 	fp = fopen("Dat/Barang.dat", "ab+");

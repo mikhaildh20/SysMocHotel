@@ -14,9 +14,9 @@ void CreateKry(){
 	printf("ID Karyawan\t: KRY%d\n",kry.id_karyawan);
 	printf("Username\t: ");getteks(kry.username,10);
 	printf("\nPassword\t: ");getpass(kry.password,10);
-	printf("\nFront Name\t: ");getletter(kry.fname,10);
+	printf("\nFront Name\t: ");getletter(kry.fname,7);
 	cvrUpper(&kry.fname);
-	printf("\nLast Name\t: ");getletter(kry.lname,10);
+	printf("\nLast Name\t: ");getletter(kry.lname,7);
 	cvrUpper(&kry.lname);
 	while(1){
 		gotoxy(18,5);
@@ -28,7 +28,7 @@ void CreateKry(){
 			break;
 		}
 	}
-	printf("\nTelephone\t: ");getteksnummin(&kry.no_telp,13,13);
+	printf("\nTelephone\t: ");getteksnummin(&kry.no_telp,11,13);
 	fwrite(&kry,sizeof(kry),1,fp);
 	fclose(fp);
 }
