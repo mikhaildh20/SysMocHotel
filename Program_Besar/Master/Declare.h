@@ -29,8 +29,8 @@ typedef struct{
 	char fname[7];
 	char lname[7];
 	char NIK[16];
-	char alamat[10];
 	int expd, expm, expy;
+	char telephone[13];
 	int active_status;
 }Member;
 //char tmpNIK[16];
