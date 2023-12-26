@@ -12,6 +12,7 @@
 #include "Master/Declare.h"
 #include "Master/Barang.h"
 #include "Master/Karyawan.h"
+#include "Master/Member.h"
 #include "Master/Kamar.h"
 #include "Master/Fasilitas.h"
 #include "Master/Menu.h"
@@ -21,6 +22,7 @@
 int w,h;
 
 int main() {
+	MenuMember();
 //	MenuMenu();
 //	MenuFasilitas();
 //	MenuKamar();

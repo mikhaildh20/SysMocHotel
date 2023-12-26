@@ -26,16 +26,14 @@ typedef struct{
 Karyawan kry;
 
 typedef struct{
-	int id_member;
+	char fname[7];
+	char lname[7];
 	char NIK[16];
-	char fname[10];
-	char lname[10];
-	char no_telp[13];
-	int hari, bulan, tahun;
+	char alamat[10];
 	int expd, expm, expy;
 	int active_status;
 }Member;
-char tmpNIK[16];
+//char tmpNIK[16];
 Member mbr;
 
 typedef struct{
