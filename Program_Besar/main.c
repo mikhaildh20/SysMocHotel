@@ -15,11 +15,13 @@
 #include "Master/Member.h"
 #include "Master/Kamar.h"
 #include "Master/Fasilitas.h"
+#include "Master/Menu.h"
 #include "design.h"
 
 int w,h;
 
 int main() {
+	MenuFasilitas();
 //	MenuKamar();
 //	MenuMember();
 //	MenuBarang();

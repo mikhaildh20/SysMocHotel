@@ -58,6 +58,7 @@ Fasilitas fsl;
 typedef struct{
 	int id_menu;
 	char nama[15];
+	char category[10];
 	int harga;
 }Menu;
 Menu mnu;
