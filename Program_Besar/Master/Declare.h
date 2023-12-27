@@ -3,6 +3,8 @@ int choose,j,i,search,ctg;
 char cvrRp[10];
 char UpChar[10];
 char rStat[15];
+char sNIK[16];
+char confirm[5];
 FILE *fp;
 FILE *fp1;
 FILE *tmp;
@@ -33,7 +35,6 @@ typedef struct{
 	char telephone[13];
 	int active_status;
 }Member;
-//char tmpNIK[16];
 Member mbr;
 
 typedef struct{
@@ -63,7 +64,7 @@ Menu mnu;
 
 typedef struct{
 	int id_paket;
-	int id_menu;
+	char nama_menu[15];
 	int jumlah;
 	char nama_paket[15];
 	int harga;

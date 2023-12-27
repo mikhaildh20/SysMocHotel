@@ -22,7 +22,7 @@
 int w,h;
 
 int main() {
-//	MenuMember();
+	MenuMember();
 //	MenuMenu();
 //	MenuFasilitas();
 //	MenuKamar();
