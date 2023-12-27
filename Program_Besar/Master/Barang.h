@@ -103,7 +103,7 @@ void UpdatePriceBrg(){
 			gotoxy(0,2);
 			printf("                 ");
 			gotoxy(0,2);
-			printf("Rp ");getRp(&brg.harga,4,8,2,2);
+			printf("Rp ");getRp(&brg.harga,4,8,3,2);
 			fwrite(&brg,sizeof(brg),1,tmp);
 		}else{
 			fwrite(&brg,sizeof(brg),1,tmp);

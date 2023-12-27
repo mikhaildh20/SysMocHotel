@@ -24,7 +24,7 @@ int w,h;
 int main() {
 //	MenuMember();
 //	MenuMenu();
-//	MenuFasilitas();
+	MenuFasilitas();
 //	MenuKamar();
 //	MenuMember();
 //	MenuBarang();
