@@ -145,7 +145,7 @@ void UpdateFsl(){
 	while(1){
 		system("cls");
 		found = false;
-		printf("Item's ID\t: FSL");getnummin(&search,1,3);
+		printf("Facilities ID\t: FSL");getnummin(&search,1,3);
 		if(search==0){
 			break;
 		}else{
@@ -171,7 +171,7 @@ void DeleteFsl(){
 	while(1){
 		system("cls");
 		found = false;
-		printf("Item's ID\t: FSL");getnummin(&search,1,3);
+		printf("Facilities ID\t: FSL");getnummin(&search,1,3);
 		if(search==0){
 			break;
 		}else{

@@ -23,8 +23,8 @@ int w,h;
 
 int main() {
 //	MenuMember();
-//	MenuMenu();
-	MenuFasilitas();
+	MenuMenu();
+//	MenuFasilitas();
 //	MenuKamar();
 //	MenuMember();
 //	MenuBarang();

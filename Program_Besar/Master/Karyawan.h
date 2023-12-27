@@ -201,7 +201,7 @@ void UpdateKry(){
 	while(1){
 		system("cls");
 		found = false;
-		printf("Item's ID\t: KRY");getnummin(&search,1,3);
+		printf("Employee's ID\t: KRY");getnummin(&search,1,3);
 		if(search==0){
 			break;
 		}else{
@@ -227,7 +227,7 @@ void DeleteKry(){
 	while(1){
 		system("cls");
 		found = false;
-		printf("Item's ID\t: KRY");getnummin(&search,1,3);
+		printf("Employee's ID\t: KRY");getnummin(&search,1,3);
 		if(search==0){
 			break;
 		}else{
