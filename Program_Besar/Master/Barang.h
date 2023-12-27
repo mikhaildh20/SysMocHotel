@@ -55,6 +55,156 @@ void ReadBrg(){
 	fclose(fp);
 }
 
+void DisplayBrgData(int id, char nama[], int harga){
+	printf("BRG%d\n",id);
+	printf("%s\n",nama);
+	rupiah(harga,cvrRp);
+	printf("Rp%s\n",cvrRp);
+}
+
+void UpdateDisplayBrg(){
+	printf("[1]Item Name\n");
+	printf("[2]Price\n");
+	printf("[3]Back\n");
+}
+
+void UpdateNameBrg(){
+	system("cls");
+	fp = fopen("Dat/Barang.dat","rb");
+	tmp = fopen("Dat/Tmp.dat", "wb");
+	while(fread(&brg,sizeof(brg),1,fp)==1){
+		if(search==brg.id_barang){
+			system("cls");
+			DisplayBrgData(brg.id_barang,brg.nama,brg.harga);
+			gotoxy(0,1);
+			printf("                 ");
+			gotoxy(0,1);
+			getletter(brg.nama,15);
+			strupr(brg.nama);
+			fwrite(&brg,sizeof(brg),1,tmp);
+		}else{
+			fwrite(&brg,sizeof(brg),1,tmp);
+		}
+	}	
+	fclose(fp);
+	fclose(tmp);
+	remove("Dat/Barang.dat");
+	rename("Dat/Tmp.dat","Dat/Barang.dat");
+}
+
+void UpdatePriceBrg(){
+	system("cls");
+	fp = fopen("Dat/Barang.dat","rb");
+	tmp = fopen("Dat/Tmp.dat", "wb");
+	while(fread(&brg,sizeof(brg),1,fp)==1){
+		if(search==brg.id_barang){
+			system("cls");
+			DisplayBrgData(brg.id_barang,brg.nama,brg.harga);
+			gotoxy(0,2);
+			printf("                 ");
+			gotoxy(0,2);
+			printf("Rp ");getRp(&brg.harga,4,8,2,2);
+			fwrite(&brg,sizeof(brg),1,tmp);
+		}else{
+			fwrite(&brg,sizeof(brg),1,tmp);
+		}
+	}	
+	fclose(fp);
+	fclose(tmp);
+	remove("Dat/Barang.dat");
+	rename("Dat/Tmp.dat","Dat/Barang.dat");
+}
+
+void UpdateMenuBrg(){
+	while(1){
+		system("cls");
+		UpdateDisplayBrg();
+		printf("Choose: ");getnummin(&choose,1,1);
+		if(choose==1){
+			UpdateNameBrg();
+		}else if(choose==2){
+			UpdatePriceBrg();
+		}else if(choose==3){
+			break;
+		}
+	}	
+}
+
+void UpdateBrg(){
+	while(1){
+		system("cls");
+		found = false;
+		printf("Item's ID\t: BRG");getnummin(&search,1,3);
+		if(search==0){
+			break;
+		}else{
+			fp = fopen("Dat/Barang.dat","rb");
+			while(fread(&brg,sizeof(brg),1,fp)==1){
+				if(search==brg.id_barang){
+					found = true;
+					break;
+				}
+			}
+			fclose(fp);
+			if(found){
+				UpdateMenuBrg();
+			}else{
+				printf("\nID Not Found.");
+				getch();
+			}	
+		}	
+	}
+}
+
+void DeleteBrg(){
+	while(1){
+		system("cls");
+		found = false;
+		printf("Item's ID\t: BRG");getnummin(&search,1,3);
+		if(search==0){
+			break;
+		}else{
+			fp = fopen("Dat/Barang.dat","rb");
+			while(fread(&brg,sizeof(brg),1,fp)==1){
+				if(search==brg.id_barang){
+					found = true;
+					break;
+				}
+			}
+			fclose(fp);
+			if(found){
+				fp = fopen("Dat/Barang.dat","rb");
+				tmp = fopen("Dat/Tmp.dat","wb");
+				while(fread(&brg,sizeof(brg),1,fp)==1){
+					if(search==brg.id_barang){
+						while(1){
+							system("cls");
+							DisplayBrgData(brg.id_barang,brg.nama,brg.harga);
+							printf("Delete?[YES/NO]\n");getletter(confirm,3);strupr(confirm);
+							if(strcmp(confirm,"YES")==0){
+								printf("\nDeleting..");sleep(2);
+								break;
+							}else if(strcmp(confirm,"NO")==0){
+								printf("\nCanceling..");sleep(2);
+								fwrite(&brg,sizeof(brg),1,tmp);
+								break;	
+							}
+						}
+					}else{
+						fwrite(&brg,sizeof(brg),1,tmp);
+					}
+				}
+				fclose(fp);
+				fclose(tmp);
+				remove("Dat/Barang.dat");
+				rename("Dat/Tmp.dat","Dat/Barang.dat");
+			}else{
+				printf("\nID Not Found.");
+				getch();
+			}	
+		}	
+	}
+}
 
 void MenuBarang(){
 	while(1){
@@ -69,13 +219,13 @@ void MenuBarang(){
 				ReadBrg();
 			break;
 			case 3:
-				
+				UpdateBrg();
 			break;
 			case 4:
-				
+				DeleteBrg();
 			break;
 			case 5:
-				
+				//main menu
 			break;
 		}
 	}
