@@ -23,15 +23,15 @@ int w,h;
 
 int main() {
 //	MenuMember();
-	MenuMenu();
-//	MenuFasilitas();
+//	MenuMenu();
+	MenuFasilitas();
 //	MenuKamar();
 //	MenuMember();
 //	MenuBarang();
 //	MenuKaryawan();
-//	getRes(&w,&h);
-//	fullscreen();
-//	getch();
-//  loadingAnimation();
-//	default_res(w,h);
+	getRes(&w,&h);
+	fullscreen();
+	getch();
+  loadingAnimation();
+	default_res(w,h);
 }
