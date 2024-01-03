@@ -1,4 +1,5 @@
-void MainMen(){
+ void MainMen(){
+ 	// Menampilkan opsi main menu
 	printf("[1] Create\n");
 	printf("[2] Read\n");
 	printf("[3] Update\n");
@@ -8,8 +9,10 @@ void MainMen(){
 }
 
 void CreateBrg(){
+	// Membersihkan layar dan membuat atau membuka binary file 
 	system("cls");
 	fp = fopen("Dat/Barang.dat", "ab+");
+	// Membaca data terakhir dan untuk menentukan id secara otomatis
 	if(fread(&brg,sizeof(brg),1,fp)==0){
 		brg.id_barang = 1;
 	}else{
@@ -20,21 +23,26 @@ void CreateBrg(){
 			}
 		}
 	}
+	// Menampilkan dan menginput data untuk menambahkan barang baru
 	printf("ID Barang\t: BRG%d\n",brg.id_barang);
 	printf("Nama Barang\t: ");getletter(brg.nama,15);
 	strupr(brg.nama);
 	printf("\nHarga Barang\t: Rp");getRp(&brg.harga,4,8,21,2);
+	// Menulis barang baru untuk file dan menutup file 
 	fwrite(&brg,sizeof(brg),1,fp);
 	fclose(fp);
 }
 
 void ReadBrg(){
+	// Membersihkan layar dan membuka file untuk membaca data barang
 	system("cls");
 	fp = fopen("Dat/Barang.dat", "rb");
+	// Mengecek apakah file kosong atau tidak 
 	if(fp==NULL){
 		printf("Belum ada Data");
 		getch();
 	}else{
+		// Menampilkan data barang yang ada
 		found = false;
 		i=0;
 		while(!feof(fp)){
@@ -56,6 +64,7 @@ void ReadBrg(){
 }
 
 void DisplayBrgData(int id, char nama[], int harga){
+	// Menampilkan data barang
 	printf("BRG%d\n",id);
 	printf("%s\n",nama);
 	rupiah(harga,cvrRp);
@@ -63,12 +72,14 @@ void DisplayBrgData(int id, char nama[], int harga){
 }
 
 void UpdateDisplayBrg(){
+	// Menampilkan Barang
 	printf("[1]Item Name\n");
 	printf("[2]Price\n");
 	printf("[3]Back\n");
 }
 
 void UpdateNameBrg(){
+	// Membersihkan layar dan membuat atau membuka binary file 
 	system("cls");
 	fp = fopen("Dat/Barang.dat","rb");
 	tmp = fopen("Dat/Tmp.dat", "wb");
