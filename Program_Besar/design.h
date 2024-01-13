@@ -211,3 +211,8 @@ void RmDeleteForm(){
 	gotoxy(106,41);
 	printf("Delete");
 }
+
+void RmDb(){
+	PrintFile("Asset/ROOMDB.txt",67,27);
+}
+

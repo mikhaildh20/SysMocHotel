@@ -180,6 +180,15 @@ void CreateKmr(){
 			printf("     ");
 			gotoxy(104,36);
 			printf("            ");
+			gotoxy(96,43);
+			printf("saving..");
+			sleep(3);
+			gotoxy(80,43);
+			printf("record has been saved successfully.");
+			Beep(1100,200);
+			sleep(2);
+			gotoxy(80,43);
+			printf("                                     ");
 			customClr(24,1,86,40);
 			goto next;
 		}		
@@ -221,6 +230,7 @@ void ReadKmr(){
 			}
 		}
 	}
+	getch();
 	fclose(fp);
 }
 
@@ -352,7 +362,8 @@ void DeleteKmr(){
 		found = false;
 		gotoxy(63,25);
 		printf("KMR");getnummin(&search,1,3);
-		if(search==0){
+		Beep(900,125);
+		if(EscPressed){
 			break;
 		}else{
 			fp = fopen("Dat/Kamar.dat","rb");
@@ -364,10 +375,12 @@ void DeleteKmr(){
 			}
 			fclose(fp);
 			if(found){
+				delconf = false;
 				fp = fopen("Dat/Kamar.dat","rb");
 				tmp = fopen("Dat/Tmp.dat","wb");
 				while(fread(&kmr,sizeof(kmr),1,fp)==1){
 					if(search==kmr.no_kamar){
+						DisplayKmrData(kmr.tipe_kamar,kmr.harga,kmr.lantai);
 						selectedOption = 2;
 						pressed = 2;
 						do {
@@ -385,47 +398,71 @@ void DeleteKmr(){
 							
 							key = getch();
 							
-							if(key == 13){
-								pressed = 1;
-							}else if(key == 27){
-								pressed = 0;
-							}else{
-								switch (key) {
-						           case 75:
-						               if (selectedOption > 1) {
-						                   selectedOption--;
-						                   Beep(800,125);
-						               }
-						               break;
-						           case 77:
-						               if (selectedOption < 2) {
-						                   selectedOption++;
-						                   Beep(800,125);
-						               }
-						               break;
-						       	}	
-							}
-						} while (pressed == 2);
+							switch (key) {
+						        case 75:
+						            if (selectedOption > 1) {
+						                selectedOption--;
+						                Beep(800,125);
+						            }
+						        break;
+						        case 77:
+						            if (selectedOption < 2) {
+						                selectedOption++;
+						                Beep(800,125);
+						            }
+						        break;
+						    }	
+						} while (key != 13);
 						Beep(900,125);
-						
-						DisplayKmrData(kmr.tipe_kamar,kmr.harga,kmr.lantai);
 						
 						switch(selectedOption){
 							case 1:
 								fclose(fp);
 								fclose(tmp);
+								gotoxy(66,25);
+								printf("          ");
+								gotoxy(63,30);
+								printf("               ");
+								gotoxy(63,36);
+								printf("   ");
+								gotoxy(101,36);
+								printf("            ");
+								customClr(24,1,86,40);
 								goto goback;
 							break;
 							case 2:
-								
+								gotoxy(94,43);
+								printf("deleting..");
+								sleep(3);
+								gotoxy(80,43);
+								printf("record has been removed successfully.");
+								Beep(1100,200);
+								sleep(2);
+								gotoxy(80,43);
+								printf("                                     ");
+								gotoxy(66,25);
+								printf("          ");
+								gotoxy(63,30);
+								printf("               ");
+								gotoxy(63,36);
+								printf("   ");
+								gotoxy(101,36);
+								printf("            ");
+								customClr(24,1,86,40);
+								delconf = true;
 							break;
 						}
 					}else{
 						fwrite(&kmr,sizeof(kmr),1,tmp);
 					}
 				}
-				remove("Dat/Kamar.dat");
-				rename("Dat/Tmp.dat","Dat/Kamar.dat");
+				fclose(fp);
+				fclose(tmp);
+				if(delconf){
+					remove("Dat/Kamar.dat");
+					rename("Dat/Tmp.dat","Dat/Kamar.dat");
+				}
+				goto goback;
 			}else{
 				gotoxy(63,25);
 				printf("ID Not Found!");
@@ -443,7 +480,9 @@ void MenuKamar(){
 	pressed = 2;
 	PrintAdRoom();
 	while(1){
+		clrDb();
 		do {
+			RmDb();
 			clrMenArrow(12,28,18);
 	        switch(selectedOption){
 	        	case 1:

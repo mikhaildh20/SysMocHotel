@@ -28,28 +28,29 @@
 int w,h;
 
 int main(){
-//	pthread_t t1, t2;
-//	
-//	pthread_create(&t1,NULL,mainTask,NULL);
-//	pthread_create(&t2,NULL,backgroundMusic,NULL);
-//	
-//	pthread_join(t1,NULL);
-//	pthread_join(t2,NULL);
+	pthread_t t1, t2;
+	
+	pthread_create(&t1,NULL,mainTask,NULL);
+	pthread_create(&t2,NULL,backgroundMusic,NULL);
+	
+	pthread_join(t1,NULL);
+	pthread_join(t2,NULL);
 
 
 //MenuPaket();
 //MenuKaryawan();
 //MenuDenda();
-	fullscreen();
-	dDashboard("Imam");
+//fullscreen();
+//dDashboard("Imam");
+//RmDb();
+//getch();
 //	RmCreateForm();
 //	CreateKmr();
 //	ReadKmr();
 //	RmViewForm();
 //	RmCreateForm();
-RmDeleteForm();
-DisplayKmrData("SUITE",500000,5);
-getch();
+//RmDeleteForm();
+//getch();
 //	DeleteKmr();
 //	getch();
 //	getch();

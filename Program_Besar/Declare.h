@@ -2,6 +2,7 @@ bool found;
 bool EscPressed;
 bool valid;
 bool MusicOn;
+bool delconf;
 int choose,j,i,search,ctg,x,y,pressed,selectedOption;
 char cvrRp[10];
 char rStat[15];
