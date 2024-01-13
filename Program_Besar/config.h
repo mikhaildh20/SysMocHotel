@@ -66,6 +66,9 @@ void fullscreen()
 	keybd_event(VK_RETURN,0x1c,0,0);
 	keybd_event(VK_RETURN,0x1c,KEYEVENTF_KEYUP,0);
 	keybd_event(VK_MENU,0x38,KEYEVENTF_KEYUP,0);
+//	HWND hWnd = GetConsoleWindow();
+//	SetWindowLong(hWnd, GWL_STYLE, GetWindowLong(hWnd,GWL_STYLE)&~WS_OVERLAPPEDWINDOW);
+//	ShowWindow(hWnd,SW_MAXIMIZE);
 	set_res();
 	removeTextCursor();
 	remove_scrollbar();
@@ -108,7 +111,7 @@ void setColor(int foreground, int background) {
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
 }
 
-void printBox(int width, int height, int foreground, int background, int x, int y) {
+void setBlock(int width, int height, int foreground, int background, int x, int y) {
 	int i,j,dx;
 	dx = x;
     for (i = 0; i < height; i++) {
@@ -154,34 +157,33 @@ void printBorder(int width, int height, int x, int y, int ascii) {
     }
 }
 
-void drawBox(int width, int height, char topLeft, char topRight, char bottomLeft, char bottomRight) {
-	int i,j;
-    // Check if the dimensions are valid
-    if (width <= 0 || height <= 0) {
-        printf("Invalid dimensions for the box.\n");
-        return;
-    }
-
+void drawBox(int x, int y, int width, int height, char topLeft, char horizontal, char topRight, char vertical, char bottomLeft, char bottomRight) {
+    int i, j,dx;
+    dx = x;
     // Draw the top side of the box
-    printf("%c ", topLeft);
+    gotoxy(x,y);
+    printf("%c", topLeft);
     for (i = 1; i < width - 1; i++) {
-        printf("* ");
+        printf("%c", horizontal);
     }
     printf("%c\n", topRight);
-
+    y++;
     // Draw the sides of the box
     for (i = 1; i < height - 1; i++) {
-        printf("*");
+    	gotoxy(x,y);
+        printf("%c", vertical);
         for (j = 1; j < width - 1; j++) {
-            printf("  ");
+            printf(" ");
         }
-        printf("*\n");
+        printf("%c\n", vertical);
+        y++;
     }
-
     // Draw the bottom side of the box
-    printf("%c ", bottomLeft);
+    x = dx;
+    gotoxy(x,y);
+    printf("%c", bottomLeft);
     for (i = 1; i < width - 1; i++) {
-        printf("* ");
+        printf("%c", horizontal);
     }
     printf("%c\n", bottomRight);
 }
@@ -207,15 +209,7 @@ void customClr(int width, int height, int x, int y){
     }
 }
 
-void clrLeft(){
-	
-}
-
-void clrMidd(){
-	
-}
-
-void clrRight(){
+void clrMain(){
 	
 }
 
@@ -290,97 +284,23 @@ int NIK_Check(const char *str_num1, const char *str_num2) {
     }
 }
 
-//void LRMenu(){
-//	while (1) {
-//        INPUT_RECORD ir[1];
-//        DWORD count;
-//
-//        if (ReadConsoleInput(GetStdHandle(STD_INPUT_HANDLE), ir, 1, &count)) {
-//            if (count && ir[0].EventType == KEY_EVENT && ir[0].Event.KeyEvent.bKeyDown) {
-//                if (ir[0].Event.KeyEvent.wVirtualKeyCode == VK_LEFT) {
-//                    printf("Left arrow key pressed!\n");
-//                }else if (ir[0].Event.KeyEvent.wVirtualKeyCode == VK_RIGHT) {
-//                    printf("Right arrow key pressed!\n");
-//                }else if (ir[0].Event.KeyEvent.wVirtualKeyCode == VK_RETURN) {
-//                    printf("Enter key pressed!\n");
-//                }
-//            }
-//        }
-//    }
-//}
-//
-//void UDMenu(){
-//	while (1) {
-//        INPUT_RECORD ir[1];
-//        DWORD count;
-//
-//        if (ReadConsoleInput(GetStdHandle(STD_INPUT_HANDLE), ir, 1, &count)) {
-//            if (count && ir[0].EventType == KEY_EVENT && ir[0].Event.KeyEvent.bKeyDown) {
-//                if (ir[0].Event.KeyEvent.wVirtualKeyCode == VK_RETURN) {
-//                    printf("Enter key pressed!\n");
-//                }else if (ir[0].Event.KeyEvent.wVirtualKeyCode == VK_UP) {
-//                    printf("Up Arrow key pressed!\n");
-//                }else if (ir[0].Event.KeyEvent.wVirtualKeyCode == VK_DOWN) {
-//                    printf("Down Arrow key pressed!\n");
-//                }
-//            }
-//        }
-//    }
-//}
+void setPrsDate(){
+	int date,month,year;
+	getTime(&date,&month,&year);
+	char months[12][15] = {"January","February","March","April","May","June","July","August","September","October","November","December"};
+	char pMonth[10];
+	strcpy(pMonth,months[month-1]);
+	printf("%d %s %d",date,pMonth,year);
+}
 
-//void UpArrow(char *press){
-//	do{
-//		*press = getch();
-//	}while(*press != 65);
-//}
-//
-//void DownArrow(char *press){
-//	do{
-//		*press = getch();
-//	}while(*press != 66);
-//}
+void clrDb(){
+	customClr(116,30,40,18);
+}
 
-//void RightArrow(char *press){
-//	do{
-//		*press = getch();
-//	}while(*press != 67);
-//}
-//
-//void LeftArrow(char *press){
-//	do{
-//		*press = getch();
-//	}while(*press != 66);
-//}
+void clrMenArrow(int height, int x, int y){
+	customClr(1,height,x,y);
+}
 
-//void LRKey(char *press){
-//	do{
-//		*press = getch();
-//	}while(*press != 75 || *press != 77 || *press != 27 || *press != 13);
-//}
-//
-//void UDKey(char *press){
-//	do{
-//		*press = getch();
-//	}while(*press != 72 || *press != 80 || *press != 27 || *press != 13);
-//}
-//void clrBox(int width, int height, int x, int y) {
-//	int i,j,dx;
-//	dx = x;
-//    for (i = 0; i < height; i++) {
-//    	gotoxy(x,y);
-//        for (j = 0; j < width; j++) {
-//            // Print '*' for the border
-//            if (i == 0 || i == height - 1 || j == 0 || j == width - 1) {
-//                printf(" ");
-//            } else {
-//                // Print a space for the inside of the box
-//                printf(" ");
-//            }
-//            x++;
-//        }
-//        // Move to the next line after each row
-//        x = dx;
-//        y++;
-//        printf("\n");
-//    }
-//}
+void clrMainMenu(){
+	customClr(17,14,12,18);
+}

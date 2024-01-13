@@ -12,11 +12,14 @@ void CreateKry(){
 		}
 	}
 	printf("ID Karyawan\t: KRY%d\n",kry.id_karyawan);
-	printf("Username\t: ");getteks(kry.username,10);
-	printf("\nPassword\t: ");getpass(kry.password,10);
-	printf("\nFront Name\t: ");getletter(kry.fname,10);
+	fflush(stdin);
+	printf("Username\t: ");gets(kry.username);
+	printf("Password\t: ");getpass(kry.password,10);
+	fflush(stdin);
+	printf("\nFront Name\t: ");gets(kry.fname);
 	strupr(kry.fname);
-	printf("\nLast Name\t: ");getletter(kry.lname,10);
+	fflush(stdin);
+	printf("Last Name\t: ");gets(kry.lname);
 	strupr(kry.lname);
 	while(1){
 		gotoxy(18,5);
@@ -24,7 +27,7 @@ void CreateKry(){
 		gotoxy(0,5);
 		printf("ROLE\t\t: ");getletter(kry.role,15);
 		strupr(kry.role);
-		if(strcmp(kry.role, "RECEPTIONIST")==0 || strcmp(kry.role, "ADMIN")==0 || strcmp(kry.role, "CASHIER")==0){
+		if(strcmp(kry.role, "RECEPTIONIST")==0 || strcmp(kry.role, "MANAGER")==0 || strcmp(kry.role, "CASHIER")==0){
 			break;
 		}
 	}
@@ -48,7 +51,7 @@ void ReadKry(){
 				gotoxy(0,i);
 				printf("KRY%d", kry.id_karyawan);
 				gotoxy(10,i);
-				printf("%s %s",kry.fname,kry.lname);
+				printf("%.7s %.7s",kry.fname,kry.lname);
 				gotoxy(45,i);
 				printf("%s", kry.role);
 				gotoxy(65,i);
@@ -87,8 +90,9 @@ void UpdateFnameKry(){
 			DisplayKryData(kry.id_karyawan,kry.fname,kry.lname,kry.role,kry.no_telp);
 			gotoxy(0,1);
 			printf("                 ");
+			fflush(stdin);
 			gotoxy(0,1);
-			getletter(kry.fname,7);
+			gets(kry.fname);
 			strupr(kry.fname);
 			fwrite(&kry,sizeof(kry),1,tmp);
 		}else{
@@ -111,8 +115,9 @@ void UpdateLnameKry(){
 			DisplayKryData(kry.id_karyawan,kry.fname,kry.lname,kry.role,kry.no_telp);
 			gotoxy(0,2);
 			printf("                 ");
+			fflush(stdin);
 			gotoxy(0,2);
-			getletter(kry.lname,7);
+			gets(kry.lname);
 			strupr(kry.lname);
 			fwrite(&kry,sizeof(kry),1,tmp);
 		}else{
@@ -139,7 +144,7 @@ void UpdateRoleKry(){
 				gotoxy(0,3);
 				getletter(kry.role,15);
 				strupr(kry.role);
-				if(strcmp(kry.role, "RECEPTIONIST")==0 || strcmp(kry.role, "ADMIN")==0 || strcmp(kry.role, "CASHIER")==0){
+				if(strcmp(kry.role, "RECEPTIONIST")==0 || strcmp(kry.role, "MANAGER")==0 || strcmp(kry.role, "CASHIER")==0){
 					break;
 				}	
 			}

@@ -1,92 +1,8 @@
-//Prosedur cetak panah
-void DisplayMenu(int pos){
-	customClr(3,10,88,22);
-	switch(pos){
-		case 1:
-			gotoxy(89,23);
-			printf("%c", 174);
-		break;
-		case 2:
-			gotoxy(89,25);
-			printf("%c", 174);
-		break;
-		case 3:
-			gotoxy(89,27);
-			printf("%c", 174);
-		break;
-		case 4:
-			gotoxy(89,29);
-			printf("%c", 174);
-		break;
-	}
-}
-
-//Prosedur arrow control
-void selArrow(){
-	    int selectedOption = 1;
-    	char key;
-		int select = 2;
-    do {
-    //    system("cls"); // Clear the console (Windows specific)
-
-        DisplayMenu(selectedOption);
-		//DisplayLMenu(selectedOption);
-
-		key = getch(); // Get a character without waiting for Enter
-		
-		if(key == 13){
-			select = 1;
-			//selected menu logic
-		}else if(key == 27){
-			select = 0;
-			//back menu logic
-		}else{
-			switch (key) {
-            case 72: // Up arrow key
-                if (selectedOption > 1) {
-                    selectedOption--;
-                    //printf("Selected Option: %d", selectedOption);
-                    Beep(800,125);
-                }
-                break;
-            case 80: // Down arrow key
-                if (selectedOption < 4) {
-                    selectedOption++;
-                    //printf("Selected Option: %d", selectedOption);
-                    Beep(800,125);
-                }
-                break;
-        	}	
-		}
-    } while (select == 2); // 13 is the ASCII code for Enter key
-	Beep(900,125);
-}
-
-//Prosedur print option menu
-void PrintMOption(){
-	gotoxy(78,23);
-	printf("MANAGER");
-	gotoxy(79,25);
-	printf("ADMIN");
-	gotoxy(76,27);
-	printf("RECEPTIONIST");
-	gotoxy(80,29);
-	printf("QUIT");
-}
-
-
-//Prosedur cetak UI
-void DisplayOption(){
-	PrintFile("Asset/LOGINPAGE.txt",1,0);
-	gotoxy(73,20);
-	printf("-- SELECT USER --");
-	PrintMOption();
-	selArrow();
-}
-
 //Animasi Loading
  void loadingAnimation() {
 	char start;
+	EscPressed = false;
+	system("cls");
 	PrintFile("Asset/Logo.txt", 45,10);
     gotoxy(71,42);
     printf("Press Enter To Start");
@@ -136,97 +52,162 @@ void DisplayOption(){
     		gotoxy(x,42);
      	 	printf("%c", 219);
        		fflush(stdout);  // Flush the output buffer to immediately display the animation
-       		usleep(100000);
+       		usleep(10000);
 			x++;
   		}
 		gotoxy(76,44);
     	printf("Completed!");Beep(800,125);
-    	sleep(1);
+    	sleep(2);
     	system("cls");
-    	DisplayOption();
 	}else if(start == 27){
-		return 0;
+		EscPressed = true;
 	}
 }
 
-//void LoginMenu(){
-//	PrintFile("Asset/User.txt", 5,2);
-//}
+//design login
+void formLogin(){
+	PrintFile("Asset/LOGINPAGE.txt", 1,0);
+	drawBox(45,20,72,15,201,205,187,186,200,188);
+	gotoxy(50,25);
+	printf("USERNAME");
+	drawBox(64,24,48,3,218,196,191,179,192,217);
+	gotoxy(50,29);
+	printf("PASSWORD");
+	drawBox(64,28,48,3,218,196,191,179,192,217);
+}
 
-//void selectLogin(){
-//	gotoxy(12,5);
-//	printf("Owner");
-//	gotoxy(11,9);
-//	printf("Manager");
-//	gotoxy(12,13);
-//	printf("Admin");
-//	gotoxy(11,17);
-//	printf("Cashier");
-//	gotoxy(12,21);
-//	printf("Quit");
-//}
+void dDashboard(char fname[]){
+	PrintFile("Asset/DLOGO.txt",3,0);
+	for(x=0;x<160;x++){
+		gotoxy(x,13);
+		printf("%c",220);
+	}
+	x = 35;
+	for(y=14;y<50;y++){
+		gotoxy(x,y);
+		printf("%c",219);
+	}
+	gotoxy(142,15);
+	setPrsDate();
+	gotoxy(38,15);
+	printf("Welcome, %s", fname);
+	PrintFile("Asset/SLOGO.txt",12,38);
+	gotoxy(9,46);
+	printf("J A T I P I L A R");
+	gotoxy(10,15);
+	printf("-  M  E  N  U  -");
+	gotoxy(112,48);
+	printf("[ENTER]CONFIRM");
+	gotoxy(129,48);
+	printf("[UP/DOWN]CHOOSE");
+	gotoxy(147,48);
+	printf("[ESC]CANCEL");
+	gotoxy(3,48);
+	printf("Designed By Harapan Orang Tua");
+}
 
-//void DisplayLMenu(int selected){
-//	system("color 74");
-//	printBox(15,20,4,7,7,4);
-//	selectLogin();
-//	switch(selected){
-//		case 1: 
-//		printBox(15,3,7,4,7,4);
-//		break;
-//		case 2:
-//		printBox(15,3,7,4,7,8);	
-//		break;
-//		case 3:
-//		printBox(15,3,7,4,7,12);
-//		break;
-//		case 4: 
-//		printBox(15,3,7,4,7,16);
-//		break;
-//		case 5: 
-//		printBox(15,3,7,4,7,20);
-//		break;
-//	}
-//}
+void PrintAdMen(){
+	gotoxy(12,18);
+	printf("Manage Room");
+	gotoxy(12,20);
+	printf("Manage Facility");
+	gotoxy(12,22);
+	printf("Manage Employee");
+	gotoxy(12,24);
+	printf("Manage Bundle");
+	gotoxy(12,26);
+	printf("Manage F&Bs");
+	gotoxy(12,28);
+	printf("Manage Penalty");
+	gotoxy(12,30);;
+	printf("Log out");
+}
 
+void PrintAdRoom(){
+	clrMainMenu();
+	gotoxy(12,18);
+	printf("Create Room");
+	gotoxy(12,20);
+	printf("View Room");
+	gotoxy(12,22);
+	printf("Update Room");
+	gotoxy(12,24);
+	printf("Delete Room");
+	gotoxy(12,26);
+	printf("Back");
+}
 
-//void ownOpt(){	
-//	printBox(15,3,7,4,7,4);
-//}
-//
-//void manOpt(){
-//	printBox(15,3,7,4,7,8);
-//}
-//
-//void admOpt(){
-//	printBox(15,3,7,4,7,12);
-//}
-//
-//void rcpOpt(){
-//	printBox(15,3,7,4,7,16);
-//}
-//
-//void lmeOpt(){
-//	printBox(15,3,7,4,7,20);
-//}
+void RmCreateForm(){
+	drawBox(53,19,90,27,201,205,187,186,200,188);
+	gotoxy(62,23);
+	printf("ROOM ID");
+	drawBox(62,24,73,3,218,196,191,179,192,217);
+	gotoxy(62,29);
+	printf("SELECT ROOM TYPE");
+	gotoxy(62,31);
+	printf("STANDARD               DOUBLE               SUITE               EXECUTIVE");
+	gotoxy(62,34);
+	printf("FLOOR");
+	drawBox(62,35,35,3,218,196,191,179,192,217);
+	gotoxy(100,34);
+	printf("TOTAL PRICE");
+	drawBox(100,35,35,3,218,196,191,179,192,217);
+	gotoxy(86,41);
+	printf("Reset");
+	gotoxy(106,41);
+	printf("Saves");
+}
 
-//void Lfocus(int selected){
-//	clrBox(15,20,7,4);
-//	switch(selected){
-//		case 1: 
-//		printBox(15,3,7,4,7,4);
-//		break;
-//		case 2:
-//		printBox(15,3,7,4,7,8);	
-//		break;
-//		case 3:
-//		printBox(15,3,7,4,7,12);
-//		break;
-//		case 4: 
-//		printBox(15,3,7,4,7,16);
-//		break;
-//		case 5: 
-//		printBox(15,3,7,4,7,20);
-//		break;
-//	}
-//}
+void RmViewForm(){
+	drawBox(40,18,116,30,201,205,187,186,200,188);
+	drawBox(40,18,116,3,201,205,187,186,204,185);
+	gotoxy(44,19);
+	printf("ROOM ID");
+	gotoxy(65,19);
+	printf("ROOM TYPE");
+	gotoxy(95,19);
+	printf("FLOOR");
+	gotoxy(110,19);
+	printf("PRICE");
+	gotoxy(140,19);
+	printf("STATUS");
+}
+
+void RmUpdateForm(){
+	gotoxy(62,18);
+	printf("ROOM ID");
+	drawBox(62,19,73,3,218,196,191,179,192,217);
+	gotoxy(62,24);
+	printf("ROOM TYPE");
+	drawBox(62,25,73,3,218,196,191,179,192,217);
+	gotoxy(62,30);
+	printf("TOTAL PRICE");
+	drawBox(62,31,73,3,218,196,191,179,192,217);
+	gotoxy(62,36);
+	printf("ROOM STATUS");
+	drawBox(62,37,73,3,218,196,191,179,192,217);
+	gotoxy(86,41);;
+	printf("Reset");
+	gotoxy(100,41);
+	printf("Save Changes");
+}
+
+void RmDeleteForm(){
+	drawBox(53,19,90,27,201,205,187,186,200,188);
+	gotoxy(62,23);
+	printf("ROOM ID");
+	drawBox(62,24,73,3,218,196,191,179,192,217);
+	gotoxy(62,28);
+	printf("ROOM TYPE");
+	drawBox(62,29,73,3,218,196,191,179,192,217);
+	gotoxy(62,34);
+	printf("FLOOR");
+	drawBox(62,35,35,3,218,196,191,179,192,217);
+	gotoxy(100,34);
+	printf("TOTAL PRICE");
+	drawBox(100,35,35,3,218,196,191,179,192,217);
+	gotoxy(86,41);
+	printf("Reset");
+	gotoxy(106,41);
+	printf("Delete");
+}

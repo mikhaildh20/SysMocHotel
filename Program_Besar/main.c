@@ -7,31 +7,66 @@
 #include <stdbool.h>
 #include <ctype.h>
 #include <time.h>
+#include <MMsystem.h>
+#include <pthread.h>
+#include "Declare.h"
+#include "design.h"
 #include "lib.h"
 #include "config.h"
-#include "Master/Declare.h"
-#include "Master/Barang.h"
+#include "Master/Denda.h"
 #include "Master/Karyawan.h"
 #include "Master/Member.h"
 #include "Master/Kamar.h"
 #include "Master/Fasilitas.h"
 #include "Master/Menu.h"
 #include "Master/Paket.h"
-#include "design.h"
+#include "login.h"
+#include "compactMenu.h"
+//#include "musicprep.h"
+
 
 int w,h;
 
-int main() {
+int main(){
+//	pthread_t t1, t2;
+//	
+//	pthread_create(&t1,NULL,mainTask,NULL);
+//	pthread_create(&t2,NULL,backgroundMusic,NULL);
+//	
+//	pthread_join(t1,NULL);
+//	pthread_join(t2,NULL);
+
+
+//MenuPaket();
+//MenuKaryawan();
+//MenuDenda();
+	fullscreen();
+	dDashboard("Imam");
+//	RmCreateForm();
+//	CreateKmr();
+//	ReadKmr();
+//	RmViewForm();
+//	RmCreateForm();
+RmDeleteForm();
+DisplayKmrData("SUITE",500000,5);
+getch();
+//	DeleteKmr();
+//	getch();
+//	getch();
+//	RmUpdateForm();
+//	getch();
+//	PrintAdMen();
+//	AdminMenArr();
+//	PaketPaket();
 //	MenuMember();
 //	MenuMenu();
-	MenuFasilitas();
+//	MenuFasilitas();
 //	MenuKamar();
 //	MenuMember();
 //	MenuBarang();
 //	MenuKaryawan();
-	getRes(&w,&h);
-	fullscreen();
-	getch();
-  loadingAnimation();
-	default_res(w,h);
+//	getRes(&w,&h);
+//	formLogin();
+//	vLogin();
+//	default_res(w,h);
 }

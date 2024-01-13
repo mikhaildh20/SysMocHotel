@@ -3,6 +3,7 @@ void getinputmin(char input[], int min, int max, int type){
 	int i,n,x,m;
 	n = 0;
 	x=0;
+	EscPressed = false;
 	do
 	{
 		strcurrent = getch();
@@ -99,7 +100,10 @@ void getinputmin(char input[], int min, int max, int type){
 		}
 		//else if(current == 27) end();
 	}
-	while(strcurrent != 13);
+	while(strcurrent != 13 && strcurrent != 27);
+	if(strcurrent == 27){
+		EscPressed = true;
+	}
 }
 
 void getinput(char input[], int max, int type){
@@ -164,6 +168,7 @@ void getRp(int *nilai, int min, int max, int x, int y) //input rupiah
 	char inpkey;
 	int i,n,m;
 	n = 0;
+	EscPressed = false;
 	do
 	{
 	    inpkey = getch(); // membaca masukan dari keyboard per-karakter //
@@ -243,7 +248,10 @@ void getRp(int *nilai, int min, int max, int x, int y) //input rupiah
 			else input[n]='\0';
 		}
 	}
-	while(inpkey != 13);
+	while(inpkey != 13 && inpkey != 27);
+	if(inpkey == 27){
+		EscPressed = true;
+	}
 
 	*nilai = atoi(input);   /* Memasukkan nilai input (char) ke nilai (int) */
 }
