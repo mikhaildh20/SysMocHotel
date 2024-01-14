@@ -58,6 +58,6 @@ int main(){
 //	MenuKaryawan();
 //	getRes(&w,&h);
 //	formLogin();
-//	vLogin();
+	vLogin();
 //	default_res(w,h);
 }

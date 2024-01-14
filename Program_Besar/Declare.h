@@ -10,6 +10,7 @@ char rStat[15];
 char sNIK[16];
 char confirm[5];
 char tUpdate[50];
+int tiUpdate;
 char key;
 FILE *fp;
 FILE *fp1;

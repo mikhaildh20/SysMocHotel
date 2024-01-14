@@ -370,10 +370,10 @@ void UpdateTypeKmr(){
 				break;
 				case 2:
 					strcpy(kmr.tipe_kamar,tUpdate);
-					fwrite(&kmr,sizeof(kmr),1,tmp);
 					gotoxy(92,43);
 					printf("updating..");
 					sleep(3);
+					fwrite(&kmr,sizeof(kmr),1,tmp);
 					gotoxy(80,43);
 					printf("record has been updated successfully.");
 					Beep(1100,200);
@@ -403,23 +403,194 @@ void UpdateTypeKmr(){
 }
 
 void UpdateFloorKmr(){
+	updconf = false;
+	goback:
 	fp = fopen("Dat/Kamar.dat","rb");
 	tmp = fopen("Dat/Tmp.dat", "wb");
 	while(fread(&kmr,sizeof(kmr),1,fp)==1){
 		if(search==kmr.no_kamar){
-			gotoxy(0,3);
-			printf("                 ");
-			gotoxy(0,3);
-			getnummin(&kmr.lantai,1,1);
-			fwrite(&kmr,sizeof(kmr),1,tmp);
+			gotoxy(63,36);
+			printf("     ");
+			gotoxy(63,36);
+			getnummin(&tiUpdate,1,2);
+			
+			if(EscPressed){
+				gotoxy(63,36);
+				printf("     ");
+				gotoxy(63,36);
+				printf("%d",kmr.lantai);
+				fclose(fp);
+				break;
+			}
+			
+			selectedOption = 2;
+			do {
+				customClr(70,1,65,40);
+			    switch(selectedOption){
+			       	case 1:
+			       		gotoxy(88,40);
+			       		printf("%c",42);
+			       	break;
+			       	case 2:
+			       		gotoxy(108,40);
+			       		printf("%c",42);
+			       	break;
+				}
+			
+				key = getch();
+			
+				switch (key) {
+			    	case 75:
+			        	if (selectedOption > 1) {
+			            	selectedOption--;
+			    	        Beep(800,125);
+			    	    }
+			    	break;
+			    	case 77:
+			        	if (selectedOption < 2) {
+			            	selectedOption++;
+			            	Beep(800,125);
+			        	}
+			    	break;
+				}	
+			} while (key != 13);
+			Beep(900,125);
+			
+			switch(selectedOption){
+				case 1:
+					fclose(fp);
+					fclose(tmp);
+					customClr(24,1,86,40);
+					goto goback;
+				break;
+				case 2:
+					kmr.lantai = tiUpdate;
+					gotoxy(92,43);
+					printf("updating..");
+					sleep(3);
+					fwrite(&kmr,sizeof(kmr),1,tmp);
+					gotoxy(80,43);
+					printf("record has been updated successfully.");
+					Beep(1100,200);
+					sleep(2);
+					gotoxy(80,43);
+					printf("                                     ");
+					customClr(24,1,86,40);
+					gotoxy(63,36);
+					printf("%d",kmr.lantai);
+					updconf = true;
+				break;
+			}
 		}else{
 			fwrite(&kmr,sizeof(kmr),1,tmp);
 		}
 	}	
+	
 	fclose(fp);
 	fclose(tmp);
-	remove("Dat/Kamar.dat");
-	rename("Dat/Tmp.dat","Dat/Kamar.dat");
+	
+	if(updconf){
+		remove("Dat/Kamar.dat");
+		rename("Dat/Tmp.dat","Dat/Kamar.dat");
+	}
+}
+
+void UpdatePriceKmr(){
+	updconf = false;
+	goback:
+	fp = fopen("Dat/Kamar.dat","rb");
+	tmp = fopen("Dat/Tmp.dat", "wb");
+	while(fread(&kmr,sizeof(kmr),1,fp)==1){
+		if(search==kmr.no_kamar){
+			gotoxy(103,36);
+			printf("                    ");
+			gotoxy(101,36);
+			printf("Rp");
+			getRp(&tiUpdate,5,8,104,36);
+			
+			if(EscPressed){
+				gotoxy(103,36);
+				printf("                    ");
+				rupiah(kmr.harga,cvrRp);
+				gotoxy(101,36);
+				printf("Rp%s",cvrRp);
+				fclose(fp);
+				break;
+			}
+			
+			selectedOption = 2;
+			do {
+				customClr(70,1,65,40);
+			    switch(selectedOption){
+			       	case 1:
+			       		gotoxy(88,40);
+			       		printf("%c",42);
+			       	break;
+			       	case 2:
+			       		gotoxy(108,40);
+			       		printf("%c",42);
+			       	break;
+				}
+			
+				key = getch();
+			
+				switch (key) {
+			    	case 75:
+			        	if (selectedOption > 1) {
+			            	selectedOption--;
+			    	        Beep(800,125);
+			    	    }
+			    	break;
+			    	case 77:
+			        	if (selectedOption < 2) {
+			            	selectedOption++;
+			            	Beep(800,125);
+			        	}
+			    	break;
+				}	
+			} while (key != 13);
+			Beep(900,125);
+			
+			switch(selectedOption){
+				case 1:
+					fclose(fp);
+					fclose(tmp);
+					customClr(24,1,86,40);
+					goto goback;
+				break;
+				case 2:
+					kmr.harga = tiUpdate;
+					gotoxy(92,43);
+					printf("updating..");
+					sleep(3);
+					fwrite(&kmr,sizeof(kmr),1,tmp);
+					gotoxy(80,43);
+					printf("record has been updated successfully.");
+					Beep(1100,200);
+					sleep(2);
+					gotoxy(80,43);
+					printf("                                     ");
+					customClr(24,1,86,40);
+					gotoxy(103,36);
+					printf("                    ");
+					rupiah(kmr.harga,cvrRp);
+					gotoxy(101,36);
+					printf("Rp%s",cvrRp);
+					updconf = true;
+				break;
+			}
+		}else{
+			fwrite(&kmr,sizeof(kmr),1,tmp);
+		}
+	}	
+	
+	fclose(fp);
+	fclose(tmp);
+	
+	if(updconf){
+		remove("Dat/Kamar.dat");
+		rename("Dat/Tmp.dat","Dat/Kamar.dat");
+	}
 }
 
 void UpdateMenuKmr(){
@@ -478,10 +649,10 @@ void UpdateMenuKmr(){
 				UpdateTypeKmr();
 			break;
 			case 2:
-				
+				UpdateFloorKmr();
 			break;
 			case 3:
-					
+				UpdatePriceKmr();	
 			break;
 		}
 	}
