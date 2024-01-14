@@ -51,6 +51,7 @@ void vLogin(){
 					fp = fopen("Dat/Karyawan.dat", "rb");
 					while(fread(&kry,sizeof(kry),1,fp)==1){
 						if(strcmp(uname,kry.username)==0 && strcmp(passwd,kry.password)==0){
+							fclose(fp);
 							system("cls");
 							match = true;
 							if(strcmp(kry.role, "CASHIER")==0){
@@ -62,6 +63,7 @@ void vLogin(){
 							}
 							afLogin = true;
 						}else if(strcmp(uname,admUser)==0 && strcmp(passwd,admPass)==0){
+							fclose(fp);
 							system("cls");
 							match = true;
 							AdminMenArr(admUser);

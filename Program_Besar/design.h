@@ -137,6 +137,18 @@ void PrintAdRoom(){
 	printf("Back");
 }
 
+void PrintAdUpRoom(){
+	clrMainMenu();
+	gotoxy(12,18);
+	printf("Room Type");
+	gotoxy(12,20);
+	printf("Floor");
+	gotoxy(12,22);
+	printf("Price");
+	gotoxy(12,24);
+	printf("Back");
+}
+
 void RmCreateForm(){
 	drawBox(53,19,90,27,201,205,187,186,200,188);
 	gotoxy(62,23);
@@ -174,21 +186,22 @@ void RmViewForm(){
 }
 
 void RmUpdateForm(){
-	gotoxy(62,18);
+	drawBox(53,19,90,27,201,205,187,186,200,188);
+	gotoxy(62,23);
 	printf("ROOM ID");
-	drawBox(62,19,73,3,218,196,191,179,192,217);
-	gotoxy(62,24);
+	drawBox(62,24,73,3,218,196,191,179,192,217);
+	gotoxy(62,28);
 	printf("ROOM TYPE");
-	drawBox(62,25,73,3,218,196,191,179,192,217);
-	gotoxy(62,30);
+	drawBox(62,29,73,3,218,196,191,179,192,217);
+	gotoxy(62,34);
+	printf("FLOOR");
+	drawBox(62,35,35,3,218,196,191,179,192,217);
+	gotoxy(100,34);
 	printf("TOTAL PRICE");
-	drawBox(62,31,73,3,218,196,191,179,192,217);
-	gotoxy(62,36);
-	printf("ROOM STATUS");
-	drawBox(62,37,73,3,218,196,191,179,192,217);
-	gotoxy(86,41);;
+	drawBox(100,35,35,3,218,196,191,179,192,217);
+	gotoxy(86,41);
 	printf("Reset");
-	gotoxy(100,41);
+	gotoxy(101,41);
 	printf("Save Changes");
 }
 

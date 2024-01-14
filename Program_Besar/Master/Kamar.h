@@ -70,7 +70,7 @@ void CreateKmr(){
 		                   selectedOption++;
 		                   Beep(800,125);
 		               }
-		               break;
+		            break;
 		       	}	
 			}
 		} while (pressed == 2);
@@ -149,7 +149,7 @@ void CreateKmr(){
 		                   selectedOption++;
 		                   Beep(800,125);
 		               }
-		               break;
+		            break;
 		       	}	
 			}
 		} while (pressed == 2);
@@ -244,40 +244,14 @@ void DisplayKmrData(char tipe[], int harga, int lantai){
 	printf("Rp%s\n",cvrRp);
 }
 
-void UpdateDisplayKmr(){
-	printf("[1]Room Type\n");
-	printf("[2]Floor\n");
-	printf("[3]Back\n");
-}
 
 
 void UpdateTypeKmr(){
-	system("cls");
 	fp = fopen("Dat/Kamar.dat","rb");
 	tmp = fopen("Dat/Tmp.dat", "wb");
 	while(fread(&kmr,sizeof(kmr),1,fp)==1){
 		if(search==kmr.no_kamar){
-			while(1){
-				system("cls");
-//				DisplayKmrData(kmr.no_kamar,kmr.tipe_kamar,kmr.harga,kmr.lantai,kmr.status);
-				gotoxy(0,1);
-				printf("                 ");
-				gotoxy(0,1);
-				getletter(kmr.tipe_kamar,15);
-				strupr(kmr.tipe_kamar);
-				if(strcmp(kmr.tipe_kamar,"STANDARD")==0 || strcmp(kmr.tipe_kamar,"DOUBLE")==0 || strcmp(kmr.tipe_kamar,"SUITE")==0 || strcmp(kmr.tipe_kamar,"EXECUTIVE")==0){
-					break;			
-				}
-			}
-			if(strcmp(kmr.tipe_kamar,"STANDARD")==0){
-				kmr.harga = 100000;
-			}else if(strcmp(kmr.tipe_kamar,"DOUBLE")==0){
-				kmr.harga = 250000;
-			}else if(strcmp(kmr.tipe_kamar,"SUITE")==0){
-				kmr.harga = 400000;
-			}else{
-				kmr.harga = 600000;
-			}
+			
 			fwrite(&kmr,sizeof(kmr),1,tmp);
 		}else{
 			fwrite(&kmr,sizeof(kmr),1,tmp);
@@ -290,13 +264,10 @@ void UpdateTypeKmr(){
 }
 
 void UpdateFloorKmr(){
-	system("cls");
 	fp = fopen("Dat/Kamar.dat","rb");
 	tmp = fopen("Dat/Tmp.dat", "wb");
 	while(fread(&kmr,sizeof(kmr),1,fp)==1){
 		if(search==kmr.no_kamar){
-			system("cls");
-//			DisplayKmrData(kmr.no_kamar,kmr.tipe_kamar,kmr.harga,kmr.lantai,kmr.status);
 			gotoxy(0,3);
 			printf("                 ");
 			gotoxy(0,3);
@@ -313,27 +284,81 @@ void UpdateFloorKmr(){
 }
 
 void UpdateMenuKmr(){
+	PrintAdUpRoom();
 	while(1){
-		system("cls");
-		UpdateDisplayKmr();
-		printf("Choose: ");getnummin(&choose,1,1);
-		if(choose==1){
-			UpdateTypeKmr();
-		}else if(choose==2){
-			UpdateFloorKmr();
-		}else if(choose==3){
+    	if(selectedOption==4){
+    		clrMainMenu();
+			clrMenArrow(12,28,20);
+			PrintAdRoom();
 			break;
 		}
-	}	
+    	selectedOption = 1;
+	    do {
+			clrMenArrow(14,28,18);
+		    switch(selectedOption){
+		        case 1:
+		        	gotoxy(28,18);
+		        	printf("%c",174);
+		       	break;
+		       	case 2:
+		       		gotoxy(28,20);
+		       		printf("%c",174);
+		       	break;
+		       	case 3:
+		       		gotoxy(28,22);
+		       		printf("%c",174);
+		       	break;
+		        case 4:
+		        	gotoxy(28,24);
+		        	printf("%c",174);
+		        break;
+			}
+		
+			key = getch();
+			
+			switch (key) {
+		        case 72: // Up arrow key
+		            if (selectedOption > 1) {
+		                selectedOption--;
+		                Beep(800,125);
+		            }
+		            break;
+		        case 80: // Down arrow key
+		        	   if (selectedOption < 4) {
+		              	    selectedOption++;
+		                    Beep(800,125);
+		               }
+		            break;
+		        }
+		} while (key != 13);
+		Beep(900,125);
+		clrMenArrow(12,28,20);
+			
+		switch(selectedOption){
+			case 1:
+				
+			break;
+			case 2:
+				
+			break;
+			case 3:
+					
+			break;
+		}
+	}
 }
 
 
 void UpdateKmr(){
 	while(1){
-		system("cls");
+		clrDb();
+		RmUpdateForm();
+		goback:
 		found = false;
-		printf("Room's ID\t: KMR");getnummin(&search,1,3);
-		if(search==0){
+		gotoxy(63,25);
+		printf("KMR");getnummin(&search,1,3);
+		Beep(900,125);
+		if(EscPressed){
 			break;
 		}else{
 			fp = fopen("Dat/Kamar.dat","rb");
@@ -345,10 +370,17 @@ void UpdateKmr(){
 			}
 			fclose(fp);
 			if(found){
+				clrMainMenu();
+				clrMenArrow(12,28,20);
+				DisplayKmrData(kmr.tipe_kamar,kmr.harga,kmr.lantai);
 				UpdateMenuKmr();
 			}else{
-				printf("\nID Not Found.");
-				getch();
+				gotoxy(63,25);
+				printf("ID Not Found!");
+				sleep(1);
+				gotoxy(63,25);
+				printf("             ");
+				goto goback;
 			}	
 		}	
 	}
@@ -542,7 +574,7 @@ void MenuKamar(){
 				ReadKmr();
 			break;
 			case 3:
-				
+				UpdateKmr();
 			break;
 			case 4:
 				DeleteKmr();
