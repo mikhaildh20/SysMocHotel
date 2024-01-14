@@ -39,7 +39,6 @@ int main(){
 
 
 	fullscreen();
-
 //	dDashboard("Imam");
 //	ReadKmr();
 //	UpdateKmr();
@@ -47,17 +46,7 @@ int main(){
 //	RmUpdateForm();
 //	getch();
 //	PrintAdMen();
-//	AdminMenArr();
-//	PaketPaket();
-//	MenuMember();
-//	MenuMenu();
-//	MenuFasilitas();
-//	MenuKamar();
-//	MenuMember();
-//	MenuBarang();
-//	MenuKaryawan();
-//	getRes(&w,&h);
-//	formLogin();
+
 	vLogin();
 //	default_res(w,h);
 }
