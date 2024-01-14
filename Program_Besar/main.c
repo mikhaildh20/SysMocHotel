@@ -40,8 +40,10 @@ int main(){
 
 	fullscreen();
 
-	dDashboard("Imam");
-	UpdateKmr();
+//	dDashboard("Imam");
+//	ReadKmr();
+//	UpdateKmr();
+//	CreateKmr();
 //	RmUpdateForm();
 //	getch();
 //	PrintAdMen();
