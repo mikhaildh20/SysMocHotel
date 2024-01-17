@@ -65,7 +65,7 @@ void AdminMenArr(char uname[]){
 				MenuKamar();
 			break;
 			case 2:
-				
+				MenuFasilitas();
 			break;
 			case 3:
 					

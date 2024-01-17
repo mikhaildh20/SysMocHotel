@@ -28,6 +28,15 @@
 int w,h;
 
 int main(){
+
+	fullscreen();
+	dDashboard("Imam");
+	
+	KrCreateForm();
+
+//	vLogin();
+//	default_res(w,h);
+
 //	pthread_t t1, t2;
 //	
 //	pthread_create(&t1,NULL,mainTask,NULL);
@@ -35,18 +44,4 @@ int main(){
 //	
 //	pthread_join(t1,NULL);
 //	pthread_join(t2,NULL);
-
-
-
-	fullscreen();
-//	dDashboard("Imam");
-//	ReadKmr();
-//	UpdateKmr();
-//	CreateKmr();
-//	RmUpdateForm();
-//	getch();
-//	PrintAdMen();
-
-	vLogin();
-//	default_res(w,h);
 }

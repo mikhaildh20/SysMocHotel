@@ -294,7 +294,7 @@ void setPrsDate(){
 }
 
 void clrDb(){
-	customClr(116,30,40,18);
+	customClr(116,31,40,17);
 }
 
 void clrMenArrow(int height, int x, int y){

@@ -208,7 +208,13 @@ void ReadKmr(){
 			fread(&kmr,sizeof(kmr),1,fp);
 			if(!feof(fp)){
 				gotoxy(44,i);
-				printf("KMR%d",kmr.no_kamar);
+				if(kmr.no_kamar<10){
+					printf("KMR00%d",kmr.no_kamar);
+				}else if(kmr.no_kamar>=10){
+					printf("KMR0%d",kmr.no_kamar);
+				}else{
+					printf("KMR%d",kmr.no_kamar);	
+				}
 				gotoxy(65,i);
 				printf("%s",kmr.tipe_kamar);
 				gotoxy(95,i);

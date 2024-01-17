@@ -137,6 +137,35 @@ void PrintAdRoom(){
 	printf("Back");
 }
 
+void PrintAdFacility(){
+	clrMainMenu();
+	gotoxy(12,18);
+	printf("Create Facility");
+	gotoxy(12,20);
+	printf("View Facility");
+	gotoxy(12,22);
+	printf("Update Facility");
+	gotoxy(12,24);
+	printf("Delete Facility");
+	gotoxy(12,26);
+	printf("Back");
+}
+
+void PrintAdKaryawan(){
+	clrMainMenu();
+	gotoxy(12,18);
+	printf("Add Employee");
+	gotoxy(12,20);
+	printf("View Employee");
+	gotoxy(12,22);
+	printf("Change Employee");
+	gotoxy(12,24);
+	printf("Remove Employee");
+	gotoxy(12,26);
+	printf("Back");
+}
+
+
 void PrintAdUpRoom(){
 	clrMainMenu();
 	gotoxy(12,18);
@@ -146,6 +175,16 @@ void PrintAdUpRoom(){
 	gotoxy(12,22);
 	printf("Price");
 	gotoxy(12,24);
+	printf("Back");
+}
+
+void PrintAdUpFacility(){
+	clrMainMenu();
+	gotoxy(12,18);
+	printf("Name");
+	gotoxy(12,20);
+	printf("Price");
+	gotoxy(12,22);
 	printf("Back");
 }
 
@@ -227,5 +266,109 @@ void RmDeleteForm(){
 
 void RmDb(){
 	PrintFile("Asset/ROOMDB.txt",67,27);
+}
+
+void FcCreateForm(){
+	drawBox(53,19,90,25,201,205,187,186,200,188);
+	gotoxy(62,23);
+	printf("FACILIY ID");
+	drawBox(62,24,73,3,218,196,191,179,192,217);
+	gotoxy(62,28);
+	printf("NAME");
+	drawBox(62,29,73,3,218,196,191,179,192,217);
+	gotoxy(62,33);
+	printf("TOTAL PRICE");
+	drawBox(62,34,73,3,218,196,191,179,192,217);
+	gotoxy(86,39);
+	printf("Reset");
+	gotoxy(106,39);
+	printf("Saves");
+}
+
+void FcDeleteForm(){
+	drawBox(53,19,90,25,201,205,187,186,200,188);
+	gotoxy(62,23);
+	printf("FACILIY ID");
+	drawBox(62,24,73,3,218,196,191,179,192,217);
+	gotoxy(62,28);
+	printf("NAME");
+	drawBox(62,29,73,3,218,196,191,179,192,217);
+	gotoxy(62,33);
+	printf("TOTAL PRICE");
+	drawBox(62,34,73,3,218,196,191,179,192,217);
+	gotoxy(86,39);
+	printf("Reset");
+	gotoxy(106,39);
+	printf("Delete");
+}
+
+void FcUpdateForm(){
+	drawBox(53,19,90,25,201,205,187,186,200,188);
+	gotoxy(62,23);
+	printf("FACILIY ID");
+	drawBox(62,24,73,3,218,196,191,179,192,217);
+	gotoxy(62,28);
+	printf("NAME");
+	drawBox(62,29,73,3,218,196,191,179,192,217);
+	gotoxy(62,33);
+	printf("TOTAL PRICE");
+	drawBox(62,34,73,3,218,196,191,179,192,217);
+	gotoxy(86,39);
+	printf("Reset");
+	gotoxy(101,39);
+	printf("Save Changes");
+}
+
+
+
+void FcViewForm(){
+	drawBox(40,18,116,30,201,205,187,186,200,188);
+	drawBox(40,18,116,3,201,205,187,186,204,185);
+	gotoxy(44,19);
+	printf("FACILITY ID");
+	gotoxy(75,19);
+	printf("NAME");
+	gotoxy(105,19);
+	printf("PRICE");
+	gotoxy(135,19);
+	printf("STATUS");
+}
+
+FcDb(){
+	PrintFile("Asset/FACILITYDB.txt",63,27);
+}
+
+KrDb(){
+	PrintFile("Asset/KARYAWANDB.txt",52,27);
+}
+
+KrCreateForm(){
+	drawBox(53,18,90,28,201,205,187,186,200,188);
+	gotoxy(62,21);
+	printf("EMPLOYEE ID");
+	drawBox(62,22,36,3,218,196,191,179,192,217);
+	gotoxy(99,21);
+	printf("TELEPHONE");
+	drawBox(99,22,36,3,218,196,191,179,192,217);
+	gotoxy(62,26);
+	printf("FIRST NAME");
+	drawBox(62,27,36,3,218,196,191,179,192,217);
+	gotoxy(99,26);
+	printf("LAST NAME");
+	drawBox(99,27,36,3,218,196,191,179,192,217);
+	gotoxy(62,31);
+	printf("USERNAME");
+	drawBox(62,32,36,3,218,196,191,179,192,217);
+	gotoxy(99,31);
+	printf("PASSWORD");
+	drawBox(99,32,36,3,218,196,191,179,192,217);
+	gotoxy(62,36);
+	printf("SELECT ROLE");
+	gotoxy(62,38);
+	printf("MANAGER                       CASHIER                       RECEPTIONIST");
+	gotoxy(86,41);
+	printf("Reset");
+	gotoxy(106,41);
+	printf("Saves");
 }
 
