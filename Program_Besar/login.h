@@ -66,19 +66,19 @@ void vLogin(){
 								printf("RECEPTIONIST");
 							}
 							afLogin = true;
-						}else if(strcmp(uname,admUser)==0 && strcmp(passwd,admPass)==0){
-							fclose(fp);
-							customClr(27,1,64,32);
-							gotoxy(99,32);
-							printf("Logging In..");
-							sleep(2);
-							system("cls");
-							match = true;
-							AdminMenArr(admUser);
-							afLogin = true;
 						}
 					}
 					fclose(fp);
+					if(strcmp(uname,admUser)==0 && strcmp(passwd,admPass)==0){
+						customClr(27,1,64,32);
+						gotoxy(99,32);
+						printf("Logging In..");
+						sleep(2);
+						system("cls");
+						match = true;
+						AdminMenArr(admUser);
+						afLogin = true;
+					}
 					if(afLogin){
 						attempt = 3;
 						match = false;

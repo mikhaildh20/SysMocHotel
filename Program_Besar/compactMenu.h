@@ -68,7 +68,7 @@ void AdminMenArr(char uname[]){
 				MenuFasilitas();
 			break;
 			case 3:
-					
+				MenuKaryawan();
 			break;
 			case 4:
 					

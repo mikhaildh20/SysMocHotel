@@ -121,6 +121,18 @@ void CreateKry(){
 			break;
 		}
 		
+		switch(selectedOption){
+			case 1:
+				strcpy(kry.role,"MANAGER");
+			break;
+			case 2:
+				strcpy(kry.role,"CASHIER");
+			break;
+			case 3:
+				strcpy(kry.role,"RECEPTIONIST");
+			break;
+		}
+		
 		selectedOption = 2;
 		pressed = 2;
 		do {
@@ -164,6 +176,7 @@ void CreateKry(){
 			fclose(fp);
 			break;
 		}
+		
 		
 		
 		switch(selectedOption){
@@ -248,14 +261,14 @@ void ReadKry(){
 }
 
 void DisplayKryData(char fname[], char lname[],char role[],char telp[]){
-	
-	printf("%s",fname);
-	
-	printf("%s",lname);
-	
-	printf("%s",role);
-	
+	gotoxy(100,27);
 	printf("%s",telp);
+	gotoxy(63,32);
+	printf("%s",fname);
+	gotoxy(100,32);
+	printf("%s",lname);
+	gotoxy(63,37);
+	printf("%s",role);
 }
 
 void UpdateFnameKry(){
@@ -403,10 +416,14 @@ void UpdateKry(){
 
 void DeleteKry(){
 	while(1){
-		system("cls");
+		clrDb();
+		KrDeleteForm();
+		goback:
 		found = false;
-		printf("Employee's ID\t: KRY");getnummin(&search,1,3);
-		if(search==0){
+		gotoxy(63,27);
+		printf("EMP");getnummin(&search,1,3);
+		Beep(900,125);
+		if(EscPressed){
 			break;
 		}else{
 			fp = fopen("Dat/Karyawan.dat","rb");
@@ -418,21 +435,86 @@ void DeleteKry(){
 			}
 			fclose(fp);
 			if(found){
+				delconf = false;
 				fp = fopen("Dat/Karyawan.dat","rb");
 				tmp = fopen("Dat/Tmp.dat","wb");
-				while(fread(&kry,sizeof(kry),1,fp)==1){
-					if(search==kry.id_karyawan){
-						while(1){
-							system("cls");
-							printf("Delete?[YES/NO]\n");getletter(confirm,3);strupr(confirm);
-							if(strcmp(confirm,"YES")==0){
-								printf("\nDeleting..");sleep(2);
-								break;
-							}else if(strcmp(confirm,"NO")==0){
-								printf("\nCanceling..");sleep(2);
-								fwrite(&kry,sizeof(kry),1,tmp);
-								break;	
+				while(fread(&kmr,sizeof(kmr),1,fp)==1){
+					if(search==kmr.no_kamar){
+						DisplayKryData(kry.fname,kry.lname,kry.role,kry.no_telp);
+						selectedOption = 2;
+						pressed = 2;
+						do {
+							customClr(70,1,65,40);
+						       switch(selectedOption){
+						       	case 1:
+						       		gotoxy(88,40);
+						       		printf("%c",42);
+						       	break;
+						       	case 2:
+						       		gotoxy(108,40);
+						       		printf("%c",42);
+						       	break;
 							}
+							
+							key = getch();
+							
+							switch (key) {
+						        case 75:
+						            if (selectedOption > 1) {
+						                selectedOption--;
+						                Beep(800,125);
+						            }
+						        break;
+						        case 77:
+						            if (selectedOption < 2) {
+						                selectedOption++;
+						                Beep(800,125);
+						            }
+						        break;
+						    }	
+						} while (key != 13);
+						Beep(900,125);
+						
+						switch(selectedOption){
+							case 1:
+								fclose(fp);
+								fclose(tmp);
+								gotoxy(66,27);
+								printf("          ");
+								gotoxy(100,27);
+								printf("              ");
+								gotoxy(63,32);
+								printf("       ");
+								gotoxy(100,32);
+								printf("        ");
+								gotoxy(63,37);
+								printf("                 ");
+								customClr(24,1,86,40);
+								goto goback;
+							break;
+							case 2:
+								gotoxy(94,43);
+								printf("deleting..");
+								sleep(3);
+								gotoxy(80,43);
+								printf("record has been removed successfully.");
+								Beep(1100,200);
+								sleep(2);
+								gotoxy(80,43);
+								printf("                                     ");
+								gotoxy(66,27);
+								printf("          ");
+								gotoxy(100,27);
+								printf("              ");
+								gotoxy(63,32);
+								printf("       ");
+								gotoxy(100,32);
+								printf("        ");
+								gotoxy(63,37);
+								printf("                 ");
+								customClr(24,1,86,40);
+								delconf = true;
+							break;
 						}
 					}else{
 						fwrite(&kry,sizeof(kry),1,tmp);
@@ -440,11 +522,18 @@ void DeleteKry(){
 				}
 				fclose(fp);
 				fclose(tmp);
-				remove("Dat/Karyawan.dat");
-				rename("Dat/Tmp.dat","Dat/Karyawan.dat");
+				if(delconf){
+					remove("Dat/Karyawan.dat");
+					rename("Dat/Tmp.dat","Dat/Karyawan.dat");
+				}
+				goto goback;
 			}else{
-				printf("\nID Not Found.");
-				getch();
+				gotoxy(63,27);
+				printf("ID Not Found!");
+				sleep(1);
+				gotoxy(63,27);
+				printf("             ");
+				goto goback;
 			}	
 		}	
 	}
@@ -458,7 +547,7 @@ void MenuKaryawan(){
 	while(1){
 		clrDb();
 		do {
-			RmDb();
+			KrDb();
 			clrMenArrow(12,28,18);
 	        switch(selectedOption){
 	        	case 1:

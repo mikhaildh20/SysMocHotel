@@ -30,8 +30,6 @@ int w,h;
 int main(){
 
 	fullscreen();
-//	dDashboard("Imam");
-	
 //	ReadKry();
 //	CreateKry();
 
