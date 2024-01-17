@@ -372,3 +372,74 @@ KrCreateForm(){
 	printf("Saves");
 }
 
+void KrViewForm(){
+	drawBox(40,18,116,30,201,205,187,186,200,188);
+	drawBox(40,18,116,3,201,205,187,186,204,185);
+	gotoxy(44,19);
+	printf("EMPLOYEE ID");
+	gotoxy(75,19);
+	printf("NAME");
+	gotoxy(105,19);
+	printf("ROLE");
+	gotoxy(135,19);
+	printf("TELEPHONE");
+}
+
+void KrUpdateForm(){
+	drawBox(53,18,90,28,201,205,187,186,200,188);
+	gotoxy(62,21);
+	printf("EMPLOYEE ID");
+	drawBox(62,22,36,3,218,196,191,179,192,217);
+	gotoxy(99,21);
+	printf("TELEPHONE");
+	drawBox(99,22,36,3,218,196,191,179,192,217);
+	gotoxy(62,26);
+	printf("FIRST NAME");
+	drawBox(62,27,36,3,218,196,191,179,192,217);
+	gotoxy(99,26);
+	printf("LAST NAME");
+	drawBox(99,27,36,3,218,196,191,179,192,217);
+	gotoxy(62,31);
+	printf("USERNAME");
+	drawBox(62,32,36,3,218,196,191,179,192,217);
+	gotoxy(99,31);
+	printf("PASSWORD");
+	drawBox(99,32,36,3,218,196,191,179,192,217);
+	gotoxy(62,36);
+	printf("ROLE");
+	drawBox(62,37,73,3,218,196,191,179,192,217);
+	gotoxy(86,41);
+	printf("Reset");
+	gotoxy(101,41);
+	printf("Save Changes");
+}
+
+void KrDeleteForm(){
+	drawBox(53,18,90,28,201,205,187,186,200,188);
+	gotoxy(62,21);
+	printf("EMPLOYEE ID");
+	drawBox(62,22,36,3,218,196,191,179,192,217);
+	gotoxy(99,21);
+	printf("TELEPHONE");
+	drawBox(99,22,36,3,218,196,191,179,192,217);
+	gotoxy(62,26);
+	printf("FIRST NAME");
+	drawBox(62,27,36,3,218,196,191,179,192,217);
+	gotoxy(99,26);
+	printf("LAST NAME");
+	drawBox(99,27,36,3,218,196,191,179,192,217);
+	gotoxy(62,31);
+	printf("USERNAME");
+	drawBox(62,32,36,3,218,196,191,179,192,217);
+	gotoxy(99,31);
+	printf("PASSWORD");
+	drawBox(99,32,36,3,218,196,191,179,192,217);
+	gotoxy(62,36);
+	printf("ROLE");
+	drawBox(62,37,73,3,218,196,191,179,192,217);
+	gotoxy(86,41);
+	printf("Reset");
+	gotoxy(106,41);
+	printf("Delete");
+}
+
