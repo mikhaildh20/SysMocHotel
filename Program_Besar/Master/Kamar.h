@@ -200,6 +200,7 @@ void ReadKmr(){
 	RmViewForm();
 	fp = fopen("Dat/Kamar.dat", "rb");
 	if(fp==NULL){
+		gotoxy(44,21);
 		printf("Belum ada Data");
 	}else{
 		found = false;

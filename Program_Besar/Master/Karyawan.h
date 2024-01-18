@@ -231,6 +231,7 @@ void ReadKry(){
 	KrViewForm();
 	fp = fopen("Dat/Karyawan.dat", "rb");
 	if(fp==NULL){
+		gotoxy(44,21);
 		printf("Belum ada Data");
 	}else{
 		found = false;
@@ -320,80 +321,329 @@ void UpdateLnameKry(){
 }
 
 void UpdateRoleKry(){
-	system("cls");
+	updconf = false;
+	goback:
 	fp = fopen("Dat/Karyawan.dat","rb");
 	tmp = fopen("Dat/Tmp.dat", "wb");
 	while(fread(&kry,sizeof(kry),1,fp)==1){
 		if(search==kry.id_karyawan){
-			while(1){
-				system("cls");
-				gotoxy(0,3);
-				printf("                        ");
-				gotoxy(0,3);
-				getletter(kry.role,15);
-				strupr(kry.role);
-				if(strcmp(kry.role, "RECEPTIONIST")==0 || strcmp(kry.role, "MANAGER")==0 || strcmp(kry.role, "CASHIER")==0){
-					break;
-				}	
+			customClr(73,3,62,36);
+			gotoxy(62,38);
+			printf("MANAGER                       CASHIER                       RECEPTIONIST");
+			selectedOption = 1;
+			pressed = 2;
+			do {
+				customClr(70,1,65,27);
+			       switch(selectedOption){
+			       	case 1:
+			       		gotoxy(65,27);
+			       		printf("%c",42);
+			       	break;
+			       	case 2:
+			       		gotoxy(87,27);
+			       		printf("%c",42);
+			       	break;
+			       	case 3:
+			       		gotoxy(108,27);
+			       		printf("%c",42);
+			       	break;
+				}
+			
+				key = getch();
+				
+				if(key == 13){
+					pressed = 1;
+				}else if(key == 27){
+					pressed = 0;
+				}else{
+					switch (key) {
+			           case 75:
+			               if (selectedOption > 1) {
+			                   selectedOption--;
+			                   Beep(800,125);
+			               }
+			               break;
+			           case 77:
+			               if (selectedOption < 3) {
+			                   selectedOption++;
+			                   Beep(800,125);
+			               }
+			            break;
+			       	}	
+				}
+			} while (pressed == 2);
+			Beep(900,125);
+			
+			if(pressed==0){
+				customClr(70,1,65,27);
+				drawBox(62,36,73,3,218,196,191,179,192,217);
+				gotoxy(63,37);
+				printf("%s",kry.role);
+				fclose(fp);
+				break;
 			}
-			fwrite(&kry,sizeof(kry),1,tmp);
+			
+			switch(selectedOption){
+				case 1:
+					strcpy(tUpdate,"MANAGER");
+				break;
+				case 2:
+					strcpy(tUpdate,"CASHIER");
+				break;
+				case 3:
+					strcpy(tUpdate,"RECEPTIONIST");
+				break;
+			}
+			
+			selectedOption = 2;
+			do {
+				customClr(70,1,65,40);
+			    switch(selectedOption){
+			       	case 1:
+			       		gotoxy(88,40);
+			       		printf("%c",42);
+			       	break;
+			       	case 2:
+			       		gotoxy(108,40);
+			       		printf("%c",42);
+			       	break;
+				}
+			
+				key = getch();
+			
+				switch (key) {
+			    	case 75:
+			        	if (selectedOption > 1) {
+			            	selectedOption--;
+			    	        Beep(800,125);
+			    	    }
+			    	break;
+			    	case 77:
+			        	if (selectedOption < 2) {
+			            	selectedOption++;
+			            	Beep(800,125);
+			        	}
+			    	break;
+				}	
+			} while (key != 13);
+			Beep(900,125);
+			
+			switch(selectedOption){
+				case 1:
+					fclose(fp);
+					fclose(tmp);
+					customClr(24,1,86,40);
+					goto goback;
+				break;
+				case 2:
+					strcpy(kry.role,tUpdate);
+					gotoxy(92,43);
+					printf("updating..");
+					sleep(3);
+					fwrite(&kry,sizeof(kry),1,tmp);
+					gotoxy(80,43);
+					printf("record has been updated successfully.");
+					Beep(1100,200);
+					sleep(2);
+					gotoxy(80,43);
+					printf("                                     ");
+					customClr(24,1,86,40);
+					customClr(70,1,65,27);
+					drawBox(62,36,73,3,218,196,191,179,192,217);
+					gotoxy(63,37);
+					printf("%s",kry.role);
+					updconf = true;
+				break;
+			}
 		}else{
 			fwrite(&kry,sizeof(kry),1,tmp);
 		}
-	}	
+	}
+	
 	fclose(fp);
 	fclose(tmp);
-	remove("Dat/Karyawan.dat");
-	rename("Dat/Tmp.dat","Dat/Karyawan.dat");
+	
+	if(updconf){
+		remove("Dat/Karyawan.dat");
+		rename("Dat/Tmp.dat","Dat/Karyawan.dat");
+	}	
 }
 
 void UpdateTelpKry(){
-	system("cls");
+	updconf = false;
+	goback:
 	fp = fopen("Dat/Karyawan.dat","rb");
 	tmp = fopen("Dat/Tmp.dat", "wb");
 	while(fread(&kry,sizeof(kry),1,fp)==1){
 		if(search==kry.id_karyawan){
-			system("cls");
-			gotoxy(0,4);
-			printf("                 ");
-			gotoxy(0,4);
-			getteksnummin(kry.no_telp,11,13);
-			strupr(kry.lname);
-			fwrite(&kry,sizeof(kry),1,tmp);
+			gotoxy(100,23);
+			printf("             ");
+			gotoxy(100,23);
+			getteksnummin(tUpdate,11,13);
+			
+			if(EscPressed){
+				gotoxy(100,23);
+				printf("              ");
+				gotoxy(100,23);
+				printf("%s",kry.no_telp);
+				fclose(fp);
+				break;
+			}
+			
+			selectedOption = 2;
+			do {
+				customClr(70,1,65,40);
+			    switch(selectedOption){
+			       	case 1:
+			       		gotoxy(88,40);
+			       		printf("%c",42);
+			       	break;
+			       	case 2:
+			       		gotoxy(108,40);
+			       		printf("%c",42);
+			       	break;
+				}
+			
+				key = getch();
+			
+				switch (key) {
+			    	case 75:
+			        	if (selectedOption > 1) {
+			            	selectedOption--;
+			    	        Beep(800,125);
+			    	    }
+			    	break;
+			    	case 77:
+			        	if (selectedOption < 2) {
+			            	selectedOption++;
+			            	Beep(800,125);
+			        	}
+			    	break;
+				}	
+			} while (key != 13);
+			Beep(900,125);
+			
+			switch(selectedOption){
+				case 1:
+					fclose(fp);
+					fclose(tmp);
+					customClr(24,1,86,40);
+					goto goback;
+				break;
+				case 2:
+					strcpy(kry.no_telp,tUpdate);
+					gotoxy(92,43);
+					printf("updating..");
+					sleep(3);
+					fwrite(&kry,sizeof(kry),1,tmp);
+					gotoxy(80,43);
+					printf("record has been updated successfully.");
+					Beep(1100,200);
+					sleep(2);
+					gotoxy(80,43);
+					printf("                                     ");
+					customClr(24,1,86,40);
+					gotoxy(63,36);
+					printf("%s",kry.no_telp);
+					updconf = true;
+				break;
+			}
 		}else{
 			fwrite(&kry,sizeof(kry),1,tmp);
 		}
 	}	
+	
 	fclose(fp);
 	fclose(tmp);
-	remove("Dat/Karyawan.dat");
-	rename("Dat/Tmp.dat","Dat/Karyawan.dat");
+	
+	if(updconf){
+		remove("Dat/Karyawan.dat");
+		rename("Dat/Tmp.dat","Dat/Karyawan.dat");
+	}
 }
 
 void UpdateMenuKry(){
+	PrintAdUpEmployee();
 	while(1){
-		system("cls");
-		printf("Choose: ");getnummin(&choose,1,1);
-		if(choose==1){
-			UpdateFnameKry();
-		}else if(choose==2){
-			UpdateLnameKry();
-		}else if(choose==3){
-			UpdateRoleKry();
-		}else if(choose==4){
-			UpdateTelpKry();
-		}else if(choose==5){
+    	if(selectedOption==5){
+    		clrMainMenu();
+			clrMenArrow(12,28,20);
+			PrintAdKaryawan();
 			break;
 		}
-	}	
+    	selectedOption = 1;
+	    do {
+			clrMenArrow(14,28,18);
+		    switch(selectedOption){
+		        case 1:
+		        	gotoxy(28,18);
+		        	printf("%c",174);
+		       	break;
+		       	case 2:
+		       		gotoxy(28,20);
+		       		printf("%c",174);
+		       	break;
+		       	case 3:
+		       		gotoxy(28,22);
+		       		printf("%c",174);
+		       	break;
+		        case 4:
+		        	gotoxy(28,24);
+		        	printf("%c",174);
+		        break;
+		        case 5:
+		        	gotoxy(28,26);
+		        	printf("%c",174);
+		        break;
+			}
+		
+			key = getch();
+			
+			switch (key) {
+		        case 72: // Up arrow key
+		            if (selectedOption > 1) {
+		                selectedOption--;
+		                Beep(800,125);
+		            }
+		            break;
+		        case 80: // Down arrow key
+		        	   if (selectedOption < 5) {
+		              	    selectedOption++;
+		                    Beep(800,125);
+		               }
+		            break;
+		        }
+		} while (key != 13);
+		Beep(900,125);
+		clrMenArrow(12,28,20);
+			
+		switch(selectedOption){
+			case 1:
+				UpdateFnameKry();
+			break;
+			case 2:
+				UpdateLnameKry();
+			break;
+			case 3:
+				UpdateRoleKry();	
+			break;
+			case 4:
+				UpdateTelpKry();
+			break;
+		}
+	}
 }
 
 void UpdateKry(){
 	while(1){
-		system("cls");
+		clrDb();
+		KrUpdateForm();
+		goback:
 		found = false;
-		printf("Employee's ID\t: KRY");getnummin(&search,1,3);
-		if(search==0){
+		gotoxy(63,27);
+		printf("EMP");getnummin(&search,1,3);
+		Beep(900,125);
+		if(EscPressed){
 			break;
 		}else{
 			fp = fopen("Dat/Karyawan.dat","rb");
@@ -405,10 +655,18 @@ void UpdateKry(){
 			}
 			fclose(fp);
 			if(found){
+				selectedOption = 1;
+				clrMainMenu();
+				clrMenArrow(12,28,20);
+				DisplayKryData(kry.fname,kry.lname,kry.role,kry.no_telp);
 				UpdateMenuKry();
 			}else{
-				printf("\nID Not Found.");
-				getch();
+				gotoxy(63,27);
+				printf("ID Not Found!");
+				sleep(1);
+				gotoxy(63,27);
+				printf("             ");
+				goto goback;
 			}	
 		}	
 	}
@@ -438,8 +696,8 @@ void DeleteKry(){
 				delconf = false;
 				fp = fopen("Dat/Karyawan.dat","rb");
 				tmp = fopen("Dat/Tmp.dat","wb");
-				while(fread(&kmr,sizeof(kmr),1,fp)==1){
-					if(search==kmr.no_kamar){
+				while(fread(&kry,sizeof(kry),1,fp)==1){
+					if(search==kry.id_karyawan){
 						DisplayKryData(kry.fname,kry.lname,kry.role,kry.no_telp);
 						selectedOption = 2;
 						pressed = 2;

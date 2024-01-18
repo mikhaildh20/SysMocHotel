@@ -30,10 +30,12 @@ int w,h;
 int main(){
 
 	fullscreen();
+	dDashboard("Imam");
+	KrUpdateForm();
 //	ReadKry();
 //	CreateKry();
-
-	vLogin();
+//	DeleteKry();
+//	vLogin();
 //	default_res(w,h);
 
 //	pthread_t t1, t2;

@@ -127,6 +127,7 @@ void ReadFsl(){
 	FcViewForm();
 	fp = fopen("Dat/Fasilitas.dat", "rb");
 	if(fp==NULL){
+		gotoxy(44,21);
 		printf("Belum ada Data");
 	}else{
 		found = false;
