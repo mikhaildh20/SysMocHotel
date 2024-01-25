@@ -73,7 +73,7 @@ Menu mnu;
 
 typedef struct{
 	int id_paket;
-	char nama[15];
+	char nama[20];
 	int harga;
 	char desc[30];
 	int status;

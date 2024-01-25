@@ -26,7 +26,8 @@ void CreateFsl(){
 		}
 		
 		reset:
-			
+		
+		fflush(stdin);	
 		gotoxy(63,30);
 		getletter(fsl.nama,15);
 		
@@ -36,6 +37,7 @@ void CreateFsl(){
 		}
 		strupr(fsl.nama);
 		
+		fflush(stdin);
 		gotoxy(63,35);
 		printf("Rp");getRp(&fsl.harga,5,7,66,35);
 		
@@ -184,6 +186,7 @@ void UpdateNameFsl(){
 		if(search==fsl.id_fasilitas){
 			gotoxy(63,30);
 			printf("                      ");
+			fflush(stdin);
 			gotoxy(63,30);
 			getletter(tUpdate,15);
 			strupr(tUpdate);
@@ -278,9 +281,9 @@ void UpdatePriceFsl(){
 		if(search==fsl.id_fasilitas){
 			gotoxy(65,35);
 			printf("                              ");
+			fflush(stdin);
 			gotoxy(63,35);
-			printf("Rp");
-			getRp(&tiUpdate,5,8,66,35);
+			printf("Rp");getRp(&tiUpdate,5,8,66,35);
 			
 			if(EscPressed){
 				gotoxy(63,35);
@@ -436,6 +439,8 @@ void UpdateFsl(){
 		if(EscPressed){
 			break;
 		}else{
+			gotoxy(66,25);
+			printf("%03d",search);
 			fp = fopen("Dat/Fasilitas.dat","rb");
 			while(fread(&fsl,sizeof(fsl),1,fp)==1){
 				if(search==fsl.id_fasilitas){
@@ -474,6 +479,8 @@ void DeleteFsl(){
 		if(EscPressed){
 			break;
 		}else{
+			gotoxy(66,25);
+			printf("%03d",search);
 			fp = fopen("Dat/Fasilitas.dat","rb");
 			while(fread(&fsl,sizeof(fsl),1,fp)==1){
 				if(search==fsl.id_fasilitas){
@@ -585,8 +592,8 @@ void MenuFasilitas(){
 	PrintAdFacility();
 	while(1){
 		clrDb();
+		FcDb();
 		do {
-			FcDb();
 			clrMenArrow(12,28,18);
 	        switch(selectedOption){
 	        	case 1:

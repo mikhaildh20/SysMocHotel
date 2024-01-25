@@ -255,3 +255,55 @@ void getRp(int *nilai, int min, int max, int x, int y) //input rupiah
 
 	*nilai = atoi(input);   /* Memasukkan nilai input (char) ke nilai (int) */
 }
+
+void textAreaInput(char input[], int min, int max, int x, int y, int maxOneLine)
+{
+	char inpkey;	
+	int i,n,m, oneline;
+	oneline = maxOneLine;
+	EscPressed = false;
+	n = 0;
+	do
+	{	
+		inpkey = getch();  // membaca masukan dari keyboard per-karakter //
+		
+//---- Menghapus Input ----//
+		if(inpkey == '\b' && n != 0) 
+		{
+			if(n == oneline-maxOneLine) {
+				oneline -= maxOneLine;
+				y--;
+				gotoxy(x+maxOneLine, y);
+			}
+			printf("\b \b");
+			input[n]='\0';
+			n--;
+		} else if(isprint(inpkey)){ //karakter yang bisa di print
+			if(n == max) {
+				continue;
+			}
+			else {
+				if(n == oneline) {
+					oneline += maxOneLine;
+					y++;
+					gotoxy(x, y);
+				}
+				printf("%c", inpkey);
+				input[n]=inpkey;
+				n++;
+			}
+		}
+		else if(inpkey == 13)
+		{
+			if(n < min) {
+				printf("\a");
+				inpkey = 0;
+			}
+			else input[n]='\0';
+		}
+	}
+	while(inpkey != 13 && inpkey!= 27);
+	if(inpkey == 27){
+		EscPressed = true;
+	}
+}

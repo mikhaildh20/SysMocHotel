@@ -73,7 +73,7 @@ void vLogin(){
 						customClr(27,1,64,32);
 						gotoxy(99,32);
 						printf("Logging In..");
-						sleep(2);
+						sleep(1);
 						system("cls");
 						match = true;
 						AdminMenArr(admUser);

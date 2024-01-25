@@ -81,7 +81,8 @@ void CreateKmr(){
 			fclose(fp);
 			break;
 		}
-			
+		
+		fflush(stdin);	
 		switch(selectedOption){
 			case 1:
 				strcpy(kmr.tipe_kamar,"STANDARD");
@@ -97,6 +98,7 @@ void CreateKmr(){
 			break;
 		}
 		
+		fflush(stdin);
 		gotoxy(63,36);
 		getnummin(&kmr.lantai,1,2);
 		
@@ -106,6 +108,7 @@ void CreateKmr(){
 			break;
 		}
 		
+		fflush(stdin);
 		gotoxy(101,36);
 		printf("Rp");
 		getRp(&kmr.harga,5,8,104,36);
@@ -251,8 +254,6 @@ void DisplayKmrData(char tipe[], int harga, int lantai){
 	printf("Rp%s\n",cvrRp);
 }
 
-
-
 void UpdateTypeKmr(){
 	updconf = false;
 	goback:
@@ -320,6 +321,7 @@ void UpdateTypeKmr(){
 				break;
 			}
 			
+			fflush(stdin);
 			switch(selectedOption){
 				case 1:
 					strcpy(tUpdate,"STANDARD");
@@ -418,6 +420,7 @@ void UpdateFloorKmr(){
 		if(search==kmr.no_kamar){
 			gotoxy(63,36);
 			printf("     ");
+			fflush(stdin);
 			gotoxy(63,36);
 			getnummin(&tiUpdate,1,2);
 			
@@ -511,6 +514,7 @@ void UpdatePriceKmr(){
 		if(search==kmr.no_kamar){
 			gotoxy(103,36);
 			printf("                    ");
+			fflush(stdin);
 			gotoxy(101,36);
 			printf("Rp");
 			getRp(&tiUpdate,5,8,104,36);
@@ -665,7 +669,6 @@ void UpdateMenuKmr(){
 	}
 }
 
-
 void UpdateKmr(){
 	while(1){
 		clrDb();
@@ -678,6 +681,8 @@ void UpdateKmr(){
 		if(EscPressed){
 			break;
 		}else{
+			gotoxy(66,25);
+			printf("%03d",search);
 			fp = fopen("Dat/Kamar.dat","rb");
 			while(fread(&kmr,sizeof(kmr),1,fp)==1){
 				if(search==kmr.no_kamar){
@@ -716,6 +721,8 @@ void DeleteKmr(){
 		if(EscPressed){
 			break;
 		}else{
+			gotoxy(66,25);
+			printf("%03d",search);
 			fp = fopen("Dat/Kamar.dat","rb");
 			while(fread(&kmr,sizeof(kmr),1,fp)==1){
 				if(search==kmr.no_kamar){
@@ -831,8 +838,8 @@ void MenuKamar(){
 	PrintAdRoom();
 	while(1){
 		clrDb();
+		MnDb();
 		do {
-			RmDb();
 			clrMenArrow(12,28,18);
 	        switch(selectedOption){
 	        	case 1:

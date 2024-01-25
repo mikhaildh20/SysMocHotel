@@ -118,7 +118,7 @@ void PrintAdMen(){
 	gotoxy(12,26);
 	printf("Manage F&Bs");
 	gotoxy(12,28);
-	printf("Manage Penalty");
+	printf("Manage Fines");
 	gotoxy(12,30);;
 	printf("Log out");
 }
@@ -126,13 +126,13 @@ void PrintAdMen(){
 void PrintAdRoom(){
 	clrMainMenu();
 	gotoxy(12,18);
-	printf("Create Room");
+	printf("Add Room");
 	gotoxy(12,20);
 	printf("View Room");
 	gotoxy(12,22);
 	printf("Update Room");
 	gotoxy(12,24);
-	printf("Delete Room");
+	printf("Remove Room");
 	gotoxy(12,26);
 	printf("Back");
 }
@@ -140,13 +140,13 @@ void PrintAdRoom(){
 void PrintAdFacility(){
 	clrMainMenu();
 	gotoxy(12,18);
-	printf("Create Facility");
+	printf("Add Facility");
 	gotoxy(12,20);
 	printf("View Facility");
 	gotoxy(12,22);
 	printf("Update Facility");
 	gotoxy(12,24);
-	printf("Delete Facility");
+	printf("Remove Facility");
 	gotoxy(12,26);
 	printf("Back");
 }
@@ -165,6 +165,88 @@ void PrintAdKaryawan(){
 	printf("Back");
 }
 
+void PrintAdBundle(){
+	clrMainMenu();
+	gotoxy(12,18);
+	printf("Create Bundle");
+	gotoxy(12,20);
+	printf("View Bundle");
+	gotoxy(12,22);
+	printf("Update Bundle");
+	gotoxy(12,24);
+	printf("Remove Bundle");
+	gotoxy(12,26);
+	printf("Back");
+}
+
+
+void Dashboard(){
+	PrintFile("Asset/DASHBOARD.txt",72,20);
+}
+
+void PrintAdFines(){
+	clrMainMenu();
+	gotoxy(12,18);
+	printf("Add Fines");
+	gotoxy(12,20);
+	printf("View Fines");
+	gotoxy(12,22);
+	printf("Update Fines");
+	gotoxy(12,24);
+	printf("Remove Fines");
+	gotoxy(12,26);
+	printf("Back");
+}
+
+void PrintAdMenu(){
+	clrMainMenu();
+	gotoxy(12,18);
+	printf("Create Menu");
+	gotoxy(12,20);
+	printf("View Menu");
+	gotoxy(12,22);
+	printf("Update Menu");
+	gotoxy(12,24);
+	printf("Remove Menu");
+	gotoxy(12,26);
+	printf("Back");
+}
+
+void PrintAdUpBundle(){
+	clrMainMenu();
+	gotoxy(12,18);
+	printf("Name");
+	gotoxy(12,20);
+	printf("Price");
+	gotoxy(12,22);
+	printf("Desc");
+	gotoxy(12,24);
+	printf("Back");
+}
+
+void PrintAdUpFines(){
+	clrMainMenu();
+	gotoxy(12,18);
+	printf("Category");
+	gotoxy(12,20);
+	printf("Price");
+	gotoxy(12,22);
+	printf("Desc");
+	gotoxy(12,24);
+	printf("Back");
+}
+
+void PrintAdUpMenu(){
+	clrMainMenu();
+	gotoxy(12,18);
+	printf("Name");
+	gotoxy(12,20);
+	printf("Price");
+	gotoxy(12,22);
+	printf("Desc");
+	gotoxy(12,24);
+	printf("Back");
+}
 
 void PrintAdUpRoom(){
 	clrMainMenu();
@@ -208,7 +290,7 @@ void RmCreateForm(){
 	printf("ROOM ID");
 	drawBox(62,24,73,3,218,196,191,179,192,217);
 	gotoxy(62,29);
-	printf("SELECT ROOM TYPE");
+	printf("SELECT ROOM TYPE[LEFT/RIGHT]");
 	gotoxy(62,31);
 	printf("STANDARD               DOUBLE               SUITE               EXECUTIVE");
 	gotoxy(62,34);
@@ -244,7 +326,7 @@ void RmUpdateForm(){
 	printf("ROOM ID");
 	drawBox(62,24,73,3,218,196,191,179,192,217);
 	gotoxy(62,28);
-	printf("ROOM TYPE");
+	printf("ROOM TYPE[LEFT/RIGHT]");
 	drawBox(62,29,73,3,218,196,191,179,192,217);
 	gotoxy(62,34);
 	printf("FLOOR");
@@ -264,7 +346,7 @@ void RmDeleteForm(){
 	printf("ROOM ID");
 	drawBox(62,24,73,3,218,196,191,179,192,217);
 	gotoxy(62,28);
-	printf("ROOM TYPE");
+	printf("ROOM TYPE[LEFT/RIGHT]");
 	drawBox(62,29,73,3,218,196,191,179,192,217);
 	gotoxy(62,34);
 	printf("FLOOR");
@@ -333,8 +415,6 @@ void FcUpdateForm(){
 	printf("Save Changes");
 }
 
-
-
 void FcViewForm(){
 	drawBox(40,18,116,30,201,205,187,186,200,188);
 	drawBox(40,18,116,3,201,205,187,186,204,185);
@@ -348,15 +428,15 @@ void FcViewForm(){
 	printf("STATUS");
 }
 
-FcDb(){
+void FcDb(){
 	PrintFile("Asset/FACILITYDB.txt",63,27);
 }
 
-KrDb(){
+void KrDb(){
 	PrintFile("Asset/KARYAWANDB.txt",52,27);
 }
 
-KrCreateForm(){
+void KrCreateForm(){
 	drawBox(53,18,90,28,201,205,187,186,200,188);
 	gotoxy(62,21);
 	printf("EMPLOYEE ID");
@@ -377,7 +457,7 @@ KrCreateForm(){
 	printf("PASSWORD");
 	drawBox(99,32,36,3,218,196,191,179,192,217);
 	gotoxy(62,36);
-	printf("SELECT ROLE");
+	printf("SELECT ROLE[LEFT/RIGHT]");
 	gotoxy(62,38);
 	printf("MANAGER                       CASHIER                       RECEPTIONIST");
 	gotoxy(86,41);
@@ -414,7 +494,7 @@ void KrUpdateForm(){
 	printf("LAST NAME");
 	drawBox(99,31,36,3,218,196,191,179,192,217);
 	gotoxy(62,35);
-	printf("ROLE");
+	printf("ROLE[LEFT/RIGHT]");
 	drawBox(62,36,73,3,218,196,191,179,192,217);
 	gotoxy(86,41);
 	printf("Reset");
@@ -445,3 +525,239 @@ void KrDeleteForm(){
 	printf("Delete");
 }
 
+void PkCreateForm(){
+	drawBox(53,19,90,27,201,205,187,186,200,188);
+	gotoxy(62,22);
+	printf("BUNDLE ID");
+	drawBox(62,23,73,3,218,196,191,179,192,217);
+	gotoxy(62,27);
+	printf("NAME");
+	drawBox(62,28,35,3,218,196,191,179,192,217);
+	gotoxy(100,27);
+	printf("PRICE");
+	drawBox(100,28,35,3,218,196,191,179,192,217);
+	gotoxy(62,32);
+	printf("DESCRIPTION");
+	drawBox(62,33,73,6,218,196,191,179,192,217);
+	gotoxy(86,41);
+	printf("Reset");
+	gotoxy(106,41);
+	printf("Saves");
+}
+
+void PkViewForm(){
+	drawBox(40,18,116,30,201,205,187,186,200,188);
+	drawBox(40,18,116,3,201,205,187,186,204,185);
+	gotoxy(44,19);
+	printf("BUNDLE ID");
+	gotoxy(65,19);
+	printf("NAME");
+	gotoxy(95,19);
+	printf("PRICE");
+	gotoxy(110,19);
+	printf("DESC");
+	gotoxy(140,19);
+	printf("STATUS");
+}
+
+void PkUpdateForm(){
+	drawBox(53,19,90,27,201,205,187,186,200,188);
+	gotoxy(62,22);
+	printf("BUNDLE ID");
+	drawBox(62,23,73,3,218,196,191,179,192,217);
+	gotoxy(62,27);
+	printf("NAME");
+	drawBox(62,28,35,3,218,196,191,179,192,217);
+	gotoxy(100,27);
+	printf("PRICE");
+	drawBox(100,28,35,3,218,196,191,179,192,217);
+	gotoxy(62,32);
+	printf("DESCRIPTION");
+	drawBox(62,33,73,6,218,196,191,179,192,217);
+	gotoxy(86,41);
+	printf("Reset");
+	gotoxy(102,41);
+	printf("Save Changes");
+}
+
+void PkDeleteForm(){
+	drawBox(53,19,90,27,201,205,187,186,200,188);
+	gotoxy(62,22);
+	printf("BUNDLE ID");
+	drawBox(62,23,73,3,218,196,191,179,192,217);
+	gotoxy(62,27);
+	printf("NAME");
+	drawBox(62,28,35,3,218,196,191,179,192,217);
+	gotoxy(100,27);
+	printf("PRICE");
+	drawBox(100,28,35,3,218,196,191,179,192,217);
+	gotoxy(62,32);
+	printf("DESCRIPTION");
+	drawBox(62,33,73,6,218,196,191,179,192,217);
+	gotoxy(86,41);
+	printf("Reset");
+	gotoxy(106,41);
+	printf("Delete");
+}
+
+void BdDb(){
+	PrintFile("Asset/BUNDLEDB.txt",63,27);
+}
+
+void MnDb(){
+	PrintFile("Asset/MENUDB.txt",63,27);
+}
+
+void MnCreateForm(){
+	drawBox(53,20,90,25,201,205,187,186,200,188);
+	gotoxy(62,24);
+	printf("MENU ID");
+	drawBox(62,25,73,3,218,196,191,179,192,217);
+	gotoxy(62,29);
+	printf("NAME");
+	drawBox(62,30,73,3,218,196,191,179,192,217);
+	gotoxy(62,34);
+	printf("CATEGORY[UP/DOWN]");
+	drawBox(62,35,35,3,218,196,191,179,192,217);
+	gotoxy(100,34);
+	printf("PRICE");
+	drawBox(100,35,35,3,218,196,191,179,192,217);
+	gotoxy(86,41);
+	printf("Reset");
+	gotoxy(106,41);
+	printf("Saves");
+}
+
+
+void MnViewForm(){
+	drawBox(40,18,116,30,201,205,187,186,200,188);
+	drawBox(40,18,116,3,201,205,187,186,204,185);
+	gotoxy(44,19);
+	printf("MENU ID");
+	gotoxy(65,19);
+	printf("NAME");
+	gotoxy(89,19);
+	printf("CATEGORY");
+	gotoxy(110,19);
+	printf("PRICE");
+	gotoxy(140,19);
+	printf("STATUS");
+}
+
+
+void MnUpdateForm(){
+	drawBox(53,20,90,25,201,205,187,186,200,188);
+	gotoxy(62,24);
+	printf("MENU ID");
+	drawBox(62,25,73,3,218,196,191,179,192,217);
+	gotoxy(62,29);
+	printf("NAME");
+	drawBox(62,30,73,3,218,196,191,179,192,217);
+	gotoxy(62,34);
+	printf("CATEGORY[UP/DOWN]");
+	drawBox(62,35,35,3,218,196,191,179,192,217);
+	gotoxy(100,34);
+	printf("PRICE");
+	drawBox(100,35,35,3,218,196,191,179,192,217);
+	gotoxy(86,41);
+	printf("Reset");
+	gotoxy(102,41);
+	printf("Save Changes");
+}
+
+void MnDeleteForm(){
+	drawBox(53,20,90,25,201,205,187,186,200,188);
+	gotoxy(62,24);
+	printf("MENU ID");
+	drawBox(62,25,73,3,218,196,191,179,192,217);
+	gotoxy(62,29);
+	printf("NAME");
+	drawBox(62,30,73,3,218,196,191,179,192,217);
+	gotoxy(62,34);
+	printf("CATEGORY");
+	drawBox(62,35,35,3,218,196,191,179,192,217);
+	gotoxy(100,34);
+	printf("PRICE");
+	drawBox(100,35,35,3,218,196,191,179,192,217);
+	gotoxy(86,41);
+	printf("Reset");
+	gotoxy(106,41);
+	printf("Delete");
+}
+
+void FnDb(){
+	PrintFile("Asset/FINESDB.txt",63,27);
+}
+
+void FnCreateForm(){
+	drawBox(53,19,90,27,201,205,187,186,200,188);
+	gotoxy(62,23);
+	printf("FINES ID");
+	drawBox(62,24,73,3,218,196,191,179,192,217);
+	gotoxy(62,28);
+	printf("FINES CATEGORY");
+	drawBox(62,29,35,3,218,196,191,179,192,217);
+	gotoxy(100,28);
+	printf("VALUE");
+	drawBox(100,29,35,3,218,196,191,179,192,217);
+	gotoxy(62,33);
+	printf("DESCRIPTION");
+	drawBox(62,34,73,6,218,196,191,179,192,217);
+	gotoxy(86,41);
+	printf("Reset");
+	gotoxy(106,41);
+	printf("Saves");
+}
+
+void FnViewForm(){
+	drawBox(40,18,116,30,201,205,187,186,200,188);
+	drawBox(40,18,116,3,201,205,187,186,204,185);
+	gotoxy(44,19);
+	printf("FINES ID");
+	gotoxy(75,19);
+	printf("CATEGORY");
+	gotoxy(105,19);
+	printf("VALUE");
+	gotoxy(135,19);
+	printf("DESCRIPTION");
+}
+
+void FnUpdateForm(){
+	drawBox(53,19,90,27,201,205,187,186,200,188);
+	gotoxy(62,23);
+	printf("FINES ID");
+	drawBox(62,24,73,3,218,196,191,179,192,217);
+	gotoxy(62,28);
+	printf("FINES CATEGORY");
+	drawBox(62,29,35,3,218,196,191,179,192,217);
+	gotoxy(100,28);
+	printf("VALUE");
+	drawBox(100,29,35,3,218,196,191,179,192,217);
+	gotoxy(62,33);
+	printf("DESCRIPTION");
+	drawBox(62,34,73,6,218,196,191,179,192,217);
+	gotoxy(86,41);
+	printf("Reset");
+	gotoxy(101,41);
+	printf("Save Changes");
+}
+
+void FnDeleteForm(){
+	drawBox(53,19,90,27,201,205,187,186,200,188);
+	gotoxy(62,23);
+	printf("FINES ID");
+	drawBox(62,24,73,3,218,196,191,179,192,217);
+	gotoxy(62,28);
+	printf("FINES CATEGORY");
+	drawBox(62,29,35,3,218,196,191,179,192,217);
+	gotoxy(100,28);
+	printf("VALUE");
+	drawBox(100,29,35,3,218,196,191,179,192,217);
+	gotoxy(62,33);
+	printf("DESCRIPTION");
+	drawBox(62,34,73,6,218,196,191,179,192,217);
+	gotoxy(86,41);
+	printf("Reset");
+	gotoxy(104,41);
+	printf("Delete");
+}

@@ -15,7 +15,6 @@
 #include "config.h"
 #include "Master/Denda.h"
 #include "Master/Karyawan.h"
-#include "Master/Member.h"
 #include "Master/Kamar.h"
 #include "Master/Fasilitas.h"
 #include "Master/Menu.h"
@@ -31,11 +30,20 @@ int main(){
 
 	fullscreen();
 	dDashboard("Imam");
-	KrUpdateForm();
-//	ReadKry();
-//	CreateKry();
-//	DeleteKry();
-//	vLogin();
+	Dashboard();	
+	//box1
+	drawBox(57,26,25,7,201,205,187,186,200,188);
+	//box2
+	drawBox(86,26,25,7,201,205,187,186,200,188);
+	//box3
+	drawBox(115,26,25,7,201,205,187,186,200,188);
+	//box4
+	drawBox(57,34,25,7,201,205,187,186,200,188);
+	//box5
+	drawBox(86,34,25,7,201,205,187,186,200,188);
+	//box6
+	drawBox(115,34,25,7,201,205,187,186,200,188);
+//vLogin();
 //	default_res(w,h);
 
 //	pthread_t t1, t2;

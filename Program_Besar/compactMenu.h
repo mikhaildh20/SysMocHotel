@@ -62,7 +62,7 @@ void AdminMenArr(char uname[]){
 			
 		switch(selectedOption){
 			case 1:
-				MenuKamar();
+				MenuKamar();	
 			break;
 			case 2:
 				MenuFasilitas();
@@ -71,13 +71,13 @@ void AdminMenArr(char uname[]){
 				MenuKaryawan();
 			break;
 			case 4:
-					
+				MenuPaket();
 			break;
 			case 5:
-					
+				MenuMenu();	
 			break;
 			case 6:
-				
+				MenuDenda();
 			break;
 		}
 	}

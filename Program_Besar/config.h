@@ -209,9 +209,6 @@ void customClr(int width, int height, int x, int y){
     }
 }
 
-void clrMain(){
-	
-}
 
 void PrintFile(char file[], int x, int y)
 {
