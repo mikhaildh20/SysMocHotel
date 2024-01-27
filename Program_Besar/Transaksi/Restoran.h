@@ -110,7 +110,7 @@ void Tresto(){
 	fclose(fp1);
 	
 	fp = fopen("Dat/Tmp.dat","rb");
-	printf("Menu\t\tQty\t\tHarga\n");
+	printf("\nMenu\t\tQty\t\tHarga\n");
 	while(fread(&trr,sizeof(trr),1,fp)==1){
 		printf("%s\t\t%d\t\t%d\n",trr.item,trr.qty,trr.price);
 	}

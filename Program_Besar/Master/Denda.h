@@ -7,7 +7,7 @@ void CreateDnd(){
 			
 		fp = fopen("Dat/Denda.dat", "ab+");
 		if(fread(&dnd,sizeof(dnd),1,fp)==0){
-			pkt.id_paket = 1;
+			dnd.id_denda = 1;
 		}else{
 			while(!feof(fp)){
 				fread(&dnd,sizeof(dnd),1,fp);

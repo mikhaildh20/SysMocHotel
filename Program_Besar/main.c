@@ -21,6 +21,7 @@
 #include "Master/Paket.h"
 #include "Transaksi/Restoran.h"
 #include "Transaksi/Member.h"
+#include "Transaksi/Hotel.h"
 #include "login.h"
 #include "compactMenu.h"
 //#include "musicprep.h"
@@ -29,15 +30,15 @@
 int w,h;
 
 int main(){
-
+	Troom();
 //	fullscreen();
 //	Tmember();
 //	EXmember();
-	ReadTmember();
+//	ReadTmember();
 //	dDashboard("Imam");
 //	Dashboard();
 //getAvailableFnB();
-//Tresto();
+	//Tresto();
 //ReadTresto();	
 //	vLogin();
 //	default_res(w,h);

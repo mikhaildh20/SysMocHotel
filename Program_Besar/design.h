@@ -87,7 +87,7 @@ void dDashboard(char fname[]){
 		gotoxy(x,y);
 		printf("%c",219);
 	}
-	gotoxy(142,15);
+	gotoxy(133,15);
 	setPrsDate();
 	gotoxy(38,15);
 	printf("Welcome, %s", fname);

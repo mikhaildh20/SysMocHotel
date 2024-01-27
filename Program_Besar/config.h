@@ -243,6 +243,7 @@ void getTime(int *day,int *month, int *year){
     *year = localTime->tm_year + 1900;
 }
 
+
 int compareDates(pDate,pMonth,pYear,nDate,nMonth,nYear) {
     if (pYear < nYear)
         return -1;
@@ -283,11 +284,19 @@ int NIK_Check(const char *str_num1, const char *str_num2) {
 
 void setPrsDate(){
 	int date,month,year;
+	time_t currentTime = time(NULL);
+    struct tm *localTime = localtime(&currentTime);
+
+    // Get the current day of the week (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
+    int currentDayOfWeek = localTime->tm_wday;
+
+    // Array of day names
+    char dayNames[7][15] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 	getTime(&date,&month,&year);
 	char months[12][15] = {"January","February","March","April","May","June","July","August","September","October","November","December"};
 	char pMonth[10];
 	strcpy(pMonth,months[month-1]);
-	printf("%d %s %d",date,pMonth,year);
+	printf("%s, %d %s %d",dayNames[currentDayOfWeek],date,pMonth,year);
 }
 
 void clrDb(){

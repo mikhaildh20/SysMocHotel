@@ -1,4 +1,4 @@
-void getUnique(){
+void getMember(){
 	//mengambil nik dan telepon untuk cek validasi saat register
 	fp = fopen("Dat/Member.dat","rb");
 	i=0;
@@ -17,7 +17,7 @@ void Tmember(){
 	next:
 	
 	//import nik & no telp yang terdaftar untuk validasi
-	getUnique();
+	getMember();
 	
 	fp = fopen("Dat/Member.dat","ab+");
 	if(fread(&trm,sizeof(trm),1,fp)==0){
@@ -106,7 +106,7 @@ void Tmember(){
 void EXmember(){
 	goback:
 	tPayment = 50000;
-	getUnique();
+	getMember();
 	
 	invalid:
 	
