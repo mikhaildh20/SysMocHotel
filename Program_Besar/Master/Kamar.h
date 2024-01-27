@@ -838,7 +838,7 @@ void MenuKamar(){
 	PrintAdRoom();
 	while(1){
 		clrDb();
-		MnDb();
+		RmDb();
 		do {
 			clrMenArrow(12,28,18);
 	        switch(selectedOption){

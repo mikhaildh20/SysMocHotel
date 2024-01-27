@@ -3,6 +3,7 @@ void AdminMenArr(char uname[]){
 	dDashboard(uname);
     PrintAdMen();
     while(1){
+    	Dashboard();
     	if(selectedOption==7){
 			break;
 		}

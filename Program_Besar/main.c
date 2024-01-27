@@ -19,6 +19,7 @@
 #include "Master/Fasilitas.h"
 #include "Master/Menu.h"
 #include "Master/Paket.h"
+#include "Transaksi/Restoran.h"
 #include "login.h"
 #include "compactMenu.h"
 //#include "musicprep.h"
@@ -29,21 +30,12 @@ int w,h;
 int main(){
 
 	fullscreen();
-	dDashboard("Imam");
-	Dashboard();	
-	//box1
-	drawBox(57,26,25,7,201,205,187,186,200,188);
-	//box2
-	drawBox(86,26,25,7,201,205,187,186,200,188);
-	//box3
-	drawBox(115,26,25,7,201,205,187,186,200,188);
-	//box4
-	drawBox(57,34,25,7,201,205,187,186,200,188);
-	//box5
-	drawBox(86,34,25,7,201,205,187,186,200,188);
-	//box6
-	drawBox(115,34,25,7,201,205,187,186,200,188);
-//vLogin();
+//	dDashboard("Imam");
+//	Dashboard();
+//getAvailableFnB();
+//Tresto();
+ReadTresto();	
+//	vLogin();
 //	default_res(w,h);
 
 //	pthread_t t1, t2;

@@ -655,7 +655,7 @@ void UpdateMnu(){
 		if(EscPressed){
 			break;
 		}else{
-			gotoxy(66,25);
+			gotoxy(66,26);
 			printf("%03d",search);
 			fp = fopen("Dat/Menu.dat","rb");
 			while(fread(&mnu,sizeof(mnu),1,fp)==1){
@@ -695,7 +695,7 @@ void DeleteMnu(){
 		if(EscPressed){
 			break;
 		}else{
-			gotoxy(66,25);
+			gotoxy(66,26);
 			printf("%03d",search);
 			fp = fopen("Dat/Menu.dat","rb");
 			while(fread(&mnu,sizeof(mnu),1,fp)==1){

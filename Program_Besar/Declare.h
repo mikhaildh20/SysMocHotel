@@ -4,7 +4,7 @@ bool valid;
 bool MusicOn;
 bool delconf;
 bool updconf;
-int choose,j,i,search,ctg,x,y,pressed,selectedOption;
+int choose,j,i,search,ctg,x,y,pressed,selectedOption,tPayment;
 char cvrRp[10];
 char rStat[15];
 char sNIK[16];
@@ -34,16 +34,6 @@ typedef struct{
 	char no_telp[13];
 }Karyawan;
 Karyawan kry;
-
-typedef struct{
-	char fname[7];
-	char lname[7];
-	char NIK[16];
-	int expd, expm, expy;
-	char telephone[13];
-	int active_status;
-}Member;
-Member mbr;
 
 typedef struct{
 	int no_kamar;
@@ -86,3 +76,35 @@ typedef struct{
 	int yy;
 }presentDate;
 presentDate prdate;
+
+typedef struct{
+	int id;
+	char nama_karyawan[15];
+	int id_member;
+	int day,month,year;
+	char item[50];
+	int qty;
+	int price;
+	int total_price;
+}TransaksiResto;
+TransaksiResto trr;
+
+typedef struct{
+	char nama[50];
+	int harga;
+}vTresto;
+vTresto vtr[100];
+
+typedef struct{
+	int id;
+	char nama[15];
+	char telp[13];
+	char nik[16];
+}TransaksiMember;
+TransaksiMember trm;
+
+typedef struct{
+	char telp[13];
+	char nik[16];
+}vTmember;
+vTmember vtm[100];

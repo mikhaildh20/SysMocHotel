@@ -179,9 +179,105 @@ void PrintAdBundle(){
 	printf("Back");
 }
 
+void countRoomData(){
+	i = 0;
+	fp = fopen("Dat/Kamar.dat","rb");
+	while(fread(&kmr,sizeof(kmr),1,fp)==1){
+		i++;
+	}
+	fclose(fp);
+}
+
+void countFacilityData(){
+	i = 0;
+	fp = fopen("Dat/Fasilitas.dat","rb");
+	while(fread(&fsl,sizeof(fsl),1,fp)==1){
+		i++;
+	}
+	fclose(fp);
+}
+
+void countFinesData(){
+	i = 0;
+	fp = fopen("Dat/Denda.dat","rb");
+	while(fread(&dnd,sizeof(dnd),1,fp)==1){
+		i++;
+	}
+	fclose(fp);
+}
+
+void countBundleData(){
+	i = 0;
+	fp = fopen("Dat/Paket.dat","rb");
+	while(fread(&pkt,sizeof(pkt),1,fp)==1){
+		i++;
+	}
+	fclose(fp);
+}
+
+void countFoodData(){
+	i = 0;
+	fp = fopen("Dat/Menu.dat","rb");
+	while(fread(&mnu,sizeof(mnu),1,fp)==1){
+		i++;
+	}
+	fclose(fp);
+}
+
+void countEmployeeData(){
+	i = 0;
+	fp = fopen("Dat/Karyawan.dat","rb");
+	while(fread(&kry,sizeof(kry),1,fp)==1){
+		i++;
+	}
+	fclose(fp);
+}
 
 void Dashboard(){
-	PrintFile("Asset/DASHBOARD.txt",72,20);
+	drawBox(53,20,90,26,201,205,187,186,200,188);
+	PrintFile("Asset/DASHBOARD.txt",72,22);
+	//box1
+	drawBox(57,28,25,7,201,205,187,186,200,188);
+	//box2
+	drawBox(86,28,25,7,201,205,187,186,200,188);
+	//box3
+	drawBox(115,28,25,7,201,205,187,186,200,188);
+	//box4
+	drawBox(57,36,25,7,201,205,187,186,200,188);
+	//box5
+	drawBox(86,36,25,7,201,205,187,186,200,188);
+	//box6
+	drawBox(115,36,25,7,201,205,187,186,200,188);
+	gotoxy(67,30);
+	printf("ROOMS");
+	countRoomData();
+	gotoxy(68,31);
+	printf("%03d",i);
+	gotoxy(94,30);	
+	printf("FACILITIES");
+	countFacilityData();
+	gotoxy(97,31);
+	printf("%03d",i);
+	gotoxy(125,30);	
+	printf("FINES");
+	countFinesData();
+	gotoxy(126,31);
+	printf("%03d",i);
+	gotoxy(66,38);
+	printf("BUNDLES");
+	countBundleData();
+	gotoxy(68,39);
+	printf("%03d",i);
+	gotoxy(96,38);
+	printf("FnB's");
+	countFoodData();
+	gotoxy(97,39);
+	printf("%03d",i);
+	gotoxy(123,38);
+	printf("EMPLOYEES");
+	countEmployeeData();
+	gotoxy(126,39);
+	printf("%03d",i);
 }
 
 void PrintAdFines(){

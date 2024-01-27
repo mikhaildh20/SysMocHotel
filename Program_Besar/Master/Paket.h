@@ -574,7 +574,7 @@ void UpdatePkt(){
 		if(EscPressed){
 			break;
 		}else{
-			gotoxy(66,25);
+			gotoxy(66,24);
 			printf("%03d",search);
 			fp = fopen("Dat/Paket.dat","rb");
 			while(fread(&pkt,sizeof(pkt),1,fp)==1){
@@ -614,7 +614,7 @@ void DeletePkt(){
 		if(EscPressed){
 			break;
 		}else{
-			gotoxy(66,25);
+			gotoxy(66,24);
 			printf("%03d",search);
 			fp = fopen("Dat/Paket.dat","rb");
 			while(fread(&pkt,sizeof(pkt),1,fp)==1){

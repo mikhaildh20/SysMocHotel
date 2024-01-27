@@ -796,7 +796,7 @@ void UpdateKry(){
 		if(EscPressed){
 			break;
 		}else{
-			gotoxy(66,25);
+			gotoxy(66,27);
 			printf("%03d",search);
 			fp = fopen("Dat/Karyawan.dat","rb");
 			while(fread(&kry,sizeof(kry),1,fp)==1){
@@ -836,7 +836,7 @@ void DeleteKry(){
 		if(EscPressed){
 			break;
 		}else{
-			gotoxy(66,25);
+			gotoxy(66,27);
 			printf("%03d",search);
 			fp = fopen("Dat/Karyawan.dat","rb");
 			while(fread(&kry,sizeof(kry),1,fp)==1){
