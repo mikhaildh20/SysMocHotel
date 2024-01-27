@@ -24,7 +24,6 @@ void getAvailableFnB(){
 }
 
 void Tresto(){
-	int bayar,kembali;
 	//pesanan selanjutnya
 	next:	
 	remove("Dat/Tmp.dat");
@@ -104,9 +103,7 @@ void Tresto(){
 	while(fread(&trr,sizeof(trr),1,fp1)==1){
 		strcpy(trr.nama_karyawan,"Imam");
 		trr.total_price = tPayment;
-		trr.day = 27;
-		trr.month = 1;
-		trr.year = 2024;
+		getTime(&trr.day,&trr.month,&trr.year);
 		fwrite(&trr,sizeof(trr),1,tmp);
 	}
 	fclose(tmp);

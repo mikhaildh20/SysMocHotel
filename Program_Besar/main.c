@@ -20,6 +20,7 @@
 #include "Master/Menu.h"
 #include "Master/Paket.h"
 #include "Transaksi/Restoran.h"
+#include "Transaksi/Member.h"
 #include "login.h"
 #include "compactMenu.h"
 //#include "musicprep.h"
@@ -29,12 +30,14 @@ int w,h;
 
 int main(){
 
-	fullscreen();
+//	fullscreen();
+//	Tmember();
+//	ReadTmember();
 //	dDashboard("Imam");
 //	Dashboard();
 //getAvailableFnB();
 //Tresto();
-ReadTresto();	
+//ReadTresto();	
 //	vLogin();
 //	default_res(w,h);
 

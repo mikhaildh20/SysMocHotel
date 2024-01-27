@@ -4,7 +4,7 @@ bool valid;
 bool MusicOn;
 bool delconf;
 bool updconf;
-int choose,j,i,search,ctg,x,y,pressed,selectedOption,tPayment;
+int choose,j,i,search,ctg,x,y,pressed,selectedOption,tPayment,bayar,lama;
 char cvrRp[10];
 char rStat[15];
 char sNIK[16];
@@ -18,26 +18,26 @@ FILE *tmp;
 
 typedef struct{
 	int id_denda;
-	char category[15];
+	char category[30];
 	int nominal;
-	char ket[40];
+	char ket[80];
 }Denda;
 Denda dnd;
 
 typedef struct{
 	int id_karyawan;
-	char username[10];
-	char password[10];
-	char fname[10];
-	char lname[10];
-	char role[15];
-	char no_telp[13];
+	char username[30];
+	char password[30];
+	char fname[30];
+	char lname[30];
+	char role[30];
+	char no_telp[25];
 }Karyawan;
 Karyawan kry;
 
 typedef struct{
 	int no_kamar;
-	char tipe_kamar[15];
+	char tipe_kamar[30];
 	int harga;
 	int lantai;
 	int status;
@@ -46,7 +46,7 @@ Kamar kmr;
 
 typedef struct{
 	int id_fasilitas;
-	char nama[15];
+	char nama[30];
 	int harga;
 	int status;
 }Fasilitas;
@@ -54,8 +54,8 @@ Fasilitas fsl;
 
 typedef struct{
 	int id_menu;
-	char nama[15];
-	char category[10];
+	char nama[30];
+	char category[30];
 	int harga;
 	int status;
 }Menu;
@@ -63,7 +63,7 @@ Menu mnu;
 
 typedef struct{
 	int id_paket;
-	char nama[20];
+	char nama[30];
 	int harga;
 	char desc[30];
 	int status;
@@ -79,7 +79,7 @@ presentDate prdate;
 
 typedef struct{
 	int id;
-	char nama_karyawan[15];
+	char nama_karyawan[30];
 	int id_member;
 	int day,month,year;
 	char item[50];
@@ -97,14 +97,20 @@ vTresto vtr[100];
 
 typedef struct{
 	int id;
-	char nama[15];
-	char telp[13];
-	char nik[16];
+	char nama_karyawan[30];
+	char nama[30];
+	char nik[25];
+	char telp[25];
+	int jdate,jmonth,jyear;
+	int xdate,xmonth,xyear;
+	int total_harga;
+	int status;
 }TransaksiMember;
 TransaksiMember trm;
 
 typedef struct{
-	char telp[13];
-	char nik[16];
+	int term;
+	char telp[25];
+	char nik[25];
 }vTmember;
 vTmember vtm[100];
