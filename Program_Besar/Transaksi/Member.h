@@ -104,8 +104,8 @@ void Tmember(){
 }
 
 void EXmember(){
+	goback:
 	tPayment = 50000;
-	
 	getUnique();
 	
 	invalid:
@@ -134,6 +134,7 @@ void EXmember(){
 					trm.status = 1;
 				}
 				tPayment*=lama;
+				trm.total_harga+=tPayment;
 				kurang:
 				printf("\nTotal Bayar\t: %d\n",tPayment);
 				printf("Pembayaran\t: ");scanf("%d",&bayar);
@@ -166,9 +167,9 @@ void EXmember(){
 			rename("Dat/Tmp.dat","Dat/Member.dat");	
 		}
 	}else{
-		printf("ID Tidak ada");
+		printf("\nID Tidak ada\n");
 	}
-	goto invalid;
+	goto goback;
 }
 
 void ReadTmember(){

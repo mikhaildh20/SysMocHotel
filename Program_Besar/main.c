@@ -32,7 +32,8 @@ int main(){
 
 //	fullscreen();
 //	Tmember();
-//	ReadTmember();
+//	EXmember();
+	ReadTmember();
 //	dDashboard("Imam");
 //	Dashboard();
 //getAvailableFnB();
