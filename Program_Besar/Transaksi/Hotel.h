@@ -156,6 +156,7 @@ void Troom(){
 	if(!found){
 		//10 NAMA non Member
 		printf("\nNama\t: ");getletter(trh.nama,15);
+		strupr(trh.nama);
 	}else{
 		printf("\nNama\t: %s",trh.nama);
 		discount = (trh.sisa_harga*15)/100;
@@ -314,6 +315,7 @@ Tfacil(){
 	if(!found){
 		//10 NAMA non Member
 		printf("\nNama\t: ");getletter(trhf.nama,15);
+		strupr(trhf.nama);
 	}else{
 		printf("\nNama\t: %s",trhf.nama);
 		discount = (trhf.sisa_harga*15)/100;
@@ -361,7 +363,7 @@ Tfacil(){
 void ReadTroom(){
 	fp = fopen("Dat/HotelRoom.dat","rb");
 	while(fread(&trh,sizeof(trh),1,fp)==1){
-		printf("TRK%03d\t%s\tKMR%03d\t%s\t%s\t%02d/%02d/%d\t%s\t%d\tDND%03d\t%d\t%d\t%d\t%s\t%s\n",trh.id,trh.nama_karyawan,trh.no_kamar,trh.NIK,trh.nama,trh.Checkin.tgl,trh.Checkin.bulan,trh.Checkin.tahun,trh.type,trh.LamaSewa,trh.denda,trh.dp,trh.sisa_harga,trh.total_harga,trh.status,trh.pelunasan);
+		printf("TRK%03d\t%s\tKMR%03d\t%s\t%s\t%02d/%02d/%d\t%s\t%d\tDND%03d\t%d\t%d\t%d\t%s\t%s\n",trh.id,trh.nama_karyawan,trh.no_kamar,trh.NIK,trh.nama,trh.Checkin.tgl,trh.Checkin.bulan,trh.Checkin.tahun,trh.type,trh.LamaSewa,trh.id_denda,trh.dp,trh.sisa_harga,trh.total_harga,trh.status,trh.pelunasan);
 	}
 	fclose(fp);
 }
@@ -369,7 +371,7 @@ void ReadTroom(){
 void ReadTfacil(){
 	fp = fopen("Dat/HotelFacility.dat","rb");
 	while(fread(&trhf,sizeof(trhf),1,fp)==1){
-		printf("TRK%03d\t%s\tFCL%03d\t%s\t%s\t%02d/%02d/%d\t%s\t%d\tDND%03d\t%d\t%d\t%d\t%s\t%s\n",trhf.id,trhf.nama_karyawan,trhf.id_fasilitas,trhf.NIK,trhf.nama,trhf.Checkin.tgl,trhf.Checkin.bulan,trhf.Checkin.tahun,trhf.type,trhf.LamaSewa,trhf.denda,trhf.dp,trhf.sisa_harga,trhf.total_harga,trhf.status,trhf.pelunasan);
+		printf("TRK%03d\t%s\tFCL%03d\t%s\t%s\t%02d/%02d/%d\t%s\t%d\tDND%03d\t%d\t%d\t%d\t%s\t%s\n",trhf.id,trhf.nama_karyawan,trhf.id_fasilitas,trhf.NIK,trhf.nama,trhf.Checkin.tgl,trhf.Checkin.bulan,trhf.Checkin.tahun,trhf.type,trhf.LamaSewa,trhf.id_denda,trhf.dp,trhf.sisa_harga,trhf.total_harga,trhf.status,trhf.pelunasan);
 	}
 	fclose(fp);
 }
@@ -496,13 +498,14 @@ void CheckoutRoom(){
 	if(found){
 		if(strcmp(trh.status,"CHECKIN")!=0){
 			if(strcmp(trh.status,"RESERVED")==0){
-				printf("\nID dengan TRK%03d masih berstatus %s silahkan checkin terlebih dahulu",trh.status);
+				printf("\nID dengan TRK%03d masih berstatus %s silahkan checkin terlebih dahulu",trh.id,trh.status);
 			}else{
-				printf("\nID dengan TRK%03d sudah %s",trh.status);	
+				printf("\nID dengan TRK%03d sudah %s",trh.id,trh.status);	
 			}
 			goto checkout;
 		}
 		
+	lewat = 0;
 	
 	//selisih hari
 	dayDifference(trh.Checkout.tgl,trh.Checkout.bulan,trh.Checkout.tahun,&lewat);
@@ -510,7 +513,7 @@ void CheckoutRoom(){
 	tTambahan = 0;
 	
 	//menghitung biaya tambahan jika telat checkout
-	if(lewat!=0){
+	if(lewat>0){
 		fp = fopen("Dat/Kamar.dat","rb");
 		while(fread(&kmr,sizeof(kmr),1,fp)==1){
 			if(trh.no_kamar==kmr.no_kamar){
@@ -520,9 +523,10 @@ void CheckoutRoom(){
 		}
 		fclose(fp);	
 		tTambahan*=lewat;
-		trh.sisa_harga+=tTambahan;
-		trh.total_harga+=tTambahan;
 	}
+	
+	trh.sisa_harga+=tTambahan;
+	trh.total_harga+=tTambahan;
 	
 	//opsi jika ada denda
 	while(1){
@@ -534,6 +538,8 @@ void CheckoutRoom(){
 	
 	//input denda
 	if(choose == 1){
+		trh.nominal_denda = 0;
+		
 		inputDenda:
 	
 		found = false;
@@ -541,8 +547,8 @@ void CheckoutRoom(){
 		for(i=0;vth[i].id!=0;i++){
 			if(trh.id_denda==vth[i].id){
 				found = true;
-				strcpy(trh.nama_dnd,dnd.category);
-				trh.nominal_denda = dnd.nominal;
+				strcpy(trh.nama_dnd,vth[i].nama);
+				trh.nominal_denda = vth[i].harga;
 				break;	
 			}
 		}
@@ -556,8 +562,8 @@ void CheckoutRoom(){
 		}
 	}
 	
-	//pembayaran jika ada tagihan tambahan seperti denda telat checkout atau dena lain lain	
-	if(trh.sisa_harga!=0){
+	//pembayaran jika ada tagihan tambahan seperti denda telat checkout atau dena lain
+	if(trh.sisa_harga>0){
 		
 		pembayaran:
 		
@@ -575,20 +581,21 @@ void CheckoutRoom(){
 			printf("Pembayaran berhasil\n");
 			printf("Kembali\t: %d",bayar);
 		}
+	}else{
+		while(1){
+			printf("\nCheckout sekarang?[1]Ya[2]Tidak");scanf("%d",&choose);
+			if(choose==1 || choose==2){
+				break;
+			}	
+		}
+		if(choose==2){
+			goto checkout;
+		}	
 	}
 	
 	//ubah status menjadi lunas setelah pembayaran
 	if(strcmp(trh.pelunasan,"Belum Lunas")==0){
 		strcpy(trh.pelunasan,"Lunas");
-	}
-	
-	akhir:
-	
-	printf("\nCheckout sekarang?[1]Ya[2]Tidak");scanf("%d",&choose);
-	if(choose!=1 || choos!=2){
-		goto akhir;
-	}else if(choose==2){
-		goto checkout;
 	}
 	
 	DateTimeNow(&trh.CustOut);
