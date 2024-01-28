@@ -30,14 +30,14 @@
 int w,h;
 
 int main(){
-
 //fullscreen();	
 //	Tfacil();
+//	ReadTfacil();
+//	CheckinFacility();
 //	Troom();
 //ReadTroom();
 //CheckinRoom();
 
-//ReadTfacil();
 //	Tmember();
 //	EXmember();
 //	ReadTmember();

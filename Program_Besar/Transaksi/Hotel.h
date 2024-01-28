@@ -26,9 +26,21 @@ void getFacility(){
 	fclose(fp);
 }
 
+void getFines(){
+	fp = fopen("Dat/Denda.dat","rb");
+	i=0;
+	while(fread(&dnd,sizeof(dnd),1,fp)==1){
+		vth[i].id=dnd.id_denda;
+		strcpy(vth[i].nama,dnd.category);
+		vth[i].harga=dnd.nominal;
+		i++;
+	}
+	fclose(fp);
+}
+
 TransaksiHotel trTemp;
 TransaksiHotelf trTempf;
-DateTime TglPesan,TglKamar,TglFasil;
+DateTime TglPesan,TglKamar,TglFasil,TglKeluar;
 
 void Troom(){
 	next:
@@ -332,7 +344,7 @@ Tfacil(){
 		trhf.sisa_harga = 0;
 		printf("\nPembayaran berhasil\n");
 		printf("\nKembali\t: %d",kembali);
-		strcpy(trh.pelunasan,"Lunas");
+		strcpy(trhf.pelunasan,"Lunas");
 	}
 	sleep(2);
 	//12 pelunasan
@@ -425,6 +437,7 @@ void CheckinFacility(){
 	}
 	fclose(fp);
 	
+	//mengambil localtime saat ini
 	DateTimeNow(&Now);
 	
 	if(!found){
@@ -458,4 +471,144 @@ void CheckinFacility(){
 		printf("\nHarap Checkin sesuai tanggal yang ditentukan!");
 		goto goback;
 	}
+}
+
+void CheckoutRoom(){
+	//import denda yang tersedia
+	getFines();
+	
+	//checkpoint
+	checkout:
+	
+	//id transaksi
+	found = false;
+	printf("\nID Transaksi\t: TRK");getnummin(&search,1,3);
+	fp = fopen("Dat/HotelRoom.dat","rb");
+	while(fread(&trh,sizeof(trh),1,fp)==1){
+		if(search==trh.id){
+			found = true;
+			break;
+		}
+	}
+	fclose(fp);
+	
+	//cek status
+	if(found){
+		if(strcmp(trh.status,"CHECKIN")!=0){
+			if(strcmp(trh.status,"RESERVED")==0){
+				printf("\nID dengan TRK%03d masih berstatus %s silahkan checkin terlebih dahulu",trh.status);
+			}else{
+				printf("\nID dengan TRK%03d sudah %s",trh.status);	
+			}
+			goto checkout;
+		}
+		
+	
+	//selisih hari
+	dayDifference(trh.Checkout.tgl,trh.Checkout.bulan,trh.Checkout.tahun,&lewat);
+	
+	tTambahan = 0;
+	
+	//menghitung biaya tambahan jika telat checkout
+	if(lewat!=0){
+		fp = fopen("Dat/Kamar.dat","rb");
+		while(fread(&kmr,sizeof(kmr),1,fp)==1){
+			if(trh.no_kamar==kmr.no_kamar){
+				tTambahan = kmr.harga;
+				break;
+			}
+		}
+		fclose(fp);	
+		tTambahan*=lewat;
+		trh.sisa_harga+=tTambahan;
+		trh.total_harga+=tTambahan;
+	}
+	
+	//opsi jika ada denda
+	while(1){
+		printf("\nDenda?[1]Ya[2]Tidak");scanf("%d",&choose);
+		if(choose == 1 || choose ==2 ){
+			break;
+		}
+	}
+	
+	//input denda
+	if(choose == 1){
+		inputDenda:
+	
+		found = false;
+		printf("ID Denda\t: DND");getnummin(&trh.id_denda,1,3);
+		for(i=0;vth[i].id!=0;i++){
+			if(trh.id_denda==vth[i].id){
+				found = true;
+				strcpy(trh.nama_dnd,dnd.category);
+				trh.nominal_denda = dnd.nominal;
+				break;	
+			}
+		}
+		
+		trh.sisa_harga+=trh.nominal_denda;
+		trh.total_harga+=trh.nominal_denda;
+		
+		if(!found){
+			printf("\nId Denda tidak ada");
+			goto inputDenda;
+		}
+	}
+	
+	//pembayaran jika ada tagihan tambahan seperti denda telat checkout atau dena lain lain	
+	if(trh.sisa_harga!=0){
+		
+		pembayaran:
+		
+		printf("\nTotal Pembayaran\t: %d",trh.sisa_harga);
+		printf("\nPembayaran\t: ");scanf("%d",&bayar);
+		if(bayar<trh.sisa_harga){
+			printf("Uang kurang");
+			goto pembayaran;
+		}else if(bayar==trh.sisa_harga){
+			printf("Pembayaran berhasil");
+			trh.sisa_harga-=bayar;
+		}else if(bayar>trh.sisa_harga){
+			bayar-=trh.sisa_harga;
+			trh.sisa_harga = 0;
+			printf("Pembayaran berhasil\n");
+			printf("Kembali\t: %d",bayar);
+		}
+	}
+	
+	//ubah status menjadi lunas setelah pembayaran
+	if(strcmp(trh.pelunasan,"Belum Lunas")==0){
+		strcpy(trh.pelunasan,"Lunas");
+	}
+	
+	akhir:
+	
+	printf("\nCheckout sekarang?[1]Ya[2]Tidak");scanf("%d",&choose);
+	if(choose!=1 || choos!=2){
+		goto akhir;
+	}else if(choose==2){
+		goto checkout;
+	}
+	
+	DateTimeNow(&trh.CustOut);
+	printf("Berhasil Checkout pada %02d:%02d:%02d WIB %02d/%02d/%d",trh.CustOut.hour,trh.CustOut.min,trh.CustOut.sec,trh.CustOut.tgl,trh.CustOut.bulan,trh.CustOut.tahun);
+	strcpy(trh.status,"CHECKOUT");
+	
+	fp = fopen("Dat/HotelRoom.dat","rb");
+	tmp = fopen("Dat/Tmp.dat","wb");
+	fwrite(&trh,sizeof(trh),1,tmp);
+	while(fread(&trh,sizeof(trh),1,fp)==1){
+		if(trh.id!=search){
+			fwrite(&trh,sizeof(trh),1,tmp);
+		}	
+	}
+	fclose(tmp);
+	fclose(fp);
+	remove("Dat/HotelRoom.dat");
+	rename("Dat/Tmp.dat","Dat/HotelRoom.dat");
+	}else{
+		printf("\nID Transaksi tidak ada");
+	}
+	goto checkout;
 }
