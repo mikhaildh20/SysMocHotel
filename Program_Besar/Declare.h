@@ -4,7 +4,7 @@ bool valid;
 bool MusicOn;
 bool delconf;
 bool updconf;
-int choose,j,i,search,ctg,x,y,pressed,selectedOption,tPayment,bayar,lama,downpay,discount;
+int choose,j,i,search,ctg,x,y,pressed,selectedOption,tPayment,bayar,lama,downpay,discount,kembali;
 char cvrRp[10];
 char rStat[15];
 char sNIK[16];
@@ -142,6 +142,25 @@ typedef struct{
 	char pelunasan[20];
 }TransaksiHotel;
 TransaksiHotel trh;
+
+typedef struct{
+	int id;
+	char nama_karyawan[30];
+	int id_fasilitas;
+	char NIK[25];
+	char nama[35];
+	DateTime Checkin,Checkout;
+	DateTime CustIn,CustOut;
+	char type[20];
+	int LamaSewa;
+	int denda;
+	int dp;
+	int sisa_harga;
+	int total_harga;
+	char status[20];
+	char pelunasan[20];
+}TransaksiHotelf;
+TransaksiHotelf trhf;
 
 typedef struct{
 	int id;
