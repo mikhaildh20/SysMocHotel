@@ -18,13 +18,7 @@ void CreateMnu(){
 		}
 		
 		gotoxy(63,26);
-		if(mnu.id_menu<10){
-			printf("MNU00%d",mnu.id_menu);
-		}else if(mnu.id_menu>=10){
-			printf("MNU0%d",mnu.id_menu);
-		}else{
-			printf("MNU%d",mnu.id_menu);	
-		}
+		printf("MNU%03d",mnu.id_menu);
 		
 		reset:
 		
@@ -339,7 +333,7 @@ void UpdateCategoryMnu(){
 		updconf = false;
 		goback:
 		fp = fopen("Dat/Menu.dat","rb");
-		tmp = fopen("Dat/Menu.dat", "wb");
+		tmp = fopen("Dat/Tmp.dat", "wb");
 		while(fread(&mnu,sizeof(mnu),1,fp)==1){
 			if(search==mnu.id_menu){
 			selectedOption = 1;

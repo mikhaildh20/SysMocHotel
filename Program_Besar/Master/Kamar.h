@@ -18,13 +18,7 @@ void CreateKmr(){
 		}
 		
 		gotoxy(63,25);
-		if(kmr.no_kamar<10){
-			printf("KMR00%d",kmr.no_kamar);
-		}else if(kmr.no_kamar>=10){
-			printf("KMR0%d",kmr.no_kamar);
-		}else{
-			printf("KMR%d",kmr.no_kamar);	
-		}
+		printf("KMR%03d",kmr.no_kamar);
 		
 		reset:
 		

@@ -18,13 +18,7 @@ void CreatePkt(){
 		}
 		
 		gotoxy(63,24);
-		if(pkt.id_paket<10){
-			printf("BDL00%d",pkt.id_paket);
-		}else if(pkt.id_paket>=10){
-			printf("BDL0%d",pkt.id_paket);
-		}else{
-			printf("BDL%d",pkt.id_paket);	
-		}
+		printf("BDL%03d",pkt.id_paket);
 		
 		reset:
 		

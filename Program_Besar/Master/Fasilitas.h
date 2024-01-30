@@ -17,13 +17,7 @@ void CreateFsl(){
 			}
 		}
 		gotoxy(63,25);
-		if(fsl.id_fasilitas<10){
-			printf("FCL00%d",fsl.id_fasilitas);
-		}else if(fsl.id_fasilitas>=10){
-			printf("FCL0%d",fsl.id_fasilitas);
-		}else{
-			printf("FCL%d",fsl.id_fasilitas);	
-		}
+		printf("FCL%03d",fsl.id_fasilitas);
 		
 		reset:
 		

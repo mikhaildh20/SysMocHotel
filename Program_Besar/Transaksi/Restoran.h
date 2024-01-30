@@ -82,7 +82,7 @@ void Tresto(){
 	
 	printf("\nLagi??[0]no[1]yes: ");getnummin(&choose,1,1);
 	while(1){
-		if(choose ==1){
+		if(choose == 1){
 			goto again;
 		}else if(choose == 0){
 			fclose(tmp);

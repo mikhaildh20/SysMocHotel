@@ -18,13 +18,7 @@ void CreateDnd(){
 		}
 		
 		gotoxy(63,25);
-		if(dnd.id_denda<10){
-			printf("FNE00%d",dnd.id_denda);
-		}else if(dnd.id_denda>=10){
-			printf("FNE0%d",dnd.id_denda);
-		}else{
-			printf("FNE%d",dnd.id_denda);	
-		}
+		printf("FNE%03d",dnd.id_denda);
 		
 		reset:
 		

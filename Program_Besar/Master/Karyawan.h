@@ -18,13 +18,7 @@ void CreateKry(){
 		}
 		
 		gotoxy(63,23);
-		if(kry.id_karyawan<10){
-			printf("EMP00%d",kry.id_karyawan);
-		}else if(kry.id_karyawan>=10){
-			printf("EMP0%d",kry.id_karyawan);
-		}else{
-			printf("EMP%d",kry.id_karyawan);	
-		}
+		printf("EMP%03d",kry.id_karyawan);
 		
 		reset:
 		

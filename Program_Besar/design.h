@@ -339,7 +339,7 @@ void PrintAdUpMenu(){
 	gotoxy(12,20);
 	printf("Price");
 	gotoxy(12,22);
-	printf("Desc");
+	printf("Category");
 	gotoxy(12,24);
 	printf("Back");
 }
@@ -840,20 +840,244 @@ void FnUpdateForm(){
 
 void FnDeleteForm(){
 	drawBox(53,19,90,27,201,205,187,186,200,188);
-	gotoxy(62,23);
-	printf("FINES ID");
-	drawBox(62,24,73,3,218,196,191,179,192,217);
-	gotoxy(62,28);
-	printf("FINES CATEGORY");
-	drawBox(62,29,35,3,218,196,191,179,192,217);
-	gotoxy(100,28);
-	printf("VALUE");
-	drawBox(100,29,35,3,218,196,191,179,192,217);
-	gotoxy(62,33);
-	printf("DESCRIPTION");
-	drawBox(62,34,73,6,218,196,191,179,192,217);
-	gotoxy(86,41);
-	printf("Reset");
-	gotoxy(104,41);
-	printf("Delete");
+	gotoxy(62,23);printf("FINES ID");drawBox(62,24,73,3,218,196,191,179,192,217);
+	gotoxy(62,28);printf("FINES CATEGORY");drawBox(62,29,35,3,218,196,191,179,192,217);
+	gotoxy(100,28);printf("VALUE");drawBox(100,29,35,3,218,196,191,179,192,217);
+	gotoxy(62,33);printf("DESCRIPTION");drawBox(62,34,73,6,218,196,191,179,192,217);
+	gotoxy(86,41);printf("Reset");
+	gotoxy(104,41);printf("Delete");
+}
+
+void RReserveForm(){
+	drawBox(46,20,104,25,201,205,187,186,200,188);
+	gotoxy(54,22);printf("-- R E S E R V A T I O N --");
+	gotoxy(54,24);printf("RESERVE ID"); gotoxy(68,24);printf(": TRK");
+	gotoxy(54,26);printf("CHECKIN"); gotoxy(68,26);printf(":    -    -        (DD-MM-YY)");
+	gotoxy(54,28);printf("DURATION");gotoxy(68,28);printf(":     DAY(S)");
+	gotoxy(54,30);printf("CHECKOUT");gotoxy(68,30);printf(":    -    -        (DD-MM-YY)");
+	gotoxy(54,32);printf("ROOM ID");gotoxy(68,32);printf(": KMR");
+	gotoxy(54,34);printf("TYPE");gotoxy(68,34);printf(": ");
+	gotoxy(54,38);printf("-- C U S T O M E R  D E T A I L S --");
+	gotoxy(54,40);printf("NIK");gotoxy(68,40);printf(": ");
+	gotoxy(54,42);printf("NAME");gotoxy(68,42);printf(": ");
+	gotoxy(102,22);printf("-- T O T A L  P A Y M E N T --");
+	gotoxy(102,24);printf("TOTAL");gotoxy(116,24);printf(": Rp");
+	gotoxy(102,26);printf("DOWN PAYMENT");gotoxy(116,26);printf(": Rp");
+	gotoxy(102,34);printf("-- P A Y M E N T --");
+	gotoxy(102,36);printf("PAY");gotoxy(116,36);printf(": Rp");
+	gotoxy(102,38);printf("DEBT");gotoxy(116,38);printf(": Rp");
+	gotoxy(102,40);printf("CHANGE");gotoxy(116,40);printf(": Rp");
+}
+
+void FReserveForm(){
+	drawBox(46,20,104,25,201,205,187,186,200,188);
+	gotoxy(54,22);printf("-- R E S E R V A T I O N --");
+	gotoxy(54,24);printf("RESERVE ID"); gotoxy(68,24);printf(": TRF");
+	gotoxy(54,26);printf("CHECKIN"); gotoxy(68,26);printf(":    -    -        (DD-MM-YY)");
+	gotoxy(54,28);printf("DURATION");gotoxy(68,28);printf(":     DAY(S)");
+	gotoxy(54,30);printf("CHECKOUT");gotoxy(68,30);printf(":    -    -        (DD-MM-YY)");
+	gotoxy(54,32);printf("ROOM ID");gotoxy(68,32);printf(": FCL");
+	gotoxy(54,34);printf("TYPE");gotoxy(68,34);printf(": ");
+	gotoxy(54,38);printf("-- C U S T O M E R  D E T A I L S --");
+	gotoxy(54,40);printf("NIK");gotoxy(68,40);printf(": ");
+	gotoxy(54,42);printf("NAME");gotoxy(68,42);printf(": ");
+	gotoxy(102,22);printf("-- T O T A L  P A Y M E N T --");
+	gotoxy(102,24);printf("TOTAL");gotoxy(116,24);printf(": Rp");
+	gotoxy(102,26);printf("DOWN PAYMENT");gotoxy(116,26);printf(": Rp");
+	gotoxy(102,34);printf("-- P A Y M E N T --");
+	gotoxy(102,36);printf("PAY");gotoxy(116,36);printf(": Rp");
+	gotoxy(102,38);printf("DEBT");gotoxy(116,38);printf(": Rp");
+	gotoxy(102,40);printf("CHANGE");gotoxy(116,40);printf(": Rp");
+}
+
+void clrRReserve(){
+	//clr reservasi
+	gotoxy(70,26);printf("  ");gotoxy(75,26);printf("  ");gotoxy(80,26);printf("    ");
+	gotoxy(70,28);printf("   ");
+	gotoxy(70,30);printf("  ");gotoxy(75,30);printf("  ");gotoxy(80,30);printf("    ");
+	gotoxy(70,32);printf("KMR   ");
+	gotoxy(70,34);printf("              ");
+}
+
+void clrFReserve(){
+	//clr reservasi
+	gotoxy(70,26);printf("  ");gotoxy(75,26);printf("  ");gotoxy(80,26);printf("    ");
+	gotoxy(70,28);printf("   ");
+	gotoxy(70,30);printf("  ");gotoxy(75,30);printf("  ");gotoxy(80,30);printf("    ");
+	gotoxy(70,32);printf("FCL   ");
+	gotoxy(70,34);printf("              ");
+}
+
+void clrAllReserve(){
+	//clr reservasi
+	gotoxy(73,24);printf("   ");
+	gotoxy(70,26);printf("  ");gotoxy(75,26);printf("  ");gotoxy(80,26);printf("    ");
+	gotoxy(70,28);printf("   ");
+	gotoxy(70,30);printf("  ");gotoxy(75,30);printf("  ");gotoxy(80,30);printf("    ");
+	gotoxy(73,32);printf("   ");
+	gotoxy(70,34);printf("              ");
+	
+	//clr detail cust
+	gotoxy(70,40);printf("                ");
+	gotoxy(70,42);printf("               ");
+	
+	//clr tpayment
+	gotoxy(120,24);printf("          ");
+	gotoxy(120,26);printf("          ");
+	
+	//clr payment
+	gotoxy(120,36);printf("          ");
+	gotoxy(120,38);printf("          ");
+	gotoxy(120,40);printf("          ");
+}
+
+void clrRCheckin(){
+	//rsv dtl
+	gotoxy(73,25);printf("    ");
+	gotoxy(70,27);printf("  ");gotoxy(75,27);printf("  ");gotoxy(80,27);printf("     ");
+	gotoxy(70,29);printf("  ");gotoxy(75,29);printf("  ");gotoxy(80,29);printf("     ");
+	gotoxy(73,31);printf("    ");
+	gotoxy(70,33);printf("               ");
+}
+
+void clrAllCheckin(){
+	//rsv dtl
+	gotoxy(73,25);printf("    ");
+	gotoxy(70,27);printf("  ");gotoxy(75,27);printf("  ");gotoxy(80,27);printf("     ");
+	gotoxy(70,29);printf("  ");gotoxy(75,29);printf("  ");gotoxy(80,29);printf("     ");
+	gotoxy(73,31);printf("    ");
+	gotoxy(70,33);printf("               ");
+	
+	//cst dtl
+	gotoxy(70,39);printf("                 ");
+	gotoxy(70,41);printf("               ");
+	
+	//pym dtl
+	gotoxy(120,25);printf("             ");
+	gotoxy(120,27);printf("             ");
+	gotoxy(120,29);printf("             ");
+	gotoxy(118,31);printf("                ");
+	
+	//stts
+	gotoxy(118,39);printf("                        ");
+}
+
+void RCheckinForm(){
+	drawBox(46,21,104,23,201,205,187,186,200,188);
+	gotoxy(54,23);printf("-- R E S E R V A T I O N  D E T A I L --");
+	gotoxy(54,25);printf("RESERVE ID"); gotoxy(68,25);printf(": TRK");
+	gotoxy(54,27);printf("CHECKIN");gotoxy(68,27);printf(":    -    -        (DD-MM-YY)");
+	gotoxy(54,29);printf("CHECKOUT");gotoxy(68,29);printf(":    -    -        (DD-MM-YY)");
+	gotoxy(54,31);printf("ROOM ID");gotoxy(68,31);printf(": KMR");
+	gotoxy(54,33);printf("TYPE");gotoxy(68,33);printf(": ");
+	
+	gotoxy(54,37);printf("-- C U S T O M E R  D E T A I L --");
+	gotoxy(54,39);printf("NIK");gotoxy(68,39);printf(": ");
+	gotoxy(54,41);printf("NAME");gotoxy(68,41);printf(": ");
+	
+	gotoxy(102,23);printf("-- P A Y M E N T  D E T A I L  --");
+	gotoxy(102,25);printf("TOTAL");gotoxy(116,25);printf(": Rp");
+	gotoxy(102,27);printf("DOWN PAYMENT");gotoxy(116,27);printf(": Rp");
+	gotoxy(102,29);printf("DEBT");gotoxy(116,29);printf(": Rp");
+	gotoxy(102,31);printf("STATUS");gotoxy(116,31);printf(": ");
+	
+	gotoxy(102,37);printf("RESET");gotoxy(116,37);printf("CHECKIN");
+	gotoxy(102,39);printf("CHECKIN TIME");gotoxy(116,39);printf(": ");
+}
+
+void FCheckinForm(){
+	drawBox(46,21,104,23,201,205,187,186,200,188);
+	gotoxy(54,23);printf("-- R E S E R V A T I O N  D E T A I L --");
+	gotoxy(54,25);printf("RESERVE ID"); gotoxy(68,25);printf(": TRF");
+	gotoxy(54,27);printf("CHECKIN");gotoxy(68,27);printf(":    -    -        (DD-MM-YY)");
+	gotoxy(54,29);printf("CHECKOUT");gotoxy(68,29);printf(":    -    -        (DD-MM-YY)");
+	gotoxy(54,31);printf("FACILITY ID");gotoxy(68,31);printf(": FCL");
+	gotoxy(54,33);printf("TYPE");gotoxy(68,33);printf(": ");
+	
+	gotoxy(54,37);printf("-- C U S T O M E R  D E T A I L --");
+	gotoxy(54,39);printf("NIK");gotoxy(68,39);printf(": ");
+	gotoxy(54,41);printf("NAME");gotoxy(68,41);printf(": ");
+	
+	gotoxy(102,23);printf("-- P A Y M E N T  D E T A I L  --");
+	gotoxy(102,25);printf("TOTAL");gotoxy(116,25);printf(": Rp");
+	gotoxy(102,27);printf("DOWN PAYMENT");gotoxy(116,27);printf(": Rp");
+	gotoxy(102,29);printf("DEBT");gotoxy(116,29);printf(": Rp");
+	gotoxy(102,31);printf("STATUS");gotoxy(116,31);printf(": ");
+	
+	gotoxy(102,37);printf("RESET");gotoxy(116,37);printf("CHECKIN");
+	gotoxy(102,39);printf("CHECKIN TIME");gotoxy(116,39);printf(": ");
+}
+
+void clrAllCheckout(){
+	//clr rsv dtl
+	gotoxy(73,25);printf("   ");
+	gotoxy(70,27);printf("  ");gotoxy(75,27);printf("  ");gotoxy(80,27);printf("    ");
+	gotoxy(70,29);printf("  ");gotoxy(75,29);printf("  ");gotoxy(80,29);printf("    ");
+	gotoxy(73,31);printf("   ");
+	gotoxy(70,33);printf("               ");
+	gotoxy(70,35);printf("   ");
+	gotoxy(70,37);printf("                ");
+	gotoxy(70,39);printf("               ");
+	//clr fn dtl
+	gotoxy(121,25);printf("   ");
+	gotoxy(118,27);printf("              ");
+	gotoxy(120,29);printf("          ");
+	//clr fpy dtl
+	gotoxy(120,33);printf("           ");
+	gotoxy(120,35);printf("           ");
+	gotoxy(120,37);printf("           ");
+	gotoxy(120,39);printf("           ");
+	gotoxy(118,41);printf("                       ");
+}
+
+void RCheckoutForm(){
+	drawBox(46,21,104,23,201,205,187,186,200,188);
+	gotoxy(54,23);printf("-- R E S E R V A T I O N  D E T A I L --");
+	gotoxy(54,25);printf("RESERVE ID"); gotoxy(68,25);printf(": TRK");
+	gotoxy(54,27);printf("CHECKIN");gotoxy(68,27);printf(":    -    -        (DD-MM-YY)");
+	gotoxy(54,29);printf("CHECKOUT");gotoxy(68,29);printf(":    -    -        (DD-MM-YY)");
+	gotoxy(54,31);printf("ROOM ID");gotoxy(68,31);printf(": KMR");
+	gotoxy(54,33);printf("TYPE");gotoxy(68,33);printf(": ");
+	gotoxy(54,35);printf("LATENESS");gotoxy(68,35);printf(":     DAY(S)");
+	gotoxy(54,37);printf("NIK");gotoxy(68,37);printf(": ");
+	gotoxy(54,39);printf("NAME");gotoxy(68,39);printf(": ");
+	gotoxy(54,41);printf("SKIP");gotoxy(68,41);printf("ADD FINES");
+	
+	gotoxy(102,23);printf("-- F I N E S  D E T A I L  --");
+	gotoxy(102,25);printf("FINES ID");gotoxy(116,25);printf(": FNE");
+	gotoxy(102,27);printf("CATEGORY");gotoxy(116,27);printf(": ");
+	gotoxy(102,29);printf("VALUE");gotoxy(116,29);printf(": Rp");
+	
+	gotoxy(102,31);printf("-- F I N A L  P A Y M E N T --");
+	gotoxy(102,33);printf("DEBT");gotoxy(116,33);printf(": Rp");
+	gotoxy(102,35);printf("LATE FINES");gotoxy(116,35);printf(": Rp");
+	gotoxy(102,37);printf("TOTAL");gotoxy(116,37);printf(": Rp");
+	gotoxy(102,39);printf("PAY");gotoxy(116,39);printf(": Rp");
+	gotoxy(102,41);printf("CHANGE");gotoxy(116,41);printf(": Rp");
+}
+
+void FCheckoutForm(){
+	drawBox(46,21,104,23,201,205,187,186,200,188);
+	gotoxy(54,23);printf("-- R E S E R V A T I O N  D E T A I L --");
+	gotoxy(54,25);printf("RESERVE ID"); gotoxy(68,25);printf(": TRF");
+	gotoxy(54,27);printf("CHECKIN");gotoxy(68,27);printf(":    -    -        (DD-MM-YY)");
+	gotoxy(54,29);printf("CHECKOUT");gotoxy(68,29);printf(":    -    -        (DD-MM-YY)");
+	gotoxy(54,31);printf("ROOM ID");gotoxy(68,31);printf(": FCL");
+	gotoxy(54,33);printf("TYPE");gotoxy(68,33);printf(": ");
+	gotoxy(54,35);printf("LATENESS");gotoxy(68,35);printf(":     DAY(S)");
+	gotoxy(54,37);printf("NIK");gotoxy(68,37);printf(": ");
+	gotoxy(54,39);printf("NAME");gotoxy(68,39);printf(": ");
+	gotoxy(54,41);printf("SKIP");gotoxy(68,41);printf("ADD FINES");
+	
+	gotoxy(102,23);printf("-- F I N E S  D E T A I L  --");
+	gotoxy(102,25);printf("FINES ID");gotoxy(116,25);printf(": FNE");
+	gotoxy(102,27);printf("CATEGORY");gotoxy(116,27);printf(": ");
+	gotoxy(102,29);printf("VALUE");gotoxy(116,29);printf(": Rp");
+	
+	gotoxy(102,31);printf("-- F I N A L  P A Y M E N T --");
+	gotoxy(102,33);printf("DEBT");gotoxy(116,33);printf(": Rp");
+	gotoxy(102,35);printf("LATE FINES");gotoxy(116,35);printf(": Rp");
+	gotoxy(102,37);printf("TOTAL");gotoxy(116,37);printf(": Rp");
+	gotoxy(102,39);printf("PAY");gotoxy(116,39);printf(": Rp");
+	gotoxy(102,41);printf("CHANGE");gotoxy(116,41);printf(": Rp");
 }

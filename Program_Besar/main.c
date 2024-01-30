@@ -30,14 +30,19 @@
 int w,h;
 
 int main(){
-//fullscreen();	
-//	Tfacil();
+	fullscreen();	
+	
 //	ReadTfacil();
+
+
+dDashboard("Imam");
+//	Tfacil();
 //	CheckinFacility();
-//	Troom();
+//Troom();
+//CheckinRoom();
 //CheckoutRoom();
 //ReadTroom();
-//CheckinRoom();
+
 
 //	Tmember();
 //	EXmember();
@@ -45,8 +50,8 @@ int main(){
 //	dDashboard("Imam");
 //	Dashboard();
 //getAvailableFnB();
-	//Tresto();
-//ReadTresto();	
+//	Tresto();
+//	ReadTresto();	
 //	vLogin();
 //	default_res(w,h);
 
