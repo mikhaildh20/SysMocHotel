@@ -987,7 +987,7 @@ void CheckoutFacility(){
 					gotoxy(75,29);printf("%02d",trhf.Checkout.bulan);
 					gotoxy(80,29);printf("%d",trhf.Checkout.tahun);
 					
-					gotoxy(73,31);printf("%03d",trhf.no_kamar);
+					gotoxy(73,31);printf("%03d",trhf.id_fasilitas);
 					gotoxy(70,33);printf("%s",trhf.type);
 					
 					hutang = trhf.sisa_harga;

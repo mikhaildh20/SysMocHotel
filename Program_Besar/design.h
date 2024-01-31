@@ -1081,3 +1081,102 @@ void FCheckoutForm(){
 	gotoxy(102,39);printf("PAY");gotoxy(116,39);printf(": Rp");
 	gotoxy(102,41);printf("CHANGE");gotoxy(116,41);printf(": Rp");
 }
+
+void clrAllReg(){
+	gotoxy(82,27);printf("   ");
+	gotoxy(79,31);printf("                ");
+	gotoxy(79,35);printf("             ");
+	gotoxy(79,39);printf("               ");
+	
+	gotoxy(115,27);printf("  ");gotoxy(120,27);printf("  ");gotoxy(125,27);printf("    ");
+	gotoxy(117,31);printf("          ");
+	gotoxy(117,35);printf("          ");
+	gotoxy(117,39);printf("          ");
+}
+
+void RegMemberForm(){
+	drawBox(60,21,75,23,201,205,187,186,200,188);
+	gotoxy(64,23);printf("-- R E G I S T R A T I O N --");
+	gotoxy(64,27);printf("MEMBER ID");gotoxy(77,27);printf(": MBR");
+	gotoxy(64,31);printf("NIK");gotoxy(77,31);printf(": ");
+	gotoxy(64,35);printf("TELEPHONE");gotoxy(77,35);printf(": ");
+	gotoxy(64,39);printf("NAME");gotoxy(77,39);printf(": ");
+	
+	gotoxy(100,23);printf("-- P A Y M E N T --");
+	gotoxy(100,27);printf("EXP DATE");gotoxy(113,27);printf(":    -    -");
+	gotoxy(100,31);printf("TOTAL");gotoxy(113,31);printf(": Rp");
+	gotoxy(100,35);printf("PAY");gotoxy(113,35);printf(": Rp");
+	gotoxy(100,39);printf("CHANGE");gotoxy(113,39);printf(": Rp");
+}
+
+void clrAllExt(){
+	gotoxy(82,27);printf("   ");
+	gotoxy(79,29);printf("                ");
+	gotoxy(79,31);printf("             ");
+	gotoxy(79,33);printf("               ");
+	gotoxy(79,35);printf("  ");gotoxy(84,35);printf("  ");gotoxy(89,35);printf("    ");
+	gotoxy(79,37);printf("  ");gotoxy(84,37);printf("  ");gotoxy(89,37);printf("    ");
+	gotoxy(79,39);printf("   ");
+	
+	gotoxy(115,27);printf("  ");gotoxy(120,27);printf("  ");gotoxy(125,27);printf("    ");
+	gotoxy(117,29);printf("          ");
+	gotoxy(117,31);printf("          ");
+	gotoxy(117,33);printf("          ");
+}
+
+void ExtMemberForm(){
+	drawBox(60,22,75,21,201,205,187,186,200,188);
+	gotoxy(64,25);printf("-- E X T E N S I O N --");
+	gotoxy(64,27);printf("MEMBER ID");gotoxy(77,27);printf(": MBR");
+	gotoxy(64,29);printf("NIK");gotoxy(77,29);printf(": ");
+	gotoxy(64,31);printf("TELEPHONE");gotoxy(77,31);printf(": ");
+	gotoxy(64,33);printf("NAME");gotoxy(77,33);printf(":  ");
+	gotoxy(64,35);printf("JOIN DATE");gotoxy(77,35);printf(":  ");
+	gotoxy(64,37);printf("EXP. DATE");gotoxy(77,37);printf(":  ");
+	gotoxy(64,39);printf("EXTEND");gotoxy(77,39);printf(":      DAY(S)");
+	
+	gotoxy(100,25);printf("-- P A Y M E N T --");
+	gotoxy(100,27);printf("EXTD. DATE");gotoxy(113,27);printf(":    -    -");
+	gotoxy(100,29);printf("TOTAL");gotoxy(113,29);printf(": Rp");
+	gotoxy(100,31);printf("PAY");gotoxy(113,31);printf(": Rp");
+	gotoxy(100,33);printf("CHANGE");gotoxy(113,33);printf(": Rp");
+}
+
+void clrAllRestoForm(){
+	gotoxy(65,26);printf("   ");
+	gotoxy(62,28);printf("               ");
+	gotoxy(62,30);printf("   ");
+	customClr(15,1,47,32);
+	
+	customClr(15,1,47,37);
+	gotoxy(65,40);printf("   ");
+	gotoxy(62,42);printf("                ");
+	gotoxy(62,44);printf("               ");
+	
+	customClr(58,12,93,28);
+	gotoxy(104,42);printf("          ");
+	gotoxy(104,44);printf("          ");gotoxy(138,44);printf("          ");
+}
+
+void RestoForm(){
+	drawBox(43,22,47,25,201,205,187,186,200,188);
+	gotoxy(47,24);printf("-- T R A N S A C T I O N --");
+	gotoxy(47,26);printf("TRASACT ID");gotoxy(60,26);printf(": TRR");
+	gotoxy(47,28);printf("ITEM");gotoxy(60,28);printf(": ");
+	gotoxy(47,30);printf("QTY");gotoxy(60,30);printf(": ");
+	gotoxy(47,33);printf("ADD");gotoxy(60,33);printf("PAY");
+	
+	gotoxy(47,36);printf("-- M E M B E R --");
+	gotoxy(47,38);printf("ADD");gotoxy(60,38);printf("SKIP");
+	gotoxy(47,40);printf("MEMBER ID");gotoxy(60,40);printf(": MBR");
+	gotoxy(47,42);printf("NIK");gotoxy(60,42);printf(": ");
+	gotoxy(47,44);printf("NAME");gotoxy(60,44);printf(": ");
+	
+	drawBox(89,22,64,25,203,205,187,186,202,188);
+	gotoxy(93,24);printf("-- C A R T --");
+	gotoxy(93,26);printf("ITEM");gotoxy(110,26);printf("QUANTITY");gotoxy(130,26);printf("SUBTOTAL");
+	
+	drawBox(89,40,64,7,204,205,185,186,202,188);
+	gotoxy(93,42);printf("TOTAL");gotoxy(100,42);printf(": Rp");
+	gotoxy(93,44);printf("PAY");gotoxy(100,44);printf(": Rp");gotoxy(124,44);printf("CHANGE");gotoxy(134,44);printf(": Rp");
+}

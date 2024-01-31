@@ -14,162 +14,177 @@ void getMember(){
 
 void Tmember(){
 	//transaksi selanjutnya
-	next:
+	RegMemberForm();
 	
-	//import nik & no telp yang terdaftar untuk validasi
-	getMember();
-	
-	fp = fopen("Dat/Member.dat","ab+");
-	if(fread(&trm,sizeof(trm),1,fp)==0){
-		trm.id = 1;
-	}else{
-		while(!feof(fp)){
-		fread(&trm,sizeof(trm),1,fp);
-			if(feof(fp)){
-				trm.id+=1;
+	while(1){
+		next:
+		//import nik & no telp yang terdaftar untuk validasi
+		getMember();
+		
+		fp = fopen("Dat/Member.dat","ab+");
+		if(fread(&trm,sizeof(trm),1,fp)==0){
+			trm.id = 1;
+		}else{
+			while(!feof(fp)){
+			fread(&trm,sizeof(trm),1,fp);
+				if(feof(fp)){
+					trm.id+=1;
+				}
 			}
 		}
-	}
-	
-	printf("ID Member\t: TRM%03d\n",trm.id);
-	
-	invalidnik:
-	
-	found = false;	
-	printf("NIK\t: ");fflush(stdin);getteksnummin(trm.nik,16,16);
-	for(i=0;vtm[i].term!=0;i++){
-		if(strcmp(trm.nik,vtm[i].nik)==0){
-			found = true;
-			break;
+		
+		gotoxy(82,27);printf("%03d",trm.id);
+		
+		invalidnik:
+		
+		found = false;	
+		fflush(stdin);gotoxy(79,31);getteksnummin(trm.nik,16,16);if(EscPressed){break;}
+		for(i=0;vtm[i].term!=0;i++){
+			if(strcmp(trm.nik,vtm[i].nik)==0){
+				found = true;
+				break;
+			}
 		}
-	}
-	
-	if(found){
-		printf("\nNIK sudah terdaftar\n");
-		goto invalidnik;
-	}
-	
-	invalidtelp:
-	
-	found = false;
-	fflush(stdin);
-	printf("\nTelp\t: ");getteksnummin(trm.telp,11,13);
-	for(i=0;vtm[i].term!=0;i++){
-		if(strcmp(trm.telp,vtm[i].telp)==0){
-			found = true;
-			break;
+		
+		if(found){
+			gotoxy(79,31);printf("                ");
+			gotoxy(79,31);printf("ALREADY REGISTER");Beep(900,200);sleep(1);
+			gotoxy(79,31);printf("                ");
+			goto invalidnik;
 		}
+		
+		invalidtelp:
+		
+		found = false;
+		fflush(stdin);gotoxy(79,35);getteksnummin(trm.telp,11,13);
+		for(i=0;vtm[i].term!=0;i++){
+			if(strcmp(trm.telp,vtm[i].telp)==0){
+				found = true;
+				break;
+			}
+		}
+		
+		if(found){
+			gotoxy(79,35);printf("                ");
+			gotoxy(79,35);printf("ALREADY REGISTER");Beep(900,200);sleep(1);
+			gotoxy(79,35);printf("                ");
+			goto invalidtelp;
+		}
+		
+		fflush(stdin);gotoxy(79,39);getteks(trm.nama,15);
+		strupr(trm.nama);
+		
+		strcpy(trm.nama_karyawan,"Imam");
+		getTime(&trm.jdate,&trm.jmonth,&trm.jyear);
+		getTime(&trm.xdate,&trm.xmonth,&trm.xyear);
+		trm.xyear+=1;
+		gotoxy(115,27);printf("%02d",trm.xdate);gotoxy(120,27);printf("%02d",trm.xmonth);gotoxy(125,27);printf("%d",trm.xyear);
+		trm.status=1;
+		
+		tPayment = 100000;
+		trm.total_harga = tPayment;
+		
+		transaksi:
+		
+		gotoxy(117,31);rupiah(tPayment,cvrRp);printf("%s",cvrRp);
+		gotoxy(117,35);getRp(&bayar,1,8,118,35);gotoxy(118,35);printf("            ");
+		gotoxy(117,35);rupiah(bayar,cvrRp);printf("%s",cvrRp);
+		if(EscPressed){
+			gotoxy(116,35);printf("               ");
+			gotoxy(116,35);printf("Cancelled");sleep(2);
+			gotoxy(116,35);printf("               ");
+			gotoxy(116,35);printf("Rp");
+			goto invalidnik;
+		}else if(bayar<tPayment){
+			gotoxy(116,35);printf("               ");
+			gotoxy(116,35);printf("Not Enough");sleep(2);
+			gotoxy(116,35);printf("               ");
+			gotoxy(116,35);printf("Rp");
+			goto transaksi;
+		}else if(bayar==tPayment || bayar>tPayment){
+			bayar-=tPayment;
+		}
+		
+		gotoxy(117,39);rupiah(bayar,cvrRp);printf("%s",cvrRp);Beep(900,200);sleep(2);
+		
+		fwrite(&trm,sizeof(trm),1,fp);
+		clrAllReg();
+		fclose(fp);
+		goto next;	
 	}
-	
-	if(found){
-		printf("\nNomor telpon sudah terdaftar\n");
-		goto invalidtelp;
-	}
-	
-	printf("\nNama\t: ");fflush(stdin);getteks(trm.nama,10);
-	strupr(trm.nama);
-	
-	strcpy(trm.nama_karyawan,"Imam");
-	getTime(&trm.jdate,&trm.jmonth,&trm.jyear);
-	getTime(&trm.xdate,&trm.xmonth,&trm.xyear);
-	trm.xyear+=1;
-	trm.status=1;
-	
-	tPayment = 100000;
-	trm.total_harga = tPayment;
-	
-	transaksi:
-	
-	printf("\nTotal Pembayaran: %d",tPayment);
-	printf("\nBayar\t: ");scanf("%d",&bayar);
-	if(bayar==0){
-		printf("Transaksi dibatalkan");
-		getch();
-		goto invalidnik;
-	}else if(bayar<tPayment){
-		printf("Uang Kurang");
-		goto transaksi;
-	}else if(bayar==tPayment){
-		printf("Pembayaran Berhasil!");
-	}else if(bayar>tPayment){
-		bayar-=tPayment;
-		printf("Kembalian\t: %d\n",bayar);
-		printf("Pembayaran Berhasil!");
-	}
-	
-	fwrite(&trm,sizeof(trm),1,fp);
-	
-	fclose(fp);
-	goto next;
 }
 
 void EXmember(){
-	goback:
-	tPayment = 50000;
-	getMember();
+	ExtMemberForm();
 	
-	invalid:
-	
-	found = false;
-	printf("ID Member\t: TRM");getnummin(&search,1,3);
-	fp = fopen("Dat/Member.dat","rb");
-	while(fread(&trm,sizeof(trm),1,fp)==1){
-		if(search==trm.id){
-			found = true;
-			break;
-		}
-	}
-	fclose(fp);
-	
-	if(found){
-		updconf = false;
+	while(1){
+		goback:
+		tPayment = 50000;
+		getMember();
+		
+		invalid:
+		
+		found = false;
+		getnummin(&search,1,3);
 		fp = fopen("Dat/Member.dat","rb");
-		tmp = fopen("Dat/Tmp.dat","wb");
 		while(fread(&trm,sizeof(trm),1,fp)==1){
 			if(search==trm.id){
-				strcpy(trm.nama_karyawan,"Zhillan");
-				printf("\nLama Extend\t: ");getnummin(&lama,1,1);
-				trm.xyear+=lama;
-				if(trm.status==0){
-					trm.status = 1;
-				}
-				tPayment*=lama;
-				trm.total_harga+=tPayment;
-				kurang:
-				printf("\nTotal Bayar\t: %d\n",tPayment);
-				printf("Pembayaran\t: ");scanf("%d",&bayar);
-				if(bayar==0){
-					printf("Transaksi dibatalkan");
-					sleep(1);
-					break;
-				}else if(bayar<tPayment){
-					printf("Uang Kurang");
-					goto kurang;
-				}else if(bayar==tPayment){
-					printf("Pembayaran Berhasil!");
-					sleep(1);
-					updconf = true;
-				}else if(bayar>tPayment){
-					updconf = true;
-					bayar-=tPayment;
-					printf("Kembali\t: %d",bayar);
-					sleep(1);
-				}
-				fwrite(&trm,sizeof(trm),1,tmp);
-			}else{
-				fwrite(&trm,sizeof(trm),1,tmp);
+				found = true;
+				break;
 			}
 		}
-		fclose(tmp);
 		fclose(fp);
-		if(updconf){
-			remove("Dat/Member.dat");
-			rename("Dat/Tmp.dat","Dat/Member.dat");	
+		
+		if(found){
+			updconf = false;
+			fp = fopen("Dat/Member.dat","rb");
+			tmp = fopen("Dat/Tmp.dat","wb");
+			while(fread(&trm,sizeof(trm),1,fp)==1){
+				if(search==trm.id){
+					strcpy(trm.nama_karyawan,"Zhillan");
+					printf("\nLama Extend\t: ");getnummin(&lama,1,1);
+					trm.xyear+=lama;
+					if(trm.status==0){
+						trm.status = 1;
+					}
+					tPayment*=lama;
+					trm.total_harga+=tPayment;
+					kurang:
+					printf("\nTotal Bayar\t: %d\n",tPayment);
+					printf("Pembayaran\t: ");scanf("%d",&bayar);
+					if(bayar==0){
+						printf("Transaksi dibatalkan");
+						sleep(1);
+						break;
+					}else if(bayar<tPayment){
+						printf("Uang Kurang");
+						goto kurang;
+					}else if(bayar==tPayment){
+						printf("Pembayaran Berhasil!");
+						sleep(1);
+						updconf = true;
+					}else if(bayar>tPayment){
+						updconf = true;
+						bayar-=tPayment;
+						printf("Kembali\t: %d",bayar);
+						sleep(1);
+					}
+					fwrite(&trm,sizeof(trm),1,tmp);
+				}else{
+					fwrite(&trm,sizeof(trm),1,tmp);
+				}
+			}
+			fclose(tmp);
+			fclose(fp);
+			if(updconf){
+				remove("Dat/Member.dat");
+				rename("Dat/Tmp.dat","Dat/Member.dat");	
+			}
+		}else{
+			printf("\nID Tidak ada\n");
 		}
-	}else{
-		printf("\nID Tidak ada\n");
+		goto goback;	
 	}
-	goto goback;
 }
 
 void ReadTmember(){

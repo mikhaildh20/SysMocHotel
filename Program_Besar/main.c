@@ -19,8 +19,8 @@
 #include "Master/Fasilitas.h"
 #include "Master/Menu.h"
 #include "Master/Paket.h"
-#include "Transaksi/Restoran.h"
 #include "Transaksi/Member.h"
+#include "Transaksi/Restoran.h"
 #include "Transaksi/Hotel.h"
 #include "login.h"
 #include "compactMenu.h"
@@ -36,6 +36,10 @@ int main(){
 
 
 dDashboard("Imam");
+Tmember();
+//RegMemberForm();
+//ExtMemberForm();getch();
+//clrAllExt();
 //	Tfacil();
 //	CheckinFacility();
 //Troom();
