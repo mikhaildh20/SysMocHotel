@@ -36,7 +36,7 @@ int main(){
 
 
 dDashboard("Imam");
-Tmember();
+//Tmember();
 //RegMemberForm();
 //ExtMemberForm();getch();
 //clrAllExt();
@@ -49,7 +49,7 @@ Tmember();
 
 
 //	Tmember();
-//	EXmember();
+	EXmember();
 //	ReadTmember();
 //	dDashboard("Imam");
 //	Dashboard();

@@ -14,6 +14,7 @@ void getMember(){
 
 void Tmember(){
 	//transaksi selanjutnya
+	clrDb();
 	RegMemberForm();
 	
 	while(1){
@@ -125,7 +126,7 @@ void EXmember(){
 		invalid:
 		
 		found = false;
-		getnummin(&search,1,3);
+		gotoxy(82,27);getnummin(&search,1,3);if(EscPressed){break;}gotoxy(82,27);printf("%03d",search);
 		fp = fopen("Dat/Member.dat","rb");
 		while(fread(&trm,sizeof(trm),1,fp)==1){
 			if(search==trm.id){
@@ -142,33 +143,47 @@ void EXmember(){
 			while(fread(&trm,sizeof(trm),1,fp)==1){
 				if(search==trm.id){
 					strcpy(trm.nama_karyawan,"Zhillan");
-					printf("\nLama Extend\t: ");getnummin(&lama,1,1);
+					gotoxy(79,29);printf("%s",trm.nik);
+					gotoxy(79,31);printf("%s",trm.telp);
+					gotoxy(79,33);printf("%s",trm.nama);
+					gotoxy(79,35);printf("%02d",trm.jdate);gotoxy(84,35);printf("%02d",trm.jmonth);gotoxy(89,35);printf("%d",trm.jyear);
+					gotoxy(79,37);printf("%02d",trm.xdate);gotoxy(84,37);printf("%02d",trm.xmonth);gotoxy(89,37);printf("%d",trm.xyear);
+					gotoxy(79,39);getnummin(&lama,1,1);
 					trm.xyear+=lama;
+					gotoxy(115,27);printf("%02d",trm.xdate);gotoxy(120,27);printf("%02d",trm.xmonth);gotoxy(125,27);printf("%d",trm.xyear);
 					if(trm.status==0){
 						trm.status = 1;
 					}
+					
 					tPayment*=lama;
 					trm.total_harga+=tPayment;
+					
+					gotoxy(117,29);rupiah(tPayment,cvrRp);printf("%s",cvrRp);
+					
 					kurang:
-					printf("\nTotal Bayar\t: %d\n",tPayment);
-					printf("Pembayaran\t: ");scanf("%d",&bayar);
-					if(bayar==0){
-						printf("Transaksi dibatalkan");
-						sleep(1);
+					gotoxy(117,31);getRp(&bayar,1,8,118,31);
+					gotoxy(118,31);printf("          ");
+					gotoxy(117,31);rupiah(bayar,cvrRp);printf("%s",cvrRp);
+					if(EscPressed){
+						gotoxy(115,31);printf("               ");
+						gotoxy(115,31);printf("Cancelled");Beep(900,200);sleep(2);
+						gotoxy(115,31);printf("               ");
+						gotoxy(115,31);printf("Rp");
+						clrAllExt();
 						break;
 					}else if(bayar<tPayment){
-						printf("Uang Kurang");
+						gotoxy(115,31);printf("               ");
+						gotoxy(115,31);printf("Not Enough");Beep(900,200);sleep(2);
+						gotoxy(115,31);printf("               ");
+						gotoxy(115,31);printf("Rp");
 						goto kurang;
-					}else if(bayar==tPayment){
-						printf("Pembayaran Berhasil!");
-						sleep(1);
-						updconf = true;
-					}else if(bayar>tPayment){
-						updconf = true;
+					}else if(bayar==tPayment || bayar>tPayment){
 						bayar-=tPayment;
-						printf("Kembali\t: %d",bayar);
-						sleep(1);
+						updconf = true;
 					}
+					
+					gotoxy(117,33);rupiah(bayar,cvrRp);printf("%s",cvrRp);Beep(800,200);sleep(2);
+					
 					fwrite(&trm,sizeof(trm),1,tmp);
 				}else{
 					fwrite(&trm,sizeof(trm),1,tmp);
@@ -181,8 +196,14 @@ void EXmember(){
 				rename("Dat/Tmp.dat","Dat/Member.dat");	
 			}
 		}else{
-			printf("\nID Tidak ada\n");
+			gotoxy(79,27);printf("            ");
+			gotoxy(79,27);printf("ID NOT FOUND");Beep(900,200);sleep(2);
+			gotoxy(79,27);printf("            ");
+			gotoxy(79,27);printf("MBR");
 		}
+		
+		clrAllExt();
+		
 		goto goback;	
 	}
 }

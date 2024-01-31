@@ -1131,9 +1131,9 @@ void ExtMemberForm(){
 	gotoxy(64,29);printf("NIK");gotoxy(77,29);printf(": ");
 	gotoxy(64,31);printf("TELEPHONE");gotoxy(77,31);printf(": ");
 	gotoxy(64,33);printf("NAME");gotoxy(77,33);printf(":  ");
-	gotoxy(64,35);printf("JOIN DATE");gotoxy(77,35);printf(":  ");
-	gotoxy(64,37);printf("EXP. DATE");gotoxy(77,37);printf(":  ");
-	gotoxy(64,39);printf("EXTEND");gotoxy(77,39);printf(":      DAY(S)");
+	gotoxy(64,35);printf("JOIN DATE");gotoxy(77,35);printf(":    -    -");
+	gotoxy(64,37);printf("EXP. DATE");gotoxy(77,37);printf(":    -    -");
+	gotoxy(64,39);printf("EXTEND");gotoxy(77,39);printf(":    YEAR(S)");
 	
 	gotoxy(100,25);printf("-- P A Y M E N T --");
 	gotoxy(100,27);printf("EXTD. DATE");gotoxy(113,27);printf(":    -    -");

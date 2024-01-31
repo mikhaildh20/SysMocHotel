@@ -490,6 +490,7 @@ void ReadTfacil(){
 }
 
 void CheckinRoom(){
+	clrDb();
 	RCheckinForm();
 	
 	while(1){
@@ -608,6 +609,7 @@ void CheckinRoom(){
 }
 
 void CheckinFacility(){
+	clrDb();
 	FCheckinForm();
 	
 	while(1){
@@ -727,6 +729,7 @@ void CheckinFacility(){
 
 void CheckoutRoom(){
 	//import denda yang tersedia
+	clrDb();
 	getFines();
 	RCheckoutForm();
 	
@@ -940,6 +943,7 @@ void CheckoutRoom(){
 
 void CheckoutFacility(){
 	//import denda yang tersedia
+	clrDb();
 	getFines();
 	FCheckoutForm();
 	
