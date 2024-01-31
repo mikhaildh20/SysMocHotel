@@ -94,6 +94,10 @@ void vLogin(){
 					}
 				}
 				if(attempt == 0){
+					fp = fopen("Dat/Auth.dat","wb");
+					DateTimeNow(&Now);
+					fwrite(&Now,sizeof(Now),1,fp);
+					fclose(fp);
 					exit(1);
 				}	
 			}else{
@@ -101,6 +105,25 @@ void vLogin(){
 			}
 		}	
 	}
+}
+
+void Authentication(){
+	fp = fopen("Dat/Auth.dat","rb");
+	fread(&CheckAuth,sizeof(CheckAuth),1,fp);
+	fclose(fp);
+	
+	DateTimeNow(&Now);
+	if(Now.tahun == CheckAuth.tahun && Now.bulan == CheckAuth.bulan && Now.tgl == CheckAuth.tgl){
+		PrintFile("Asset/ACCESS.txt",37,20);	
+		CheckAuth.tgl+=1;
+		gotoxy(70,27);printf("UNLOCKED AT %02d/%02d/2024",CheckAuth.tgl,CheckAuth.bulan,CheckAuth.tahun);
+		getch();
+		exit(1);
+	}else{
+		remove("Dat/Auth.dat");
+		vLogin();
+	}
+	
 }
 
 

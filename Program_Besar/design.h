@@ -167,6 +167,18 @@ void PrintChooseReport(){
 	printf("Back");
 }
 
+
+void PrintChooseRReport(){
+	gotoxy(12,18);
+	printf("Monthly Report");
+	gotoxy(12,20);
+	printf("Year Report");
+	gotoxy(12,22);
+	printf("Detail");
+	gotoxy(12,24);
+	printf("Back");
+}
+
 void PrintMemberReport(){
 	gotoxy(12,18);
 	printf("Active Report");
@@ -180,9 +192,9 @@ void PrintAdManager(){
 	gotoxy(12,18);
 	printf("Hotel Report");
 	gotoxy(12,20);
-	printf("Member Report");
-	gotoxy(12,22);
 	printf("Resto Report");
+	gotoxy(12,22);
+	printf("Member Report");
 	gotoxy(12,24);
 	printf("Logout");
 }
@@ -1289,4 +1301,16 @@ void MemberReportForm(){
 	gotoxy(105,22);printf("JOIN DATE");
 	gotoxy(120,22);printf("EXP. DATE");
 	gotoxy(140,22);printf("STATUS");
+}
+
+void ManagerDb(){
+	PrintFile("Asset/MANAGERDB.txt",72,27);
+}
+
+void CashierDb(){
+	PrintFile("Asset/CASHIERDB.txt",72,27);	
+}
+
+void ReceptionistDb(){
+	PrintFile("Asset/RECEPTIONISTDB.txt",60,27);
 }

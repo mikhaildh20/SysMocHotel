@@ -123,7 +123,7 @@ void SortDetailTresto(){
 	found = false;
 	gotoxy(65,19);printf("    ");
 	gotoxy(40,19);printf("TRANSACTION ID");gotoxy(60,19);printf(": TRR");
-	gotoxy(65,19);getnummin(&search,1,3);gotoxy(65,19);printf("%02d",search);
+	gotoxy(65,19);getnummin(&search,1,3);gotoxy(65,19);printf("%03d",search);
 	for(i=0;Lrr[i].id!=0;i++){
 		if(Lrr[i].id == search){
 			found = true;
@@ -304,7 +304,14 @@ void ViewTmember(){
 		gotoxy(90,row);printf("%s",Lrm[i].telp);
 		gotoxy(105,row);printf("%02d/%02d/%d",Lrm[i].jdate,Lrm[i].jmonth,Lrm[i].jyear);
 		gotoxy(120,row);printf("%02d/%02d/%d",Lrm[i].xdate,Lrm[i].xmonth,Lrm[i].xyear);
-		gotoxy(125,row);printf("%d",Lrm[i].status);
+		gotoxy(140,row);switch(Lrm[i].status){
+				case 0:
+					printf("INACTIVE");
+				break;
+				case 1:
+					printf("ACTIVE");
+				break;
+			}
 		row++;
 	}
 }
@@ -314,7 +321,6 @@ void SortTMemberActive(){
 	
 	MemberReportForm();
 	
-	while(1){
 		clrReport();	
 		row = 24;
 		for(i=0;Lrm[i].id!=0;i++){
@@ -325,12 +331,18 @@ void SortTMemberActive(){
 			gotoxy(90,row);printf("%s",Lrm[i].telp);
 			gotoxy(105,row);printf("%02d/%02d/%d",Lrm[i].jdate,Lrm[i].jmonth,Lrm[i].jyear);
 			gotoxy(120,row);printf("%02d/%02d/%d",Lrm[i].xdate,Lrm[i].xmonth,Lrm[i].xyear);
-			gotoxy(125,row);printf("%d",Lrm[i].status);
+			gotoxy(140,row);switch(Lrm[i].status){
+				case 0:
+					printf("INACTIVE");
+				break;
+				case 1:
+					printf("ACTIVE");
+				break;
+			}
 			row++;	
 			}
 		}
 		getch();
-	}
 }
 
 void SortTMemberDeactive(){
@@ -338,7 +350,7 @@ void SortTMemberDeactive(){
 	
 	MemberReportForm();
 	
-	while(1){
+	
 		for(i=0;Lrm[i].id!=0;i++){
 			if(Lrm[i].status!=1){
 			gotoxy(42,row);printf("TRM%02d",Lrm[i].id);
@@ -347,10 +359,16 @@ void SortTMemberDeactive(){
 			gotoxy(90,row);printf("%s",Lrm[i].telp);
 			gotoxy(105,row);printf("%02d/%02d/%d",Lrm[i].jdate,Lrm[i].jmonth,Lrm[i].jyear);
 			gotoxy(120,row);printf("%02d/%02d/%d",Lrm[i].xdate,Lrm[i].xmonth,Lrm[i].xyear);
-			gotoxy(125,row);printf("%d",Lrm[i].status);
+			gotoxy(140,row);switch(Lrm[i].status){
+				case 0:
+					printf("INACTIVE");
+				break;
+				case 1:
+					printf("ACTIVE");
+				break;
+			}
 			row++;	
 			}
 		}
 		getch();
-	}
 }

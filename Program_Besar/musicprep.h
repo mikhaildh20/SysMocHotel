@@ -1,7 +1,7 @@
 void *mainTask(void *arg){
 	MusicOn = true;
 	fullscreen();
-	vLogin();
+	Authentication();
 	pthread_exit(NULL);
 }
 

@@ -279,10 +279,13 @@ void ReceptionistArrMen(char uname[]){
     PrintAdReceptionist();
     while(1){
     	clrDb();
-    	Dashboard();
+    	
     	if(selectedOption==6){
 			break;
 		}
+		
+		ReceptionistDb();
+		
     	selectedOption = 1;
 	    do {
 			clrMenArrow(14,28,18);
@@ -360,10 +363,13 @@ void CashierArrMen(char uname[]){
     PrintAdCashier();
     while(1){
     	clrDb();
-    	Dashboard();
+    	
     	if(selectedOption==4){
 			break;
 		}
+		
+		CashierDb();
+		
     	selectedOption = 1;
 	    do {
 			clrMenArrow(14,28,18);
@@ -428,7 +434,9 @@ void RoomReport(){
     	clrDb();
     	
     	if(selectedOption==3){
+    		clrMainMenu();
     		PrintTHotel();
+    		selectedOption = 1;
 			break;
 		}
 		
@@ -491,7 +499,9 @@ void FacilityReport(){
     	clrDb();
     	
     	if(selectedOption==3){
+    		clrMainMenu();
     		PrintTHotel();
+    		selectedOption = 1;
 			break;
 		}
 		
@@ -558,7 +568,7 @@ void ChooseHotelReport(){
 			break;
 		}
 		
-		ReadKmr();
+		ViewTroom();
 		
     	selectedOption = 1;
 	    do {
@@ -610,6 +620,141 @@ void ChooseHotelReport(){
 } 
 
 
+void ChooseRestoReport(){
+	selectedOption = 1;
+	clrMainMenu();
+	PrintChooseRReport();
+	while(1){
+    	clrDb();
+    	
+    	if(selectedOption==4){
+    		clrMainMenu();
+    		PrintAdManager();
+    		selectedOption = 1;
+			break;
+		}
+		
+		ViewTresto();
+		
+    	selectedOption = 1;
+	    do {
+			clrMenArrow(14,28,18);
+		    switch(selectedOption){
+		        case 1:
+		        	gotoxy(28,18);
+		        	printf("%c",174);
+		       	break;	
+		       	case 2:
+		       		gotoxy(28,20);
+		       		printf("%c",174);
+		       	break;
+		       	case 3:
+		       		gotoxy(28,22);
+		       		printf("%c",174);
+		       	break;
+		       	case 4:
+		       		gotoxy(28,24);
+		       		printf("%c",174);
+		       	break;
+			}
+		
+			key = getch();
+			
+			switch (key) {
+		        case 72: // Up arrow key
+		            if (selectedOption > 1) {
+		                selectedOption--;
+		                Beep(800,125);
+		            }
+		            break;
+		        case 80: // Down arrow key
+		        	   if (selectedOption < 4) {
+		              	    selectedOption++;
+		                    Beep(800,125);
+		               }
+		            break;
+		        }
+		} while (key != 13);
+		Beep(900,125);
+		clrMenArrow(12,28,20);
+			
+		switch(selectedOption){
+			case 1:
+				SortMonthTresto();	
+			break;
+			case 2:
+				SortYearTresto();	
+			break;
+			case 3:
+				SortDetailTresto();
+			break;
+		}
+	}
+}
+
+void ChooseMemberReport(){
+	selectedOption = 1;
+	clrMainMenu();
+	PrintMemberReport();
+	while(1){
+    	clrDb();
+    	
+    	if(selectedOption==3){
+    		clrMainMenu();
+    		PrintAdManager();
+			break;
+		}
+		
+		ViewTmember();
+		
+    	selectedOption = 1;
+	    do {
+			clrMenArrow(14,28,18);
+		    switch(selectedOption){
+		        case 1:
+		        	gotoxy(28,18);
+		        	printf("%c",174);
+		       	break;	
+		       	case 2:
+		       		gotoxy(28,20);
+		       		printf("%c",174);
+		       	break;
+		       	case 3:
+		       		gotoxy(28,22);
+		       		printf("%c",174);
+		       	break;
+			}
+		
+			key = getch();
+			
+			switch (key) {
+		        case 72: // Up arrow key
+		            if (selectedOption > 1) {
+		                selectedOption--;
+		                Beep(800,125);
+		            }
+		            break;
+		        case 80: // Down arrow key
+		        	   if (selectedOption < 3) {
+		              	    selectedOption++;
+		                    Beep(800,125);
+		               }
+		            break;
+		        }
+		} while (key != 13);
+		Beep(900,125);
+		clrMenArrow(12,28,20);
+			
+		switch(selectedOption){
+			case 1:
+				SortTMemberActive();	
+			break;
+			case 2:
+				SortTMemberDeactive();	
+			break;
+		}
+	}
+}
 
 void ManagerArrMen(char uname[]){
 	dDashboard(uname);
@@ -617,10 +762,13 @@ void ManagerArrMen(char uname[]){
     PrintAdManager();
     while(1){
     	clrDb();
-    	Dashboard();
+    	
     	if(selectedOption==4){
 			break;
 		}
+		
+		ManagerDb();
+		
     	selectedOption = 1;
 	    do {
 			clrMenArrow(14,28,18);
@@ -653,7 +801,7 @@ void ManagerArrMen(char uname[]){
 		            }
 		            break;
 		        case 80: // Down arrow key
-		        	   if (selectedOption < 6) {
+		        	   if (selectedOption < 4) {
 		              	    selectedOption++;
 		                    Beep(800,125);
 		               }
@@ -668,10 +816,10 @@ void ManagerArrMen(char uname[]){
 				ChooseHotelReport();	
 			break;
 			case 2:
-				
+				ChooseRestoReport();
 			break;
 			case 3:
-				
+				ChooseMemberReport();
 			break;
 		}
 	}

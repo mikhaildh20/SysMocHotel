@@ -85,7 +85,7 @@ typedef struct {
 typedef struct {
 	int tgl, bulan, tahun, hour, min, sec;
 } DateTime;
-DateTime Now;
+DateTime Now,CheckAuth;
 
 typedef struct{
 	int id;

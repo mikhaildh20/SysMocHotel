@@ -31,32 +31,10 @@
 int w,h;
 
 int main(){
-	fullscreen();	
+	fullscreen();
 	
-//	dDashboard("Imam");
-//	ViewTmember();
-//	getch();
-//	SortTMemberActive();
-//	SortTMemberDeactive()
-//	MemberReportForm();
-//	ViewTfacility();
-//	getch();
-//	SortYearTfacility();
-//	SortMonthTfacility();
-//	ViewTroom();
-//	getch();
-//	SortYearTroom();
-//	RoomReportForm();
-//	RestoDetailForm();
-//	ViewTresto();
-//	getch();
-//	SortDetailTresto();
-//	SortMonthTresto();
-//	RestoReportForm();
-//	Tresto();
-//	ReadTresto();
-	
-	vLogin();
+//	Authentication();
+//	vLogin();
 //	default_res(w,h);
 
 //	pthread_t t1, t2;
