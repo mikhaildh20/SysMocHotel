@@ -16,23 +16,21 @@ void CreateFsl(){
 				}
 			}
 		}
-		gotoxy(63,25);
-		printf("FCL%03d",fsl.id_fasilitas);
+		
+		gotoxy(63,25);printf("FCL%03d",fsl.id_fasilitas);
 		
 		reset:
 		
-		fflush(stdin);	
-		gotoxy(63,30);
-		getletter(fsl.nama,15);
+		fflush(stdin);gotoxy(63,30);getletter(fsl.nama,15);
 		
 		if(EscPressed){
 			fclose(fp);
 			break;
 		}
+		
 		strupr(fsl.nama);
 		
-		fflush(stdin);
-		gotoxy(63,35);
+		fflush(stdin);gotoxy(63,35);
 		printf("Rp");getRp(&fsl.harga,5,7,66,35);
 		
 		if(EscPressed){

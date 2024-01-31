@@ -70,7 +70,7 @@ void Troom(){
 		
 		//1 ID
 		gotoxy(73,24);printf("%03d\n",trh.id);
-		strcpy(trh.nama_karyawan,"Zhillan");
+		strcpy(trh.nama_karyawan,EmployeeDetail);
 		
 		invalidDate:
 		
@@ -257,7 +257,7 @@ void Troom(){
 	}
 }
 
-Tfacil(){
+void Tfacil(){
 	clrDb();
 	
 	while(1){
@@ -285,7 +285,7 @@ Tfacil(){
 		
 		//1 ID
 		gotoxy(73,24);printf("%03d\n",trhf.id);
-		strcpy(trhf.nama_karyawan,"Zhillan");
+		strcpy(trhf.nama_karyawan,EmployeeDetail);
 		
 		invalidDate:
 		

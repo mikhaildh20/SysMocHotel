@@ -13,7 +13,6 @@ void getMember(){
 }
 
 void Tmember(){
-	//transaksi selanjutnya
 	clrDb();
 	RegMemberForm();
 	
@@ -116,6 +115,8 @@ void Tmember(){
 }
 
 void EXmember(){
+	clrDb();
+	
 	ExtMemberForm();
 	
 	while(1){

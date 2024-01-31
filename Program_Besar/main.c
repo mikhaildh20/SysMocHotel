@@ -22,6 +22,7 @@
 #include "Transaksi/Member.h"
 #include "Transaksi/Restoran.h"
 #include "Transaksi/Hotel.h"
+#include "Laporan/Laporan.h"
 #include "login.h"
 #include "compactMenu.h"
 //#include "musicprep.h"
@@ -32,31 +33,30 @@ int w,h;
 int main(){
 	fullscreen();	
 	
-//	ReadTfacil();
-
-
-dDashboard("Imam");
-//Tmember();
-//RegMemberForm();
-//ExtMemberForm();getch();
-//clrAllExt();
-//	Tfacil();
-//	CheckinFacility();
-//Troom();
-//CheckinRoom();
-//CheckoutRoom();
-//ReadTroom();
-
-
-//	Tmember();
-	EXmember();
-//	ReadTmember();
 //	dDashboard("Imam");
-//	Dashboard();
-//getAvailableFnB();
+//	ViewTmember();
+//	getch();
+//	SortTMemberActive();
+//	SortTMemberDeactive()
+//	MemberReportForm();
+//	ViewTfacility();
+//	getch();
+//	SortYearTfacility();
+//	SortMonthTfacility();
+//	ViewTroom();
+//	getch();
+//	SortYearTroom();
+//	RoomReportForm();
+//	RestoDetailForm();
+//	ViewTresto();
+//	getch();
+//	SortDetailTresto();
+//	SortMonthTresto();
+//	RestoReportForm();
 //	Tresto();
-//	ReadTresto();	
-//	vLogin();
+//	ReadTresto();
+	
+	vLogin();
 //	default_res(w,h);
 
 //	pthread_t t1, t2;

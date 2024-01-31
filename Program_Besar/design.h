@@ -123,6 +123,70 @@ void PrintAdMen(){
 	printf("Log out");
 }
 
+void PrintAdCashier(){
+	gotoxy(12,18);
+	printf("Trasaction");
+	gotoxy(12,20);
+	printf("Registration");
+	gotoxy(12,22);
+	printf("Extension");
+	gotoxy(12,24);
+	printf("Logout");
+}
+
+void PrintTHotel(){
+	gotoxy(12,18);
+	printf("Room");
+	gotoxy(12,20);
+	printf("Facility");
+	gotoxy(12,22);
+	printf("Back");
+}
+
+void PrintAdReceptionist(){
+	gotoxy(12,18);
+	printf("Reserve");
+	gotoxy(12,20);
+	printf("Checkin ");
+	gotoxy(12,22);
+	printf("Checkout");
+	gotoxy(12,24);
+	printf("Registration");
+	gotoxy(12,26);
+	printf("Extension");
+	gotoxy(12,28);
+	printf("Logout");
+}
+
+void PrintChooseReport(){
+	gotoxy(12,18);
+	printf("Monthly Report");
+	gotoxy(12,20);
+	printf("Year Report");
+	gotoxy(12,22);
+	printf("Back");
+}
+
+void PrintMemberReport(){
+	gotoxy(12,18);
+	printf("Active Report");
+	gotoxy(12,20);
+	printf("Inactive Report");
+	gotoxy(12,22);
+	printf("Back");
+}
+
+void PrintAdManager(){
+	gotoxy(12,18);
+	printf("Hotel Report");
+	gotoxy(12,20);
+	printf("Member Report");
+	gotoxy(12,22);
+	printf("Resto Report");
+	gotoxy(12,24);
+	printf("Logout");
+}
+
 void PrintAdRoom(){
 	clrMainMenu();
 	gotoxy(12,18);
@@ -1168,7 +1232,7 @@ void RestoForm(){
 	
 	gotoxy(47,36);printf("-- M E M B E R --");
 	gotoxy(47,38);printf("ADD");gotoxy(60,38);printf("SKIP");
-	gotoxy(47,40);printf("MEMBER ID");gotoxy(60,40);printf(": MBR");
+	gotoxy(47,40);printf("MEMBER ID");gotoxy(60,40);printf(": TRM");
 	gotoxy(47,42);printf("NIK");gotoxy(60,42);printf(": ");
 	gotoxy(47,44);printf("NAME");gotoxy(60,44);printf(": ");
 	
@@ -1179,4 +1243,50 @@ void RestoForm(){
 	drawBox(89,40,64,7,204,205,185,186,202,188);
 	gotoxy(93,42);printf("TOTAL");gotoxy(100,42);printf(": Rp");
 	gotoxy(93,44);printf("PAY");gotoxy(100,44);printf(": Rp");gotoxy(124,44);printf("CHANGE");gotoxy(134,44);printf(": Rp");
+}
+
+void clrReport(){
+	customClr(110,23,42,24);
+}
+
+void RestoReportForm(){
+	drawBox(40,21,116,27,201,205,187,186,200,188);
+	drawBox(40,21,116,3,201,205,187,186,204,185);
+	gotoxy(42,22);printf("ID");
+	gotoxy(60,22);printf("CASHIER");
+	gotoxy(85,22);printf("MEMBER ID");
+	gotoxy(113,22);printf("DATE");
+	gotoxy(135,22);printf("TOTAL");
+}
+
+void RestoDetailForm(){
+	drawBox(40,21,116,27,201,205,187,186,200,188);
+	drawBox(40,21,116,3,201,205,187,186,204,185);
+	gotoxy(45,22);printf("ITEM");
+	gotoxy(85,22);printf("QUANTITY");
+	gotoxy(135,22);printf("SUB TOTAL");
+}
+
+void RoomReportForm(){
+	drawBox(40,21,116,27,201,205,187,186,200,188);
+	drawBox(40,21,116,3,201,205,187,186,204,185);
+	gotoxy(42,22);printf("ID");
+	gotoxy(55,22);printf("RECEPTIONIST");
+	gotoxy(75,22);printf("CHECKIN");
+	gotoxy(90,22);printf("CHECKOUT");
+	gotoxy(105,22);printf("STATUS");
+	gotoxy(120,22);printf("TOTAL PRICE");
+	gotoxy(140,22);printf("PAYMENT");
+}
+
+void MemberReportForm(){
+	drawBox(40,21,116,27,201,205,187,186,200,188);
+	drawBox(40,21,116,3,201,205,187,186,204,185);
+	gotoxy(42,22);printf("ID");
+	gotoxy(55,22);printf("NIK");
+	gotoxy(75,22);printf("NAME");
+	gotoxy(90,22);printf("TELEPHONE");
+	gotoxy(105,22);printf("JOIN DATE");
+	gotoxy(120,22);printf("EXP. DATE");
+	gotoxy(140,22);printf("STATUS");
 }

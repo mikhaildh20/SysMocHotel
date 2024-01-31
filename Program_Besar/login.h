@@ -15,6 +15,7 @@ void vLogin(){
 			exit(1);
 		}
 		while(1){
+			//login
 			if(!EscPressed){
 				system("cls");
 				selectedOption = 1;
@@ -59,13 +60,14 @@ void vLogin(){
 							system("cls");
 							match = true;
 							if(strcmp(kry.role, "CASHIER")==0){
-								printf("CASHIER");
+								CashierArrMen(kry.fname);
 							}else if(strcmp(kry.role, "MANAGER")==0){
-								printf("MANAGER");
+								ManagerArrMen(kry.fname);
 							}else if(strcmp(kry.role, "RECEPTIONIST")==0){
-								printf("RECEPTIONIST");
+								ReceptionistArrMen(kry.fname);
 							}
 							afLogin = true;
+							break;
 						}
 					}
 					fclose(fp);
