@@ -13,6 +13,7 @@
 #include "design.h"
 #include "lib.h"
 #include "config.h"
+#include "validate.h"
 #include "Master/Denda.h"
 #include "Master/Karyawan.h"
 #include "Master/Kamar.h"

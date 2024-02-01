@@ -72,7 +72,7 @@ void fullscreen()
 	set_res();
 	removeTextCursor();
 	remove_scrollbar();
-	removeBlinkingCursor();
+	//removeBlinkingCursor();
 	setConsoleMode();
 }
 

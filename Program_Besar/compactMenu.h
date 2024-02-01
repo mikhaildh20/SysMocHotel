@@ -2,6 +2,7 @@
 void AdminMenArr(char uname[]){
 	dDashboard(uname);
     PrintAdMen();
+    validateAvailable();
     while(1){
     	if(selectedOption==7){
 			break;
@@ -278,6 +279,7 @@ void ReceptionistArrMen(char uname[]){
 	strcpy(EmployeeDetail,uname);
     PrintAdReceptionist();
     while(1){
+    	validateAvailable();
     	clrDb();
     	
     	if(selectedOption==6){

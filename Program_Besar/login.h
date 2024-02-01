@@ -125,6 +125,7 @@ void Authentication(){
 		exit(1);
 	}else{
 		remove("Dat/Auth.dat");
+		ValidateAllTransaction();
 		vLogin();
 	}
 	

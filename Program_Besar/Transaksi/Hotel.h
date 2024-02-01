@@ -500,7 +500,7 @@ void CheckinRoom(){
 		gotoxy(73,25);getnummin(&search,1,3);if(EscPressed){break;}gotoxy(73,25);printf("%03d",search);
 		fp = fopen("Dat/HotelRoom.dat","rb");
 		while(fread(&trh,sizeof(trh),1,fp)==1){
-			if(search==trh.id && strcmp(trh.status,"RESERVED")==0 || search==trh.id && strcmp(trh.status,"CHECKOUT")==0 || search==trh.id && strcmp(trh.status,"CHECKIN")==0){
+			if(search==trh.id && strcmp(trh.status,"RESERVED")==0 || search==trh.id && strcmp(trh.status,"CHECKOUT")==0 || search==trh.id && strcmp(trh.status,"CHECKIN")==0 || search==trh.id && strcmp(trh.status,"CANCELLED")==0){
 				found = true;
 				break;
 			}
@@ -619,7 +619,7 @@ void CheckinFacility(){
 		gotoxy(73,25);getnummin(&search,1,3);if(EscPressed){break;}gotoxy(73,25);printf("%03d",search);
 		fp = fopen("Dat/HotelFacility.dat","rb");
 		while(fread(&trhf,sizeof(trhf),1,fp)==1){
-			if(search==trhf.id && strcmp(trhf.status,"RESERVED")==0 || search==trhf.id && strcmp(trhf.status,"CHECKOUT")==0 || search==trhf.id && strcmp(trhf.status,"CHECKIN")==0){
+			if(search==trhf.id && strcmp(trhf.status,"RESERVED")==0 || search==trhf.id && strcmp(trhf.status,"CHECKOUT")==0 || search==trhf.id && strcmp(trhf.status,"CHECKIN")==0 || search==trhf.id && strcmp(trhf.status,"CANCELLED")==0){
 				found = true;
 				break;
 			}
