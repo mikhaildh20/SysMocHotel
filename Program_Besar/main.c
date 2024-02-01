@@ -35,6 +35,7 @@ int main(){
 	fullscreen();
 	Authentication();
 
+
 //	pthread_t t1, t2;
 //	
 //	pthread_create(&t1,NULL,mainTask,NULL);

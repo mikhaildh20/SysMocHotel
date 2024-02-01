@@ -34,7 +34,7 @@ typedef struct{
 	char role[30];
 	char no_telp[25];
 }Karyawan;
-Karyawan kry;
+Karyawan kry,vKry[100];
 
 typedef struct{
 	int no_kamar;
@@ -60,7 +60,7 @@ typedef struct{
 	int harga;
 	int status;
 }Menu;
-Menu mnu;
+Menu mnu,vMnu[100];
 
 typedef struct{
 	int id_paket;
@@ -69,7 +69,7 @@ typedef struct{
 	char desc[30];
 	int status;
 }Paket;
-Paket pkt;
+Paket pkt,vPkt[100];
 
 typedef struct{
 	int dd;

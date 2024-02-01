@@ -1,9 +1,22 @@
+void getPkt(){
+	fp = fopen("Dat/Paket.dat","rb");
+	i=0;
+	while(fread(&pkt,sizeof(pkt),1,fp)==1){
+		vPkt[i].id_paket = pkt.id_paket;
+		strcpy(vPkt[i].nama,pkt.nama);
+		i++;	
+	}
+	fclose(fp);
+}
+
 void CreatePkt(){
 	while(1){
 		clrDb();
 		PkCreateForm();
 			
 		next:
+			
+		getPkt();
 			
 		fp = fopen("Dat/Paket.dat", "ab+");
 		if(fread(&pkt,sizeof(pkt),1,fp)==0){
@@ -23,13 +36,27 @@ void CreatePkt(){
 		reset:
 		
 		fflush(stdin);
-		gotoxy(63,29);
-		getletter(pkt.nama,20);
+		gotoxy(63,29);printf("                    ");
+		gotoxy(63,29);getletter(pkt.nama,20);
 		strupr(pkt.nama);
 		
 		if(EscPressed){
 			fclose(fp);
 			break;
+		}
+		
+		found = false;
+		for(i=0;vPkt[i].id_paket!=0;i++){
+			if(strcmp(pkt.nama,vPkt[i].nama)==0){
+				found = true;
+				break;
+			}
+		}
+		
+		if(found){
+			gotoxy(63,29);printf("                    ");
+			gotoxy(63,29);printf("Error");Beep(800,200);sleep(1);
+			goto reset;
 		}
 		
 		fflush(stdin);
@@ -195,10 +222,14 @@ void DisplayPktData(char name[], int rp[], char desc[]){
 void UpdateNamePkt(){
 	updconf = false;
 	goback:
+	
+	getPkt();
+	
 	fp = fopen("Dat/Paket.dat","rb");
 	tmp = fopen("Dat/Tmp.dat", "wb");
 	while(fread(&pkt,sizeof(pkt),1,fp)==1){
 		if(search==pkt.id_paket){
+			invalidName:
 			gotoxy(63,29);
 			printf("                    ");
 			fflush(stdin);
@@ -212,6 +243,20 @@ void UpdateNamePkt(){
 				gotoxy(63,29);
 				printf("%s",pkt.nama);
 				break;
+			}
+			
+			found = false;
+			for(i=0;vPkt[i].id_paket!=0;i++){
+				if(strcmp(tUpdate,vPkt[i].nama)==0){
+					found = true;
+					break;
+				}
+			}
+			
+			if(found){
+				gotoxy(63,29);printf("                    ");
+				gotoxy(63,29);printf("Error");Beep(800,200);sleep(1);
+				goto invalidName;
 			}
 			
 			selectedOption = 2;

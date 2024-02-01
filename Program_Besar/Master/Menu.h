@@ -1,9 +1,22 @@
+void getMnu(){
+	fp = fopen("Dat/Menu.dat","rb");
+	i=0;
+	while(fread(&mnu,sizeof(mnu),1,fp)==1){
+		vMnu[i].id_menu = mnu.id_menu;
+		strcpy(vMnu[i].nama,mnu.nama);
+		i++;	
+	}
+	fclose(fp);
+}
+
 void CreateMnu(){
 	while(1){
 		clrDb();
 		MnCreateForm();
 			
 		next:
+			
+		getMnu();
 			
 		fp = fopen("Dat/Menu.dat", "ab+");
 		if(fread(&mnu,sizeof(mnu),1,fp)==0){
@@ -23,13 +36,27 @@ void CreateMnu(){
 		reset:
 		
 		fflush(stdin);
-		gotoxy(63,31);
-		getletter(mnu.nama,20);
+		gotoxy(63,31);printf("                    ");
+		gotoxy(63,31);getletter(mnu.nama,20);
 		strupr(mnu.nama);
 		
 		if(EscPressed){
 			fclose(fp);
 			break;
+		}
+		
+		found = false;
+		for(i=0;vMnu[i].id_menu!=0;i++){
+			if(strcmp(mnu.nama,vMnu[i].nama)==0){
+				found = true;
+				break;
+			}
+		}
+		
+		if(found){
+			gotoxy(63,31);printf("                    ");
+			gotoxy(63,31);printf("Error");Beep(800,200);sleep(1);
+			goto reset;
 		}
 		
 		selectedOption = 1;
@@ -238,15 +265,15 @@ void DisplayMnuData(char nama[],char category[], int harga){
 void UpdateNameMnu(){
 	updconf = false;
 	goback:
+	getMnu();
 	fp = fopen("Dat/Menu.dat","rb");
 	tmp = fopen("Dat/Tmp.dat", "wb");
 	while(fread(&mnu,sizeof(mnu),1,fp)==1){
 		if(search==mnu.id_menu){
-			gotoxy(63,31);
-			printf("             ");
+			invalidName:
+			gotoxy(63,31);printf("                    ");
 			fflush(stdin);
-			gotoxy(63,31);
-			getletter(tUpdate,20);
+			gotoxy(63,31);getletter(tUpdate,20);
 			strupr(tUpdate);
 			
 			if(EscPressed){
@@ -258,6 +285,19 @@ void UpdateNameMnu(){
 				break;
 			}
 			
+			found = false;
+			for(i=0;vMnu[i].id_menu!=0;i++){
+				if(strcmp(tUpdate,vMnu[i].nama)==0){
+					found = true;
+					break;
+				}
+			}
+			
+			if(found){
+				gotoxy(63,31);printf("                    ");
+				gotoxy(63,31);printf("Error");Beep(800,200);sleep(1);
+				goto invalidName;
+			}
 			selectedOption = 2;
 			do {
 				customClr(70,1,65,40);

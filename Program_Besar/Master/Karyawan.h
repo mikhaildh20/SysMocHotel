@@ -1,9 +1,23 @@
+void getKry(){
+	fp = fopen("Dat/Karyawan.dat","rb");
+	i=0;
+	while(fread(&kry,sizeof(kry),1,fp)==1){
+		vKry[i].id_karyawan = kry.id_karyawan;
+		strcpy(vKry[i].no_telp,kry.no_telp);
+		strcpy(vKry[i].username,kry.username);
+		i++;
+	}
+	fclose(fp);
+}
+
 void CreateKry(){
 	while(1){
 		clrDb();
-		KrCreateForm();
+		KrCreateForm();	
 		
 		next:
+			
+		getKry();
 		
 		fp = fopen("Dat/Karyawan.dat", "ab+");
 		if(fread(&kry,sizeof(kry),1,fp)==0){
@@ -31,9 +45,24 @@ void CreateKry(){
 			break;
 		}
 		
+		found = false;
+		for(i=0;vKry[i].id_karyawan!=0;i++){
+			if(strcmp(kry.no_telp,vKry[i].no_telp)==0){
+				found = true;
+				break;
+			}
+		}
+		
+		if(found){
+			gotoxy(100,23);printf("             ");
+			gotoxy(100,23);printf("Error");Beep(800,200);sleep(1);
+			gotoxy(100,23);printf("     ");
+			goto reset;
+		}
+		
 		fflush(stdin);
-		gotoxy(63,28);
-		getletter(kry.fname,6);
+		gotoxy(63,28);printf("          ");
+		gotoxy(63,28);getletter(kry.fname,10);
 		strupr(kry.fname);
 		
 		if(EscPressed){
@@ -42,8 +71,8 @@ void CreateKry(){
 		}
 		
 		fflush(stdin);
-		gotoxy(100,28);
-		getletter(kry.lname,6);
+		gotoxy(100,28);printf("          ");
+		gotoxy(100,28);getletter(kry.lname,10);
 		strupr(kry.lname);
 		
 		if(EscPressed){
@@ -51,14 +80,30 @@ void CreateKry(){
 			break;
 		}
 		
+		invalidUname:
+		
 		fflush(stdin);
-		gotoxy(63,33);
-		getteks(kry.username,8);
+		gotoxy(63,33);printf("          ");
+		gotoxy(63,33);getteks(kry.username,10);
 		
 		
 		if(EscPressed){
 			fclose(fp);
 			break;
+		}
+		
+		found = false;
+		for(i=0;vKry[i].id_karyawan!=0;i++){
+			if(strcmp(kry.username,vKry[i].username)==0){
+				found = true;
+				break;
+			}
+		}
+		
+		if(found){
+			gotoxy(63,33);printf("          ");
+			gotoxy(63,33);printf("Error");Beep(800,200);sleep(2);
+			goto invalidUname;
 		}
 		
 		fflush(stdin);
@@ -186,7 +231,7 @@ void CreateKry(){
 			gotoxy(63,28);
 			printf("      ");
 			gotoxy(100,28);
-			printf("      ");
+			printf("          ");
 			gotoxy(63,33);
 			printf("          ");
 			gotoxy(100,33);
@@ -212,7 +257,7 @@ void CreateKry(){
 			gotoxy(100,23);
 			printf("              ");
 			gotoxy(63,28);
-			printf("      ");
+			printf("         ");
 			gotoxy(100,28);
 			printf("      ");
 			gotoxy(63,33);
@@ -615,15 +660,15 @@ void UpdateRoleKry(){
 void UpdateTelpKry(){
 	updconf = false;
 	goback:
+	getKry();
 	fp = fopen("Dat/Karyawan.dat","rb");
 	tmp = fopen("Dat/Tmp.dat", "wb");
 	while(fread(&kry,sizeof(kry),1,fp)==1){
 		if(search==kry.id_karyawan){
-			gotoxy(100,27);
-			printf("             ");
+			invalidTelp:
+			gotoxy(100,27);printf("             ");
 			fflush(stdin);
-			gotoxy(100,27);
-			getteksnummin(tUpdate,11,13);
+			gotoxy(100,27);getteksnummin(tUpdate,11,13);
 			
 			if(EscPressed){
 				gotoxy(100,27);
@@ -632,6 +677,20 @@ void UpdateTelpKry(){
 				printf("%s",kry.no_telp);
 				fclose(fp);
 				break;
+			}
+			
+			found = false;
+			for(i=0;vKry[i].id_karyawan!=0;i++){
+				if(strcmp(tUpdate,vKry[i].no_telp)==0){
+					found = true;
+					break;
+				}
+			}
+			
+			if(found){
+				gotoxy(100,27);printf("             ");
+				gotoxy(100,27);printf("Error");Beep(800,200);sleep(1);
+				goto invalidTelp;
 			}
 			
 			selectedOption = 2;
