@@ -32,10 +32,7 @@ int w,h;
 
 int main(){
 	fullscreen();
-	
-//	Authentication();
-//	vLogin();
-//	default_res(w,h);
+	Authentication();
 
 //	pthread_t t1, t2;
 //	

@@ -114,6 +114,10 @@ void Authentication(){
 	
 	DateTimeNow(&Now);
 	if(Now.tahun == CheckAuth.tahun && Now.bulan == CheckAuth.bulan && Now.tgl == CheckAuth.tgl){
+		loadingAnimation();
+		if(EscPressed){
+			exit(1);
+		}
 		PrintFile("Asset/ACCESS.txt",37,20);	
 		CheckAuth.tgl+=1;
 		gotoxy(70,27);printf("UNLOCKED AT %02d/%02d/2024",CheckAuth.tgl,CheckAuth.bulan,CheckAuth.tahun);

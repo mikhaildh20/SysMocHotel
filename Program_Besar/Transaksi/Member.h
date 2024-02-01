@@ -71,7 +71,7 @@ void Tmember(){
 			goto invalidtelp;
 		}
 		
-		fflush(stdin);gotoxy(79,39);getteks(trm.nama,15);
+		fflush(stdin);gotoxy(79,39);getletter(trm.nama,15);
 		strupr(trm.nama);
 		
 		strcpy(trm.nama_karyawan,"Imam");
