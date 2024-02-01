@@ -527,7 +527,7 @@ void RmDeleteForm(){
 	printf("TOTAL PRICE");
 	drawBox(100,35,35,3,218,196,191,179,192,217);
 	gotoxy(86,41);
-	printf("Reset");
+	printf("Cancel");
 	gotoxy(106,41);
 	printf("Delete");
 }
@@ -565,7 +565,7 @@ void FcDeleteForm(){
 	printf("TOTAL PRICE");
 	drawBox(62,34,73,3,218,196,191,179,192,217);
 	gotoxy(86,39);
-	printf("Reset");
+	printf("Cancel");
 	gotoxy(106,39);
 	printf("Delete");
 }
@@ -692,7 +692,7 @@ void KrDeleteForm(){
 	printf("ROLE");
 	drawBox(62,36,73,3,218,196,191,179,192,217);
 	gotoxy(86,41);
-	printf("Reset");
+	printf("Cancel");
 	gotoxy(106,41);
 	printf("Delete");
 }
@@ -767,7 +767,7 @@ void PkDeleteForm(){
 	printf("DESCRIPTION");
 	drawBox(62,33,73,6,218,196,191,179,192,217);
 	gotoxy(86,41);
-	printf("Reset");
+	printf("Cancel");
 	gotoxy(106,41);
 	printf("Delete");
 }
@@ -852,7 +852,7 @@ void MnDeleteForm(){
 	printf("PRICE");
 	drawBox(100,35,35,3,218,196,191,179,192,217);
 	gotoxy(86,41);
-	printf("Reset");
+	printf("Cancel");
 	gotoxy(106,41);
 	printf("Delete");
 }
@@ -920,7 +920,7 @@ void FnDeleteForm(){
 	gotoxy(62,28);printf("FINES CATEGORY");drawBox(62,29,35,3,218,196,191,179,192,217);
 	gotoxy(100,28);printf("VALUE");drawBox(100,29,35,3,218,196,191,179,192,217);
 	gotoxy(62,33);printf("DESCRIPTION");drawBox(62,34,73,6,218,196,191,179,192,217);
-	gotoxy(86,41);printf("Reset");
+	gotoxy(86,41);printf("Cancel");
 	gotoxy(104,41);printf("Delete");
 }
 

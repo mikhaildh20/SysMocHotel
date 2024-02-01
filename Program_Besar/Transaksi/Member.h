@@ -4,12 +4,10 @@ void getMember(){
 	i=0;
 	vtm[0].term = 1;
 	while(fread(&trm,sizeof(trm),1,fp)==1){
-		if(trm.status == 1){
-			strcpy(vtm[i].nik,trm.nik);
-			strcpy(vtm[i].telp,trm.telp);
-			vtm[i].term++;
-			i++;	
-		}
+		strcpy(vtm[i].nik,trm.nik);
+		strcpy(vtm[i].telp,trm.telp);
+		vtm[i].term++;
+		i++;	
 	}
 	fclose(fp);
 }
