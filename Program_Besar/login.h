@@ -12,6 +12,7 @@ void vLogin(){
 	while(1){
 		loadingAnimation();
 		if(EscPressed){
+			default_res(defWidth,defHeight);
 			exit(1);
 		}
 		while(1){
@@ -98,6 +99,7 @@ void vLogin(){
 					DateTimeNow(&Now);
 					fwrite(&Now,sizeof(Now),1,fp);
 					fclose(fp);
+					default_res(defWidth,defHeight);
 					exit(1);
 				}	
 			}else{
@@ -116,12 +118,14 @@ void Authentication(){
 	if(Now.tahun == CheckAuth.tahun && Now.bulan == CheckAuth.bulan && Now.tgl == CheckAuth.tgl){
 		loadingAnimation();
 		if(EscPressed){
+			default_res(defWidth,defHeight);
 			exit(1);
 		}
 		PrintFile("Asset/ACCESS.txt",37,20);	
 		CheckAuth.tgl+=1;
 		gotoxy(70,27);printf("UNLOCKED AT %02d/%02d/2024",CheckAuth.tgl,CheckAuth.bulan,CheckAuth.tahun);
 		getch();
+		default_res(defWidth,defHeight);
 		exit(1);
 	}else{
 		remove("Dat/Auth.dat");

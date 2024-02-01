@@ -4,7 +4,7 @@ bool valid;
 bool MusicOn;
 bool delconf;
 bool updconf;
-int choose,j,i,search,ctg,x,y,pressed,selectedOption,tPayment,bayar,lama,downpay,discount,kembali,lewat,tTambahan,hutang,row,prev,getId,sMonth,sYear,rValidate;
+int choose,j,i,search,ctg,x,y,pressed,selectedOption,tPayment,bayar,lama,downpay,discount,kembali,lewat,tTambahan,hutang,row,prev,getId,sMonth,sYear,rValidate,defWidth,defHeight;
 char cvrRp[10];
 char EmployeeDetail[15];
 char rStat[15];

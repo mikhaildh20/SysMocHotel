@@ -1,4 +1,5 @@
 void *mainTask(void *arg){
+	getRes(&defWidth,&defHeight);
 	MusicOn = true;
 	fullscreen();
 	Authentication();

@@ -26,21 +26,18 @@
 #include "Laporan/Laporan.h"
 #include "login.h"
 #include "compactMenu.h"
-//#include "musicprep.h"
-
-
-int w,h;
+#include "musicprep.h"
 
 int main(){
-	fullscreen();
-	Authentication();
+//	fullscreen();
+//	Authentication();
 
 
-//	pthread_t t1, t2;
-//	
-//	pthread_create(&t1,NULL,mainTask,NULL);
-//	pthread_create(&t2,NULL,backgroundMusic,NULL);
-//	
-//	pthread_join(t1,NULL);
-//	pthread_join(t2,NULL);
+	pthread_t t1, t2;
+	
+	pthread_create(&t1,NULL,mainTask,NULL);
+	pthread_create(&t2,NULL,backgroundMusic,NULL);
+	
+	pthread_join(t1,NULL);
+	pthread_join(t2,NULL);
 }
