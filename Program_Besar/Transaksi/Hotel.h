@@ -17,10 +17,10 @@ void getFacility(){
 	fp = fopen("Dat/Fasilitas.dat","rb");
 	i=0;
 	while(fread(&fsl,sizeof(fsl),1,fp)==1){
-		vth[i].id=fsl.id_fasilitas;
-		strcpy(vth[i].nama,fsl.nama);
-		strcpy(vth[i].type,fsl.nama);
-		vth[i].harga=fsl.harga;
+		vthf[i].id=fsl.id_fasilitas;
+		strcpy(vthf[i].nama,fsl.nama);
+		strcpy(vthf[i].type,fsl.nama);
+		vthf[i].harga=fsl.harga;
 		i++;
 	}
 	fclose(fp);
@@ -316,13 +316,13 @@ void Tfacil(){
 		//5 Kamar
 		found = false;
 		gotoxy(73,32);getnummin(&trhf.id_fasilitas,1,3);gotoxy(73,32);printf("%03d",trhf.id_fasilitas);if(EscPressed){break;}
-		for(i=0;vth[i].id!=0;i++){
-			if(trhf.id_fasilitas==vth[i].id){
+		for(i=0;vthf[i].id!=0;i++){
+			if(trhf.id_fasilitas==vthf[i].id){
 				found = true;
 				//6 type
-				strcpy(trhf.type,vth[i].type);
+				strcpy(trhf.type,vthf[i].type);
 				//7total harga
-				trhf.sisa_harga = vth[i].harga*trhf.LamaSewa;
+				trhf.sisa_harga = vthf[i].harga*trhf.LamaSewa;
 				break;
 			}
 		}

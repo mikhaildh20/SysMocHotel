@@ -173,4 +173,4 @@ typedef struct{
 	char type[20];
 	int harga;
 }vThotel;
-vThotel vth[100];
+vThotel vth[100],vthf[100];
