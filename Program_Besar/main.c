@@ -29,7 +29,7 @@
 #include "musicprep.h"
 
 int main(){
-//	fullscreen();
+	fullscreen();
 //	Authentication();
 
 

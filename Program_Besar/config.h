@@ -27,7 +27,7 @@ void set_res(){
     LONG result = ChangeDisplaySettings(&dm, 0);
     if (result != DISP_CHANGE_SUCCESSFUL) {
         fprintf(stderr, "Failed to change display settings\n");
-        return 1;
+        return ;
     }
 }
 

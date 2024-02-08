@@ -63,7 +63,14 @@ void SortMonthTresto(){
 	while(1){
 		gotoxy(49,19);printf("  ");
 		gotoxy(40,19);printf("DATE");gotoxy(47,19);printf(":    -      (MM/YY)");
-		gotoxy(49,19);getnummin(&sMonth,1,2);if(EscPressed){break;}gotoxy(49,19);printf("%02d",sMonth);
+		gotoxy(49,19);getnummin(&sMonth,1,2);if(EscPressed){break;}
+		if (sMonth >= 1 && sMonth <= 12) {
+        break;
+        } else {
+        gotoxy(49, 19);printf("  ");
+        gotoxy(49, 19);printf("INVALID MONTH");
+        }
+		gotoxy(49,19);printf("%02d",sMonth);
 		gotoxy(54,19);getnummin(&sYear,4,4);if(EscPressed){break;}
 		clrReport();	
 		row = 24;
@@ -176,6 +183,12 @@ void SortMonthTroom(){
 		gotoxy(49,19);printf("  ");
 		gotoxy(40,19);printf("DATE");gotoxy(47,19);printf(":    -      (MM/YY)");
 		gotoxy(49,19);getnummin(&sMonth,1,2);if(EscPressed){break;}gotoxy(49,19);printf("%02d",sMonth);
+		if (sMonth >= 1 && sMonth <= 12) {
+        break;
+        } else {
+        gotoxy(49, 19);printf("  ");
+        gotoxy(49, 19);printf("INVALID MONTH");
+        }
 		gotoxy(54,19);getnummin(&sYear,4,4);if(EscPressed){break;}
 		clrReport();	
 		row = 24;
