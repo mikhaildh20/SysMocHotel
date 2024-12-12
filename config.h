@@ -66,13 +66,11 @@ void fullscreen()
 	keybd_event(VK_RETURN,0x1c,0,0);
 	keybd_event(VK_RETURN,0x1c,KEYEVENTF_KEYUP,0);
 	keybd_event(VK_MENU,0x38,KEYEVENTF_KEYUP,0);
-//	HWND hWnd = GetConsoleWindow();
-//	SetWindowLong(hWnd, GWL_STYLE, GetWindowLong(hWnd,GWL_STYLE)&~WS_OVERLAPPEDWINDOW);
-//	ShowWindow(hWnd,SW_MAXIMIZE);
+	
+	
 	set_res();
 	removeTextCursor();
 	remove_scrollbar();
-	//removeBlinkingCursor();
 	setConsoleMode();
 }
 
